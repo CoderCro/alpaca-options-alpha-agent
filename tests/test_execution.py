@@ -3,6 +3,7 @@ real `alpaca` binary or hit the live network/API (paper account or not).
 """
 
 import json
+import subprocess
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -11,6 +12,7 @@ from src.execution import (
     AlpacaCliError,
     cancel_order,
     get_account,
+    get_bars,
     get_option_chain,
     get_order,
     list_open_orders,
@@ -27,7 +29,7 @@ def _completed(payload, returncode: int = 0) -> MagicMock:
 def test_get_account_parses_json(mock_run):
     mock_run.return_value = _completed({"id": "abc-123", "equity": "100000"})
     assert get_account() == {"id": "abc-123", "equity": "100000"}
-    mock_run.assert_called_once_with(["alpaca", "account", "get"], capture_output=True, text=True)
+    mock_run.assert_called_once_with(["alpaca", "account", "get"], capture_output=True, text=True, timeout=30)
 
 
 @patch("subprocess.run")
@@ -95,7 +97,7 @@ def test_get_order(mock_run):
     mock_run.return_value = _completed({"id": "order-123", "status": "filled"})
     assert get_order("order-123")["status"] == "filled"
     mock_run.assert_called_once_with(
-        ["alpaca", "order", "get", "--order-id", "order-123"], capture_output=True, text=True
+        ["alpaca", "order", "get", "--order-id", "order-123"], capture_output=True, text=True, timeout=30
     )
 
 
@@ -104,7 +106,7 @@ def test_list_open_orders(mock_run):
     mock_run.return_value = _completed([{"id": "o1"}, {"id": "o2"}])
     assert len(list_open_orders()) == 2
     mock_run.assert_called_once_with(
-        ["alpaca", "order", "list", "--status", "open"], capture_output=True, text=True
+        ["alpaca", "order", "list", "--status", "open"], capture_output=True, text=True, timeout=30
     )
 
 
@@ -113,7 +115,7 @@ def test_cancel_order_treats_empty_json_as_success(mock_run):
     mock_run.return_value = _completed({})
     assert cancel_order("order-123") is None
     mock_run.assert_called_once_with(
-        ["alpaca", "order", "cancel", "--order-id", "order-123"], capture_output=True, text=True
+        ["alpaca", "order", "cancel", "--order-id", "order-123"], capture_output=True, text=True, timeout=30
     )
 
 
@@ -133,3 +135,40 @@ def test_cancel_order_nonzero_exit_raises(mock_run):
     )
     with pytest.raises(AlpacaCliError, match="order not found"):
         cancel_order("bad-id")
+
+
+@patch("subprocess.run")
+def test_cli_timeout_raises_alpaca_cli_error(mock_run):
+    mock_run.side_effect = subprocess.TimeoutExpired(cmd=["alpaca"], timeout=30)
+    with pytest.raises(AlpacaCliError, match="timed out"):
+        get_account()
+
+
+@patch("subprocess.run")
+def test_malformed_json_output_raises_alpaca_cli_error(mock_run):
+    mock_run.return_value = MagicMock(stdout="not json", returncode=0)
+    with pytest.raises(AlpacaCliError, match="non-JSON"):
+        get_account()
+
+
+@patch("subprocess.run")
+def test_get_bars_only_required_args(mock_run):
+    mock_run.return_value = _completed({"bars": []})
+    get_bars("AAPL", "2026-08-01")
+    args = mock_run.call_args[0][0]
+    assert args == ["alpaca", "data", "bars", "--symbol", "AAPL", "--start", "2026-08-01", "--timeframe", "1Day"]
+
+
+@patch("subprocess.run")
+def test_get_bars_all_options(mock_run):
+    mock_run.return_value = _completed({"bars": []})
+    get_bars("AAPL", "2026-08-01", end="2026-08-30", timeframe="15Min", limit=100)
+    args = mock_run.call_args[0][0]
+    assert args == [
+        "alpaca", "data", "bars",
+        "--symbol", "AAPL",
+        "--start", "2026-08-01",
+        "--timeframe", "15Min",
+        "--end", "2026-08-30",
+        "--limit", "100",
+    ]

@@ -41,3 +41,11 @@ def test_review_candidate_uses_injected_client():
     verdict = review_candidate(_candidate(), client=mock_client)
     assert verdict.veto is True
     assert "concentrated" in verdict.rationale
+
+
+def test_review_candidate_fails_closed_on_api_exception():
+    mock_client = MagicMock()
+    mock_client.chat.completions.create.side_effect = ConnectionError("network unreachable")
+    verdict = review_candidate(_candidate(), client=mock_client)
+    assert verdict.veto is True
+    assert verdict.confidence == 0.0

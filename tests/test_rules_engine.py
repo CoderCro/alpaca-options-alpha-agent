@@ -18,6 +18,14 @@ def _uptrend_df() -> pd.DataFrame:
     return pd.DataFrame({"open": close, "close": close, "high": [c + 1 for c in close], "low": [c - 1 for c in close]})
 
 
+_DOWNTREND_CLOSE = [19, 17, 15, 17, 18, 16, 13, 16, 17, 15, 11, 15, 16, 14, 10, 14, 16]
+
+
+def _downtrend_df() -> pd.DataFrame:
+    close = _DOWNTREND_CLOSE
+    return pd.DataFrame({"open": close, "close": close, "high": [c + 1 for c in close], "low": [c - 1 for c in close]})
+
+
 def _flat_df(n: int) -> pd.DataFrame:
     # high/low spread must stay inside the 0.5% touch tolerance under test --
     # +-0.5 on a price of 10 is a +-5% band, which would never register as a
@@ -133,3 +141,51 @@ def test_evaluate_criteria_qualifies_with_two_of_four():
     assert result.met["monthly_ma10_bullish"] is True
     assert result.count_met == 2
     assert result.qualifies_for_trading_list is True
+
+
+def test_evaluate_criteria_direction_bullish_from_trend_alignment():
+    uptrend = _uptrend_df()
+    result = evaluate_criteria(
+        weekly_df=uptrend, daily_df=uptrend, h4_df=uptrend, m15_df=uptrend, monthly_df=pd.DataFrame({"close": [1]})
+    )
+    assert result.direction == "bullish"
+
+
+def test_evaluate_criteria_direction_bearish_from_trend_alignment():
+    downtrend = _downtrend_df()
+    result = evaluate_criteria(
+        weekly_df=downtrend, daily_df=downtrend, h4_df=downtrend, m15_df=downtrend, monthly_df=pd.DataFrame({"close": [1]})
+    )
+    assert result.direction == "bearish"
+
+
+def test_evaluate_criteria_direction_falls_back_to_bullish_from_monthly_ma10():
+    # Reuses the fixture from test_evaluate_criteria_qualifies_with_two_of_four:
+    # daily_df only has 2 bars, so trend_alignment can't form 3 swings (no
+    # direction from _trend_direction), but monthly_ma10 fires -- direction
+    # should fall back to bullish since that check has no bearish counterpart.
+    weekly_close = [130, 125, 120, 115, 110, 105, 100, 105, 110, 115]
+    weekly_combined = pd.DataFrame(
+        {
+            "open": weekly_close,
+            "close": weekly_close,
+            "high": [c + 0.05 for c in weekly_close],
+            "low": [c - 0.05 for c in weekly_close],
+        }
+    )
+    daily_near_level = pd.DataFrame({"open": [150, 100.3], "close": [150, 100.3], "high": [151, 100.8], "low": [149, 99.8]})
+    monthly_bullish = pd.DataFrame({"close": [115]})
+    uptrend = _uptrend_df()
+
+    result = evaluate_criteria(
+        weekly_df=weekly_combined, daily_df=daily_near_level, h4_df=uptrend, m15_df=uptrend, monthly_df=monthly_bullish
+    )
+    assert result.direction == "bullish"
+
+
+def test_evaluate_criteria_direction_none_when_undetermined():
+    flat = _flat_df(80)
+    result = evaluate_criteria(
+        weekly_df=flat, daily_df=flat, h4_df=flat, m15_df=flat, monthly_df=pd.DataFrame({"close": [5.0]})
+    )
+    assert result.direction is None

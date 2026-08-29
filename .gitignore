@@ -1,7 +1,10 @@
 .env
+.env.company_*
+!.env.company_*.example
 __pycache__/
 *.pyc
 .venv/
 venv/
 .DS_Store
 .pytest_cache/
+state/

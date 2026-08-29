@@ -23,8 +23,14 @@ class AlpacaCliError(Exception):
 
 
 def _run_cli(*args: str) -> dict | list:
-    result = subprocess.run([CLI_BINARY, *args], capture_output=True, text=True)
-    payload = json.loads(result.stdout)
+    try:
+        result = subprocess.run([CLI_BINARY, *args], capture_output=True, text=True, timeout=30)
+    except subprocess.TimeoutExpired:
+        raise AlpacaCliError(f"alpaca CLI timed out after 30s: {' '.join(args)}")
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        raise AlpacaCliError(f"alpaca CLI returned non-JSON output: {result.stdout!r}")
     if result.returncode != 0:
         raise AlpacaCliError(payload.get("error", result.stdout))
     return payload
@@ -36,6 +42,22 @@ def get_account() -> dict:
 
 def list_positions() -> list[dict]:
     return _run_cli("position", "list")
+
+
+def get_bars(
+    symbol: str,
+    start: str,
+    *,
+    end: str | None = None,
+    timeframe: str = "1Day",
+    limit: int | None = None,
+) -> dict:
+    args = ["data", "bars", "--symbol", symbol, "--start", start, "--timeframe", timeframe]
+    if end is not None:
+        args += ["--end", end]
+    if limit is not None:
+        args += ["--limit", str(limit)]
+    return _run_cli(*args)
 
 
 def get_option_chain(

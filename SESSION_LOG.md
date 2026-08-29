@@ -34,13 +34,29 @@
 
 - Confirmed Featherless with a live (non-mocked) call through the actual `review_candidate()` function: API key valid, `Qwen/Qwen2.5-32B-Instruct` accessible, real verdict returned. Found and fixed a genuine bug: this environment's HTTP stack (a non-standard `httpx2`/`httpcore2` pairing under the `openai` package) has a response-decompression bug that broke every SDK call with `APIConnectionError`. Fixed by disabling response compression on the client (`default_headers={"Accept-Encoding": "identity"}`). No API endpoint exists for checking Featherless credit balance -- dashboard-only.
 
+## GitHub repository
+- Public repo: https://github.com/CoderCro/alpaca-options-alpha-agent
+- Getting `gh` authenticated took several detours worth remembering: (1) the sandbox blocks Keychain access, so every `gh`/`git push` needing the stored credential must run with the sandbox disabled; (2) an unrelated pre-existing bug on this machine -- `~/.config` was owned by `root` (likely from an earlier `sudo`-run install), so `gh auth login` silently failed to persist any credential until fixed with `sudo chown -R martinvidovic:staff ~/.config`; (3) a background `gh auth login --web` device-code flow was accidentally killed early on the first attempt (a 5-second sleep-then-kill), which looked like a hang but was actually me cutting it off before the user could approve it in the browser -- the retry without a premature kill worked.
+- `gh repo create --public ... --push` was blocked by the auto-mode safety classifier (creating public content) -- surfaced to the user for explicit confirmation before proceeding, per this project's own action-category rules.
+
+## Parallel session: Company A vs Company B
+- While this session built the pieces above, the user ran a second Claude Code session **in the same working directory** (not a separate clone) to explore a second approach for the same hackathon submission. This wasn't visible until enough changed files triggered on-disk-change notices; the full scope only became clear by running `git status` directly, since new *untracked* files never trigger those notices (only previously-read files that change do).
+- The two sessions turned out to be building one coherent design, not competing alternatives: **Company A** (this session's original deterministic 2-of-4 gate, Featherless veto-only) and **Company B** (a LangChain tool-calling agent, backed by Featherless, with real order-placement authority), run side by side on two separate dedicated paper accounts, trading the identical watchlist -- the comparison itself is the hackathon demo's narrative.
+- Company B's execution authority is bounded by a new shared safety floor, `guardrails.py`: a hard, code-level chokepoint (`pre_trade_check`) that every write tool calls unconditionally before `execution.submit_order` -- kill switch checked first always, then (for new entries only) blackout calendar, watchlist membership, long-only structure, a 3%-of-equity per-trade risk cap, 8 concurrent positions max, 25%-of-equity aggregate risk cap, 15/day entry cap, and a daily-loss circuit breaker. Exits/trims only ever need to clear the kill switch and a held-qty check, so risk-cutting can never be blocked by the caps that guard risk-adding. On top of that, every proposed trade from Company B's LangChain agent still passes through an independent `featherless_review.review_candidate` veto call before execution -- a second, separately-prompted model call with zero tool access of its own.
+- Verified this design directly by reading the actual code (`guardrails.py`, `agent_tools.py`, `trading_agent.py`), not just trusting the README's description: confirmed `pre_trade_check` really does gate every write tool first, the independent veto call really does happen before `execution.submit_order`, no tool grants raw shell/code access (only 10 purpose-built functions), and the agent loop fails closed (a 6-tool-turn cap that returns "no action taken" rather than forcing a trade if exceeded).
+- The other session also independently hit and fixed the same `httpx2` response-decompression bug this session found (via the same `Accept-Encoding: identity` header workaround, applied to `ChatOpenAI` this time) -- consistent diagnosis across both.
+- 128/128 tests passing (114 base + 14 for the company split) at time of the final merge/push below.
+
+## Final verification & push (this session, after the parallel session finished)
+- Confirmed `.env`, `.env.company_b`, and `state/` all stay correctly gitignored (`.env.company_*` excluded, `!.env.company_*.example` explicitly re-included as a template) -- no secrets in what got committed.
+- Re-ran the full suite fresh: 128/128 passed.
+- Committed and pushed everything to the public repo.
+
 ## Open / pending
-- Wire rules_engine's output into a watchlist/trading-list state machine (the human-approval workflow)
-- Wire featherless_review.py + position_manager.py into one decision loop that calls execution.py
-- Build the options selector (strike/expiry/structure choice for a given signal + direction)
-- Options selector (strike/expiry/structure choice) — not built
-- Watchlist human-approval workflow — not built
-- Dashboard / reasoning-trail logging — not built
-- GitHub repo not yet pushed to a remote; no commits made locally
-- Video, slide deck, one-page write-up — not started
-- Build-in-public social posts — not started
+- Automate both companies' decision loops on a schedule during market hours
+- Minimal dashboard/log: open positions, P&L curve, reasoning trail per trade -- per company, now that logs are independently namespaced
+- Let both companies trade live paper sessions to build real, comparable P&L track records before the Sep 3-4 NFP blackout shuts the window
+- Start "build in public" X/LinkedIn posts (tag @lablabai + @AlpacaHQ)
+- Video, slide deck, one-page write-up (including the Company A vs. Company B comparison) — not started
+- Vertical spreads deferred (single-leg only for now -- see README's Known Limitations)
+- Scheduling not yet wired up -- both companies currently run one decision cycle per manual invocation

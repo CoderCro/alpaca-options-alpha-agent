@@ -100,6 +100,7 @@ def check_monthly_ma10(monthly_df: pd.DataFrame, weekly_df: pd.DataFrame, ma_win
 class CriteriaResult:
     met: dict[str, bool]
     details: dict[str, str]
+    direction: str | None = None  # "bullish" | "bearish" | None if undetermined
 
     @property
     def count_met(self) -> int:
@@ -123,6 +124,11 @@ def evaluate_criteria(
     ma_met, ma_detail = check_ma_support_resistance(daily_df)
     monthly_met, monthly_detail = check_monthly_ma10(monthly_df, weekly_df)
 
+    # Direction comes from the daily trend (computed regardless of whether all
+    # three timeframes ended up aligned) with a bullish-only fallback from
+    # monthly_ma10, since that check has no symmetric bearish counterpart.
+    direction = _trend_direction(daily_df) or ("bullish" if monthly_met else None)
+
     return CriteriaResult(
         met={
             "support_resistance": sr_met,
@@ -136,4 +142,5 @@ def evaluate_criteria(
             "ma_support_resistance": ma_detail,
             "monthly_ma10_bullish": monthly_detail,
         },
+        direction=direction,
     )

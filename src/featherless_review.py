@@ -88,12 +88,18 @@ def _build_prompt(candidate: TradeCandidate) -> str:
 def review_candidate(candidate: TradeCandidate, model: str | None = None, client: OpenAI | None = None) -> TradeVerdict:
     model = model or os.environ.get("FEATHERLESS_MODEL") or DEFAULT_MODEL
     client = client or _client()
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": _build_prompt(candidate)},
-        ],
-        temperature=0.2,
-    )
-    return _parse_verdict(response.choices[0].message.content)
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": _build_prompt(candidate)},
+            ],
+            temperature=0.2,
+        )
+        content = response.choices[0].message.content
+    except Exception as e:
+        # Fail closed: a network/transport/API failure is a veto, never a
+        # silent pass-through -- same philosophy as _parse_verdict below.
+        return TradeVerdict(veto=True, confidence=0.0, rationale=f"Featherless call failed, failing closed: {e!r}")
+    return _parse_verdict(content)
