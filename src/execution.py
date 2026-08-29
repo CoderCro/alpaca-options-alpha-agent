@@ -1,0 +1,95 @@
+"""Thin subprocess wrapper around Alpaca's official CLI (the `alpaca` binary).
+
+Shells out to the CLI rather than calling Alpaca's REST API directly -- this
+is what satisfies the hackathon's requirement that execution go through
+Alpaca's own MCP server or CLI tooling. Credentials (ALPACA_API_KEY/
+ALPACA_SECRET_KEY) are read by the CLI straight from the environment, so
+nothing here touches them.
+
+The CLI always prints JSON to stdout, on success or failure -- the only
+signal of failure is the process return code. A non-zero code means the JSON
+on stdout is the CLI's error shape ({"error": ..., ...}), not real data, so
+that case is raised as AlpacaCliError instead of handed back to the caller.
+"""
+
+import json
+import subprocess
+
+CLI_BINARY = "alpaca"
+
+
+class AlpacaCliError(Exception):
+    """Raised when the `alpaca` CLI exits non-zero; carries its error message."""
+
+
+def _run_cli(*args: str) -> dict | list:
+    result = subprocess.run([CLI_BINARY, *args], capture_output=True, text=True)
+    payload = json.loads(result.stdout)
+    if result.returncode != 0:
+        raise AlpacaCliError(payload.get("error", result.stdout))
+    return payload
+
+
+def get_account() -> dict:
+    return _run_cli("account", "get")
+
+
+def list_positions() -> list[dict]:
+    return _run_cli("position", "list")
+
+
+def get_option_chain(
+    underlying_symbol: str,
+    *,
+    option_type: str | None = None,
+    expiration_gte: str | None = None,
+    expiration_lte: str | None = None,
+    strike_gte: float | None = None,
+    strike_lte: float | None = None,
+) -> dict:
+    args = ["data", "option", "chain", "--underlying-symbol", underlying_symbol]
+    if option_type is not None:
+        args += ["--type", option_type]
+    if expiration_gte is not None:
+        args += ["--expiration-date-gte", expiration_gte]
+    if expiration_lte is not None:
+        args += ["--expiration-date-lte", expiration_lte]
+    if strike_gte is not None:
+        args += ["--strike-price-gte", str(strike_gte)]
+    if strike_lte is not None:
+        args += ["--strike-price-lte", str(strike_lte)]
+    return _run_cli(*args)
+
+
+def submit_order(
+    symbol: str,
+    qty: int,
+    side: str,
+    order_type: str = "limit",
+    *,
+    limit_price: float | None = None,
+    time_in_force: str = "day",
+) -> dict:
+    args = [
+        "order", "submit",
+        "--symbol", symbol,
+        "--qty", str(qty),
+        "--side", side,
+        "--type", order_type,
+        "--time-in-force", time_in_force,
+    ]
+    if limit_price is not None:
+        args += ["--limit-price", str(limit_price)]
+    return _run_cli(*args)
+
+
+def cancel_order(order_id: str) -> None:
+    _run_cli("order", "cancel", "--order-id", order_id)
+
+
+def get_order(order_id: str) -> dict:
+    return _run_cli("order", "get", "--order-id", order_id)
+
+
+def list_open_orders() -> list[dict]:
+    return _run_cli("order", "list", "--status", "open")

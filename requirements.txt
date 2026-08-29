@@ -1,0 +1,7 @@
+alpaca-py
+python-dotenv
+pandas
+numpy
+requests
+pytest
+openai
