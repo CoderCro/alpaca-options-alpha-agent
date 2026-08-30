@@ -52,11 +52,24 @@
 - Re-ran the full suite fresh: 128/128 passed.
 - Committed and pushed everything to the public repo.
 
+## Verified official hackathon rules directly from lablab.ai (later, same day)
+- Earlier `WebFetch` attempts against both the hackathon page and its `/live` variant returned HTTP 403 (bot protection) -- worked around by having the user open the page in the built-in Browser pane and reading it via `get_page_text` instead, so these facts come from the actual live page, not secondhand notes.
+- **MIT-compliance requirement found**: "Submissions must be original and MIT-compliant." Repo had no `LICENSE` file -- added one (MIT, copyright CoderCro 2026, using the same identity already public on every commit).
+- **Fresh-account rule is stricter than assumed**: "Projects run on an existing or reused account will not be eligible for judging." Both companies' accounts were created fresh for this hackathon (Aug 28 for A, Aug 30 for B, per above) -- compliant, but the submission form still wants exactly one account ID, confirming the open question below.
+- Confirmed explicit core requirements not previously captured in this file: cover image, video presentation, slide presentation, public GitHub repo, a "demo application platform" + application URL, and a one-page write-up specifically covering AI logic, risk gates, and Alpaca infrastructure implementation. No hosted demo/dashboard exists yet, so what the demo URL should point to is still open.
+- **Social engagement is a separate "extra challenge" prize track**, not just a submission field: 2 winning teams get $500 USD + a 1-month Algo Trader Plus subscription per team member, judged on both content quality *and* actual engagement (likes/comments/shares) -- implies posting earlier rather than only right before the deadline gives engagement more time to accrue. Exact tag handles confirmed: X `@lablabai` + `@AlpacaHQ`; LinkedIn lablab.ai + Alpaca company pages. Up to 5 post links go into the final submission.
+- Judging criteria confirmed as five weighted categories: P&L Performance, Technology Implementation, Creativity & Originality, Presentation & Execution, Social engagement.
+- Team dashboard shows status "Approved" -- already enrolled, nothing outstanding there.
+- Checked whether this session could post to X directly: no X/Twitter API connector configured, and Claude in Chrome (which would let a browser session reuse the user's logged-in X session) is not connected on this machine. User decided to post manually; Claude drafts copy on request instead of attempting to publish anything itself. Drafted two sample "build in public" posts referencing the public repo and the Company A/B comparison -- no invented P&L or performance numbers, since no live track record exists yet.
+
 ## Open / pending
+- **Decide the single Alpaca account ID to submit for judging** -- the form takes one ID, two companies exist
 - Automate both companies' decision loops on a schedule during market hours
 - Minimal dashboard/log: open positions, P&L curve, reasoning trail per trade -- per company, now that logs are independently namespaced
 - Let both companies trade live paper sessions to build real, comparable P&L track records before the Sep 3-4 NFP blackout shuts the window
-- Start "build in public" X/LinkedIn posts (tag @lablabai + @AlpacaHQ)
-- Video, slide deck, one-page write-up (including the Company A vs. Company B comparison) — not started
+- Start "build in public" X/LinkedIn posts (tag @lablabai + @AlpacaHQ on X; lablab.ai + Alpaca on LinkedIn) -- drafts ready, not yet posted
+- Video, slide deck, one-page write-up (AI logic, risk gates, Alpaca infrastructure, including the Company A vs. Company B comparison) — not started
+- Cover image, project title, short/long description, tech/category tags for the submission form — not started
+- Decide what the "demo application platform" / application URL should point to -- no hosted dashboard exists yet
 - Vertical spreads deferred (single-leg only for now -- see README's Known Limitations)
 - Scheduling not yet wired up -- both companies currently run one decision cycle per manual invocation
