@@ -48,3 +48,6 @@ Deadline: **Sep 4, 2026, 5:00 PM CEST**. NFP (jobs report) lands Sep 4 -- our ow
 
 ## Sep 4, before 5:00 PM CEST (blackout: no new trades)
 - [ ] Final submission: title, descriptions, tags, cover image, video, slides, repo link, demo URL, both Alpaca account IDs, up to 5 social links
+
+## Optional / stretch (not required for submission, only if time allows)
+- [ ] Wire a financial-sentiment signal (e.g. `ProsusAI/finbert`, well-established: 4.8M downloads/month, 1.23k likes) into `featherless_review.py`'s veto call as extra context -- not a 5th rules_engine criterion, doesn't change what triggers a trade. Researched, not started: no other credible options-strategy models exist on Hugging Face (the one hit, a 200-sample phi-2 LoRA, is an abandoned toy with 0 likes and an empty model card).
