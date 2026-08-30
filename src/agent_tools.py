@@ -42,8 +42,16 @@ def _count_todays_open_entries() -> int:
 
 
 def _fetch_ohlc(symbol: str, timeframe: str, start: str) -> pd.DataFrame:
-    response = execution.get_bars(symbol, start, timeframe=timeframe)
-    bars = response.get("bars", [])
+    # "/" marks a crypto pair (e.g. "BTC/USD") -- different CLI subcommand and
+    # response shape (bars keyed by symbol) than stock bars (a flat list).
+    # feed="iex" avoids "subscription does not permit querying recent SIP
+    # data" on accounts without a paid real-time SIP subscription.
+    if "/" in symbol:
+        response = execution.get_crypto_bars(symbol, start, timeframe=timeframe)
+        bars = response.get("bars", {}).get(symbol, [])
+    else:
+        response = execution.get_bars(symbol, start, timeframe=timeframe, feed="iex")
+        bars = response.get("bars", [])
     return pd.DataFrame(
         {
             "open": [b["o"] for b in bars],

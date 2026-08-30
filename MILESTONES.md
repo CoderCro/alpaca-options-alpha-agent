@@ -11,7 +11,7 @@ Deadline: **Sep 4, 2026, 5:00 PM CEST**. NFP (jobs report) lands Sep 4 -- our ow
 - [x] **Decided MCP vs CLI**: use both, each where it fits — MCP server for the human-in-the-loop watchlist workflow, CLI for the unattended autonomous execution loop
 - [x] Pushed to a public GitHub remote: https://github.com/CoderCro/alpaca-options-alpha-agent
 
-## Aug 29 (today)
+## Aug 29
 - [x] Alpaca CLI installed (`alpacahq/cli` v0.0.14 via Homebrew), authenticated via `.env` API keys (no interactive OAuth needed — works headless), verified against the live paper account: account/balance, positions, and options chain+Greeks all confirmed working
 - [x] Alpaca MCP server registered for this project (`alpacahq/alpaca-mcp-server`, local scope) — needs a fresh Claude Code session to actually connect and become usable
 - [x] Proved a real round-trip order through the CLI: submitted an AAPL options limit order, confirmed it open, canceled it, verified final status `canceled` — full cycle on an actual options contract, not just a stock
@@ -27,7 +27,11 @@ Deadline: **Sep 4, 2026, 5:00 PM CEST**. NFP (jobs report) lands Sep 4 -- our ow
 - [x] Small additive change to `rules_engine.py`: `CriteriaResult` now exposes a `direction` (bullish/bearish/None), needed for Company A's mechanical entries -- reuses the trend-alignment computation that already existed internally, no existing test broken
 - [x] Set up the second paper account and its own `.env.company_b` credentials; confirmed live that Company A and Company B resolve to genuinely distinct account IDs
 - [x] Seeded `watchlist.json` with the six explicitly-named tickers from the strategy (SPY, SPX, QQQ, BTC, ETH, LINK) -- the >=$10B-market-cap stock bucket is still unpopulated, a human call, not something to invent
+- [x] Verified the Company A/B code directly (not just the README's description): `guardrails.py`'s chokepoint really does gate every write tool first, the independent Featherless veto really does run before `execution.submit_order`, no tool grants raw shell access, the agent loop fails closed on both the 6-turn cap and unparseable output
+- [x] Committed and pushed everything (33 files) to the public repo
 - [x] 128/128 tests passing throughout (114 base + 14 for the company split)
+- [ ] **Open scope question**: the submission form's language implies *one* Alpaca account ID per submission ("create a brand-new paper trading account... include the account ID used for the hackathon"), not two -- running two companies on two accounts is fine for the demo/comparison narrative, but before Sep 4 we need to pick which single account ID is *the* submission for P&L judging. Decide this once both track records exist (see Sep 2), not now.
+- [ ] **Blocked**: full historical-options backtest needs Alpaca's OPRA market-data agreement, which returns "OPRA agreement is not signed" (403) on `option bars`/`option trades` -- this is a legal/data-license step in the Alpaca dashboard, not something fixable in code. Live snapshot/chain data (what the agent actually trades on) is unaffected.
 
 ## Sep 1
 - [ ] Automate both companies' loops on a schedule during market hours

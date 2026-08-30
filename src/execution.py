@@ -44,6 +44,29 @@ def list_positions() -> list[dict]:
     return _run_cli("position", "list")
 
 
+def _paginated_bars(args: list[str], *, keyed_by_symbol: bool) -> dict:
+    """Follows next_page_token until exhausted. Without this, any query whose
+    result doesn't fit in one page silently truncates -- confirmed on both
+    stock and crypto bars for 4h/15m timeframes over multi-week ranges, which
+    would otherwise starve rules_engine's checks of data with no error.
+    """
+    combined: list | dict = {} if keyed_by_symbol else []
+    page_token = None
+    while True:
+        page_args = args + (["--page-token", page_token] if page_token else [])
+        payload = _run_cli(*page_args)
+        bars = payload.get("bars") or ({} if keyed_by_symbol else [])
+        if keyed_by_symbol:
+            for symbol, symbol_bars in bars.items():
+                combined.setdefault(symbol, []).extend(symbol_bars)
+        else:
+            combined.extend(bars)
+        page_token = payload.get("next_page_token")
+        if not page_token:
+            break
+    return {"bars": combined}
+
+
 def get_bars(
     symbol: str,
     start: str,
@@ -51,13 +74,38 @@ def get_bars(
     end: str | None = None,
     timeframe: str = "1Day",
     limit: int | None = None,
+    feed: str | None = None,
 ) -> dict:
+    # feed defaults to the CLI's own default ("sip"), which rejects "recent"
+    # dates on accounts without a paid real-time SIP subscription -- pass
+    # feed="iex" (the free tier) to avoid that for anything but old history.
     args = ["data", "bars", "--symbol", symbol, "--start", start, "--timeframe", timeframe]
     if end is not None:
         args += ["--end", end]
     if limit is not None:
         args += ["--limit", str(limit)]
-    return _run_cli(*args)
+    if feed is not None:
+        args += ["--feed", feed]
+    return _paginated_bars(args, keyed_by_symbol=False)
+
+
+def get_crypto_bars(
+    symbol: str,
+    start: str,
+    *,
+    end: str | None = None,
+    timeframe: str = "1Day",
+    limit: int | None = None,
+) -> dict:
+    """symbol is a single pair, e.g. 'BTC/USD' -- wraps the CLI's --symbols
+    (plural, comma-separated) since crypto bars is a different subcommand
+    from stock bars with a different flag shape."""
+    args = ["data", "crypto", "bars", "--symbols", symbol, "--start", start, "--timeframe", timeframe]
+    if end is not None:
+        args += ["--end", end]
+    if limit is not None:
+        args += ["--limit", str(limit)]
+    return _paginated_bars(args, keyed_by_symbol=True)
 
 
 def get_option_chain(

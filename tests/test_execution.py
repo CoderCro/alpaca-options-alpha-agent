@@ -13,6 +13,7 @@ from src.execution import (
     cancel_order,
     get_account,
     get_bars,
+    get_crypto_bars,
     get_option_chain,
     get_order,
     list_open_orders,
@@ -162,7 +163,7 @@ def test_get_bars_only_required_args(mock_run):
 @patch("subprocess.run")
 def test_get_bars_all_options(mock_run):
     mock_run.return_value = _completed({"bars": []})
-    get_bars("AAPL", "2026-08-01", end="2026-08-30", timeframe="15Min", limit=100)
+    get_bars("AAPL", "2026-08-01", end="2026-08-30", timeframe="15Min", limit=100, feed="iex")
     args = mock_run.call_args[0][0]
     assert args == [
         "alpaca", "data", "bars",
@@ -171,4 +172,53 @@ def test_get_bars_all_options(mock_run):
         "--timeframe", "15Min",
         "--end", "2026-08-30",
         "--limit", "100",
+        "--feed", "iex",
+    ]
+
+
+@patch("subprocess.run")
+def test_get_crypto_bars_only_required_args(mock_run):
+    mock_run.return_value = _completed({"bars": {}})
+    get_crypto_bars("BTC/USD", "2026-08-01")
+    args = mock_run.call_args[0][0]
+    assert args == ["alpaca", "data", "crypto", "bars", "--symbols", "BTC/USD", "--start", "2026-08-01", "--timeframe", "1Day"]
+
+
+@patch("subprocess.run")
+def test_get_bars_follows_pagination(mock_run):
+    mock_run.side_effect = [
+        _completed({"bars": [{"c": 1}], "next_page_token": "abc"}),
+        _completed({"bars": [{"c": 2}]}),
+    ]
+    result = get_bars("AAPL", "2026-08-01")
+    assert result["bars"] == [{"c": 1}, {"c": 2}]
+    assert mock_run.call_count == 2
+    second_call_args = mock_run.call_args_list[1][0][0]
+    assert "--page-token" in second_call_args
+    assert second_call_args[second_call_args.index("--page-token") + 1] == "abc"
+
+
+@patch("subprocess.run")
+def test_get_crypto_bars_follows_pagination_keyed_by_symbol(mock_run):
+    mock_run.side_effect = [
+        _completed({"bars": {"BTC/USD": [{"c": 1}]}, "next_page_token": "xyz"}),
+        _completed({"bars": {"BTC/USD": [{"c": 2}]}}),
+    ]
+    result = get_crypto_bars("BTC/USD", "2026-08-01")
+    assert result["bars"] == {"BTC/USD": [{"c": 1}, {"c": 2}]}
+    assert mock_run.call_count == 2
+
+
+@patch("subprocess.run")
+def test_get_crypto_bars_all_options(mock_run):
+    mock_run.return_value = _completed({"bars": {}})
+    get_crypto_bars("ETH/USD", "2026-08-01", end="2026-08-30", timeframe="1Week", limit=50)
+    args = mock_run.call_args[0][0]
+    assert args == [
+        "alpaca", "data", "crypto", "bars",
+        "--symbols", "ETH/USD",
+        "--start", "2026-08-01",
+        "--timeframe", "1Week",
+        "--end", "2026-08-30",
+        "--limit", "50",
     ]
