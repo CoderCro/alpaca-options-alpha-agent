@@ -1,0 +1,49 @@
+import math
+
+import pytest
+
+from src.vol_edge import evaluate_edge, realized_volatility
+
+
+def test_realized_volatility_returns_none_with_insufficient_history():
+    assert realized_volatility([100.0] * 10, window=20) is None
+
+
+def test_realized_volatility_is_zero_for_a_constant_price_series():
+    closes = [100.0] * 25
+    assert realized_volatility(closes, window=20) == pytest.approx(0.0, abs=1e-9)
+
+
+def test_realized_volatility_matches_hand_computed_value_for_constant_daily_return():
+    # A constant per-day log return produces zero *variance* in returns, so
+    # this is really another zero-vol check, from a different construction
+    # (compounding growth) than the flat-price case above.
+    closes = [100.0 * math.exp(0.001 * i) for i in range(25)]
+    assert realized_volatility(closes, window=20) == pytest.approx(0.0, abs=1e-6)
+
+
+def test_realized_volatility_is_positive_for_a_noisy_series():
+    closes = [100.0, 102.0, 99.0, 103.0, 98.0, 104.0, 97.0, 105.0, 96.0, 106.0,
+              95.0, 107.0, 94.0, 108.0, 93.0, 109.0, 92.0, 110.0, 91.0, 111.0, 90.0]
+    vol = realized_volatility(closes, window=20)
+    assert vol is not None
+    assert vol > 0
+
+
+def test_evaluate_edge_flags_cheap_implied_vol_as_actionable():
+    edge = evaluate_edge(realized_vol=0.30, implied_vol=0.20, threshold=0.03)
+    assert edge.edge == pytest.approx(0.10)
+    assert edge.cheap_enough is True
+
+
+def test_evaluate_edge_rejects_edge_below_threshold():
+    edge = evaluate_edge(realized_vol=0.21, implied_vol=0.20, threshold=0.03)
+    assert edge.cheap_enough is False
+
+
+def test_evaluate_edge_rejects_when_implied_is_rich_not_cheap():
+    # implied > realized -- the usual variance-risk-premium direction, which
+    # this system can't act on (no short/naked structures allowed).
+    edge = evaluate_edge(realized_vol=0.15, implied_vol=0.25, threshold=0.03)
+    assert edge.edge < 0
+    assert edge.cheap_enough is False

@@ -46,9 +46,12 @@ class OrderRequest:
     intent: Literal["open", "close"]
     limit_price: float
     held_qty: int = 0  # for intent="close": how much of this exact contract is actually held
+    asset_class: Literal["option", "equity"] = "option"  # equity: Company C's delta-hedge leg (see delta_hedge.py) -- no contract multiplier
 
     @property
     def max_risk_usd(self) -> float:
+        if self.asset_class == "equity":
+            return self.qty * self.limit_price
         return self.qty * self.limit_price * 100
 
 
