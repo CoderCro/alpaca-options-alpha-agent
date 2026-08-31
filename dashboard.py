@@ -19,9 +19,9 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+from alpaca.trading.client import TradingClient
+from alpaca.trading.requests import GetPortfolioHistoryRequest
 from dotenv import load_dotenv
-
-from src import execution
 
 REPO_ROOT = Path(__file__).resolve().parent
 
@@ -60,27 +60,54 @@ def _load_company_env(company: str) -> None:
         load_dotenv(REPO_ROOT / env_file, override=True)
 
 
+def _trading_client(company: str) -> TradingClient:
+    _load_company_env(company)
+    return TradingClient(os.environ["ALPACA_API_KEY"], os.environ["ALPACA_SECRET_KEY"], paper=True)
+
+
 @st.cache_data(ttl=60, show_spinner=False)
 def fetch_account(company: str) -> dict:
-    _load_company_env(company)
+    # Uses alpaca-py (the SDK) rather than execution.py's CLI wrapper. The
+    # CLI is a compiled Go binary installed locally via Homebrew for this
+    # project's actual trading agents (satisfying the hackathon's "MCP or
+    # CLI" requirement for their execution path) -- it does not exist on
+    # Streamlit Cloud's servers and requirements.txt can't install it there.
+    # The dashboard is read-only display, not part of that trading path, so
+    # the SDK (already a dependency) is a legitimate, simpler data source
+    # for it specifically. Confirmed live: the CLI path raised
+    # FileNotFoundError on the deployed app; this doesn't.
     try:
-        return execution.get_account()
-    except execution.AlpacaCliError as e:
+        account = _trading_client(company).get_account()
+        return {
+            "equity": float(account.equity),
+            "last_equity": float(account.last_equity),
+            "buying_power": float(account.buying_power),
+        }
+    except Exception as e:
         return {"error": str(e)}
 
 
 @st.cache_data(ttl=60, show_spinner=False)
 def fetch_positions(company: str) -> list[dict]:
-    _load_company_env(company)
     try:
-        return execution.list_positions()
-    except execution.AlpacaCliError:
+        positions = _trading_client(company).get_all_positions()
+    except Exception:
         return []
+    return [
+        {
+            "symbol": p.symbol,
+            "qty": p.qty,
+            "side": getattr(p.side, "value", p.side),
+            "avg_entry_price": p.avg_entry_price,
+            "current_price": p.current_price,
+            "unrealized_pl": p.unrealized_pl,
+        }
+        for p in positions
+    ]
 
 
 @st.cache_data(ttl=60, show_spinner=False)
 def fetch_portfolio_history(company: str) -> pd.DataFrame:
-    _load_company_env(company)
     try:
         # period="1D": Alpaca's portfolio-history endpoint mishandles a period
         # longer than the account's actual age (confirmed live on Company B,
@@ -90,14 +117,18 @@ def fetch_portfolio_history(company: str) -> pd.DataFrame:
         # date, and is the more honest chart anyway: Aug 31 is the first real
         # trading day for all three companies, so there's no multi-day
         # history yet to show.
-        history = execution.get_portfolio_history(period="1D", timeframe="15Min")
-    except execution.AlpacaCliError:
+        history = _trading_client(company).get_portfolio_history(
+            GetPortfolioHistoryRequest(period="1D", timeframe="15Min")
+        )
+    except Exception:
         return pd.DataFrame()
-    timestamps = history.get("timestamp") or []
-    equity = history.get("equity") or []
+    timestamps = history.timestamp or []
+    equity = history.equity or []
     if not timestamps:
         return pd.DataFrame()
-    df = pd.DataFrame({"time": pd.to_datetime(timestamps, unit="s"), "equity": equity})
+    df = pd.DataFrame(
+        {"time": pd.to_datetime(timestamps, unit="s"), "equity": [float(e) if e is not None else 0.0 for e in equity]}
+    )
     return df[df["equity"] > 0]  # drop the pre-account-existence zero backfill
 
 
