@@ -205,3 +205,16 @@ def test_gate_order_kill_switch_beats_everything(monkeypatch):
     allowed, reason, gate = _check(_open_order(underlying_symbol="TSLA"), now=NFP_BLACKOUT_TIME)
     assert allowed is False
     assert gate == "kill_switch"
+
+
+def test_option_max_risk_applies_contract_multiplier():
+    order = _open_order(qty=2, limit_price=4.50)  # default asset_class="option"
+    assert order.max_risk_usd == pytest.approx(2 * 4.50 * 100)
+
+
+def test_equity_max_risk_has_no_contract_multiplier():
+    # Company C's delta-hedge leg -- plain notional, not options_symbol *
+    # limit_price * 100, or a 100-share hedge would look like $45,000 of
+    # risk instead of $450 and get rejected by the per-trade cap.
+    order = _open_order(qty=100, limit_price=4.50, asset_class="equity")
+    assert order.max_risk_usd == pytest.approx(100 * 4.50)

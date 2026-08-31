@@ -30,7 +30,13 @@ def _run_cli(*args: str) -> dict | list:
     try:
         payload = json.loads(result.stdout)
     except json.JSONDecodeError:
-        raise AlpacaCliError(f"alpaca CLI returned non-JSON output: {result.stdout!r}")
+        # stdout empty/non-JSON usually means the CLI died before printing
+        # its own JSON error shape (e.g. a transient network failure) --
+        # stderr is where that actually shows up; include it or this is
+        # undiagnosable from the exception message alone.
+        raise AlpacaCliError(
+            f"alpaca CLI returned non-JSON output: {result.stdout!r} (exit {result.returncode}, stderr: {result.stderr!r})"
+        )
     if result.returncode != 0:
         raise AlpacaCliError(payload.get("error", result.stdout))
     return payload
@@ -108,6 +114,26 @@ def get_crypto_bars(
     return _paginated_bars(args, keyed_by_symbol=True)
 
 
+def _paginated_option_chain(args: list[str]) -> dict:
+    """Follows next_page_token until exhausted -- same silent-truncation risk
+    as bars (see _paginated_bars), live-confirmed on SPY: a 21-45 DTE window
+    alone returns a next_page_token past the first 100 contracts, and calls
+    apparently sort ahead of puts, so an unpaginated fetch can come back with
+    zero puts and no error -- exactly the failure Company C hit live, since
+    it only ever looks for puts.
+    """
+    combined: dict = {}
+    page_token = None
+    while True:
+        page_args = args + (["--page-token", page_token] if page_token else [])
+        payload = _run_cli(*page_args)
+        combined.update(payload.get("snapshots") or {})
+        page_token = payload.get("next_page_token")
+        if not page_token:
+            break
+    return {"snapshots": combined}
+
+
 def get_option_chain(
     underlying_symbol: str,
     *,
@@ -128,7 +154,7 @@ def get_option_chain(
         args += ["--strike-price-gte", str(strike_gte)]
     if strike_lte is not None:
         args += ["--strike-price-lte", str(strike_lte)]
-    return _run_cli(*args)
+    return _paginated_option_chain(args)
 
 
 def submit_order(

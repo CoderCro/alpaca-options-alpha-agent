@@ -119,6 +119,30 @@ def evaluate_criteria(
     m15_df: pd.DataFrame,
     monthly_df: pd.DataFrame,
 ) -> CriteriaResult:
+    if any(df.empty for df in (weekly_df, daily_df, h4_df, m15_df, monthly_df)):
+        # A feed gap must not crash the whole cycle for every other ticker
+        # behind this one in the loop -- live-confirmed on SPX, which Alpaca
+        # has no bar data for at all (an index, not a bar-generating
+        # instrument, per backtest_signal.py). No data means no criteria can
+        # be evaluated -- fails closed to "not met", the same outcome as if
+        # the criteria were genuinely unmet, not a crash.
+        no_data = "no price data available for this timeframe"
+        return CriteriaResult(
+            met={
+                "support_resistance": False,
+                "trend_alignment": False,
+                "ma_support_resistance": False,
+                "monthly_ma10_bullish": False,
+            },
+            details={
+                "support_resistance": no_data,
+                "trend_alignment": no_data,
+                "ma_support_resistance": no_data,
+                "monthly_ma10_bullish": no_data,
+            },
+            direction=None,
+        )
+
     sr_met, sr_detail = check_support_resistance(weekly_df, daily_df)
     trend_met, trend_detail = check_trend_alignment(daily_df, h4_df, m15_df)
     ma_met, ma_detail = check_ma_support_resistance(daily_df)

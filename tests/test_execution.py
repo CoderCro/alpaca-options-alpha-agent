@@ -185,6 +185,23 @@ def test_get_crypto_bars_only_required_args(mock_run):
 
 
 @patch("subprocess.run")
+def test_get_option_chain_follows_pagination(mock_run):
+    mock_run.side_effect = [
+        _completed({"snapshots": {"AAPL261016C00210000": {"bid": 1}}, "next_page_token": "abc"}),
+        _completed({"snapshots": {"AAPL261016P00210000": {"bid": 2}}}),
+    ]
+    result = get_option_chain("AAPL")
+    assert result["snapshots"] == {
+        "AAPL261016C00210000": {"bid": 1},
+        "AAPL261016P00210000": {"bid": 2},
+    }
+    assert mock_run.call_count == 2
+    second_call_args = mock_run.call_args_list[1][0][0]
+    assert "--page-token" in second_call_args
+    assert second_call_args[second_call_args.index("--page-token") + 1] == "abc"
+
+
+@patch("subprocess.run")
 def test_get_bars_follows_pagination(mock_run):
     mock_run.side_effect = [
         _completed({"bars": [{"c": 1}], "next_page_token": "abc"}),

@@ -106,6 +106,29 @@ def test_monthly_ma10_not_bullish_when_close_below_weekly_ma():
     assert met is False
 
 
+def _empty_ohlc_df() -> pd.DataFrame:
+    return pd.DataFrame(columns=["open", "high", "low", "close"])
+
+
+def test_evaluate_criteria_fails_closed_on_empty_dataframe_instead_of_crashing():
+    # Live-confirmed: Alpaca has no bar data for SPX at all (an index, not a
+    # bar-generating instrument), so daily_df etc. come back empty for it.
+    # Before this guard, check_support_resistance's daily_df["close"].iloc[-1]
+    # raised IndexError and crashed the whole ticker loop -- every ticker
+    # after SPX (alphabetically, including SPY) never got evaluated.
+    uptrend = _uptrend_df()
+    result = evaluate_criteria(
+        weekly_df=uptrend,
+        daily_df=_empty_ohlc_df(),
+        h4_df=uptrend,
+        m15_df=uptrend,
+        monthly_df=uptrend,
+    )
+    assert result.count_met == 0
+    assert result.qualifies_for_trading_list is False
+    assert result.direction is None
+
+
 def test_evaluate_criteria_qualifies_with_two_of_four():
     uptrend = _uptrend_df()
     # A single weekly_df has to satisfy both check_support_resistance (a swing
