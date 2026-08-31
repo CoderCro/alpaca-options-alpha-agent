@@ -1,0 +1,16 @@
+{"timestamp": "2026-08-31T19:36:29.509021+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH260925C00023500"}
+{"timestamp": "2026-08-31T19:36:33.222001+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.85, "rationale": "The bullish signal with support from moving averages suggests a coherent setup. The risk exposure is minimal.", "symbol": "ETH260925C00023500"}
+{"timestamp": "2026-08-31T19:36:33.222536+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "ETH260925C00023500", "qty": 1, "side": "buy", "limit_price": 1.65}
+{"timestamp": "2026-08-31T19:36:33.619076+00:00", "event_type": "order_result", "symbol": "ETH260925C00023500", "status": "submitted", "order_id": "44c3912d-946b-4c3c-844f-7e9b10e8d573"}
+{"timestamp": "2026-08-31T19:36:34.417290+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "QQQ260925C00715000"}
+{"timestamp": "2026-08-31T19:36:37.106402+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.85, "rationale": "The bullish signal with technical support and recent price action above key moving averages suggests a coherent setup within acceptable risk parameters.", "symbol": "QQQ260925C00715000"}
+{"timestamp": "2026-08-31T19:36:37.107052+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "QQQ260925C00715000", "qty": 1, "side": "buy", "limit_price": 13.5}
+{"timestamp": "2026-08-31T19:36:37.563343+00:00", "event_type": "order_result", "symbol": "QQQ260925C00715000", "status": "submitted", "order_id": "ad05008b-d72f-4af4-8f47-8570242ee490"}
+{"timestamp": "2026-08-31T19:36:38.324348+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "SPY260925C00766000"}
+{"timestamp": "2026-08-31T19:36:43.456154+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.85, "rationale": "The trade aligns with the bullish signal and technical indicators, with low max risk relative to equity.", "symbol": "SPY260925C00766000"}
+{"timestamp": "2026-08-31T19:36:43.457166+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "SPY260925C00766000", "qty": 1, "side": "buy", "limit_price": 10.1}
+{"timestamp": "2026-08-31T19:36:43.856912+00:00", "event_type": "order_result", "symbol": "SPY260925C00766000", "status": "submitted", "order_id": "85eeace8-a582-4afb-9c6c-da6d57a5952e"}
+{"timestamp": "2026-08-31T19:55:55.309505+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "QQQ260925C00717000"}
+{"timestamp": "2026-08-31T19:55:58.602885+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is based on meeting only half of the technical criteria, which is below the required threshold for confidence.", "symbol": "QQQ260925C00717000"}
+{"timestamp": "2026-08-31T19:55:59.374389+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "SPY260925C00767000"}
+{"timestamp": "2026-08-31T19:56:02.170339+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade does not meet the required technical criteria and thus poses an increased risk despite meeting other conditions.", "symbol": "SPY260925C00767000"}
