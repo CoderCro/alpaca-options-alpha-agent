@@ -189,3 +189,12 @@ def get_order(order_id: str) -> dict:
 
 def list_open_orders() -> list[dict]:
     return _run_cli("order", "list", "--status", "open")
+
+
+def get_portfolio_history(period: str = "1W", timeframe: str = "1H") -> dict:
+    """Returns {"timestamp": [...], "equity": [...], "profit_loss": [...],
+    "profit_loss_pct": [...], "base_value": ..., ...} -- the P&L curve data
+    source. Leading zeros are normal: Alpaca backfills to the period start
+    even for an account created partway through it.
+    """
+    return _run_cli("account", "portfolio", "--period", period, "--timeframe", timeframe)

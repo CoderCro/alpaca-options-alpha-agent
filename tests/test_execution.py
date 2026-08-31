@@ -16,6 +16,7 @@ from src.execution import (
     get_crypto_bars,
     get_option_chain,
     get_order,
+    get_portfolio_history,
     list_open_orders,
     list_positions,
     submit_order,
@@ -199,6 +200,25 @@ def test_get_option_chain_follows_pagination(mock_run):
     second_call_args = mock_run.call_args_list[1][0][0]
     assert "--page-token" in second_call_args
     assert second_call_args[second_call_args.index("--page-token") + 1] == "abc"
+
+
+@patch("subprocess.run")
+def test_get_portfolio_history_default_args(mock_run):
+    mock_run.return_value = _completed({"timestamp": [1], "equity": [100000.0]})
+    result = get_portfolio_history()
+    assert result["equity"] == [100000.0]
+    mock_run.assert_called_once_with(
+        ["alpaca", "account", "portfolio", "--period", "1W", "--timeframe", "1H"],
+        capture_output=True, text=True, timeout=30,
+    )
+
+
+@patch("subprocess.run")
+def test_get_portfolio_history_custom_args(mock_run):
+    mock_run.return_value = _completed({"timestamp": [], "equity": []})
+    get_portfolio_history(period="1M", timeframe="1D")
+    args = mock_run.call_args[0][0]
+    assert args == ["alpaca", "account", "portfolio", "--period", "1M", "--timeframe", "1D"]
 
 
 @patch("subprocess.run")
