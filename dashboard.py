@@ -14,6 +14,7 @@ Run with: streamlit run dashboard.py
 """
 
 import json
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -34,6 +35,25 @@ st.set_page_config(page_title="Options Alpha Agent", layout="wide")
 
 
 def _load_company_env(company: str) -> None:
+    # Deployed (Streamlit Cloud): no .env files exist there -- they're
+    # gitignored and never pushed. Secrets are configured per-company under
+    # distinct names (ALPACA_A_API_KEY, ALPACA_B_API_KEY, ...) since a single
+    # shared ALPACA_API_KEY name couldn't distinguish which company's call is
+    # in flight -- os.environ is process-wide, and Streamlit runs as one
+    # long-lived process, unlike the per-company subprocess isolation the
+    # CLI scripts get for free. Falls through to local .env files when no
+    # matching secret exists (e.g. running locally with no secrets.toml).
+    prefix = company.upper()
+    try:
+        cloud_key = st.secrets.get(f"ALPACA_{prefix}_API_KEY")
+    except Exception:
+        cloud_key = None
+    if cloud_key:
+        os.environ["ALPACA_API_KEY"] = cloud_key
+        os.environ["ALPACA_SECRET_KEY"] = st.secrets[f"ALPACA_{prefix}_SECRET_KEY"]
+        os.environ["FEATHERLESS_API_KEY"] = st.secrets.get("FEATHERLESS_API_KEY", "")
+        return
+
     load_dotenv(REPO_ROOT / ".env", override=True)
     env_file = COMPANIES[company]["env_file"]
     if env_file:
