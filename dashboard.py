@@ -173,10 +173,12 @@ def render_company(company: str) -> None:
     day_pnl = equity - last_equity
     day_pnl_pct = (day_pnl / last_equity * 100) if last_equity else 0.0
 
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Equity", f"${equity:,.2f}", f"{day_pnl:+,.2f} today")
-    c2.metric("Buying power", f"${float(account['buying_power']):,.2f}")
-    c3.metric("Today's P&L %", f"{day_pnl_pct:+.2f}%")
+    # Stacked, not st.columns(3) side by side -- each company already sits in
+    # a 1/3-width page column, so a further 3-way split left dollar figures
+    # like "$100,042.82" truncated to "$100,..." with no way to read them.
+    st.metric("Equity", f"${equity:,.2f}", f"{day_pnl:+,.2f} today")
+    st.metric("Buying power", f"${float(account['buying_power']):,.2f}")
+    st.metric("Today's P&L %", f"{day_pnl_pct:+.2f}%")
 
     history_df = fetch_portfolio_history(company)
     if not history_df.empty:
