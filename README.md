@@ -52,7 +52,10 @@ Inspired by market-maker vol trading (compare your own theoretical price against
 - **Company C's two-leg entry/exit has the same atomicity gap**: the put and its stock hedge are two separate CLI calls, not one atomic transaction. If the put fills and the hedge then fails, the position is temporarily unhedged -- logged loudly as a `hedge_leg_failed` audit event rather than hidden, but not solved.
 - **Watchlist crypto entries are stored without a `/USD` suffix** (`BTC`, not `BTC/USD`), so `_fetch_ohlc`'s crypto-routing (`"/" in symbol`) misses them and treats them as stock tickers instead. Live-verified this doesn't cause bad trades: `BTC` on the stock feed silently resolves to an unrelated ~$34 equity, but since that stock has no options chain, Company C (which needs one) still correctly lands on "no signal" -- wrong reason, safe outcome. Affects the realized-vol/technical-signal quality Company A/B would compute for these tickers too, not just Company C's scope. Flagged, not fixed -- touches shared code, and doesn't change Company C's actual behavior since crypto has no options chain either way.
 - **Scheduling**: `scheduler.py` runs all three on a 15-minute interval during market hours, single-day-scoped (exits at close, no restart-on-crash/reboot-survival) -- a fresh `python3 -m src.scheduler` each trading morning, not a persistent multi-day daemon. Deliberate scope given how few trading days remain.
-- **Dashboard**: no UI yet -- `logs/<company>/audit_*.jsonl` is the reasoning-trail data source for one, planned but not built.
+
+## Dashboard
+
+Live: **https://alpaca-options-alpha-agent-pbkhmhgthbdaexxvktxfgm.streamlit.app** -- equity, buying power, today's P&L, open positions, and the audit-log reasoning trail for all three companies side by side (`dashboard.py`). Hosted on Streamlit Community Cloud, which sleeps the app after inactivity -- the first load after a while shows a cold-start spinner for several seconds, not an error.
 
 ## Setup
 

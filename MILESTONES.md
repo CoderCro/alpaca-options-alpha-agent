@@ -60,7 +60,7 @@ Deadline: **Sep 4, 2026, 5:00 PM CEST**. NFP (jobs report) lands Sep 4 -- our ow
 - [ ] Run `python3 -m src.scheduler` fresh this morning -- continues building on Aug 31's track record, not starting from zero. Last full day before the NFP blackout shuts the window
 - [ ] Start "build in public" X/LinkedIn posts (tag @lablabai + @AlpacaHQ)
 - [ ] **Decide Company C's role in the submission narrative**: it started today with zero track record by definition, so it's more a "creativity/technical depth" angle (self-computed greeks, vol-edge strategy) than a P&L contender next to A/B's multi-day history -- frame accordingly in the write-up rather than positioning it as a peer comparison
-- [ ] Deploy the Streamlit dashboard (Streamlit Community Cloud is the free path) and get a real Application URL before Sep 3
+- [x] **Streamlit dashboard deployed, live-verified**: https://alpaca-options-alpha-agent-pbkhmhgthbdaexxvktxfgm.streamlit.app -- this is the "Demo Application Platform" + "Application URL" for the final submission. Confirmed rendering correctly (cold-start spinner clears in ~8s, normal Streamlit Cloud sleep-on-inactivity behavior, not a bug) with real, live account data for all three companies side by side.
 
 ## Sep 3 (blackout: no new trades)
 - [ ] Finish and record the video (MP4, max 5 min: intro -> slides walkthrough -> live functionality) using real numbers from Sep 1-2
