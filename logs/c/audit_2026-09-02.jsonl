@@ -3,3 +3,6 @@
 {"timestamp": "2026-09-02T14:38:48.189501+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "DIS260904P00109000"}
 {"timestamp": "2026-09-02T14:39:08.762738+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NVDA260904P00222500"}
 {"timestamp": "2026-09-02T14:39:33.241651+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "WMT260904P00106000"}
+{"timestamp": "2026-09-02T14:59:45.405085+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "DIS260904P00109000"}
+{"timestamp": "2026-09-02T15:00:06.515563+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NVDA260904P00225000"}
+{"timestamp": "2026-09-02T15:00:32.793871+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "WMT260904P00106000"}
