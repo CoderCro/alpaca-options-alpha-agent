@@ -1,10 +1,15 @@
+import subprocess
 from datetime import datetime
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
-from src.scheduler import run_all_companies, within_market_hours
+from src.scheduler import run_all_companies, sync_audit_logs, within_market_hours
 
 NY = ZoneInfo("America/New_York")
+
+
+def _completed(stdout: str = "") -> type:
+    return type("R", (), {"returncode": 0, "stdout": stdout, "stderr": ""})()
 
 
 def test_within_market_hours_at_open():
@@ -42,3 +47,32 @@ def test_run_all_companies_invokes_each_script_as_a_subprocess():
 def test_run_all_companies_does_not_raise_when_a_company_fails():
     with patch("src.scheduler.subprocess.run", return_value=type("R", (), {"returncode": 1, "stdout": "", "stderr": "traceback..."})()):
         run_all_companies()  # should not raise
+
+
+def test_sync_audit_logs_skips_cleanly_when_nothing_changed():
+    with patch("src.scheduler.subprocess.run", return_value=_completed(stdout="")) as mock_run:
+        sync_audit_logs()
+    mock_run.assert_called_once()  # only the status check -- no add/commit/push on a clean tree
+
+
+def test_sync_audit_logs_commits_and_pushes_when_logs_changed():
+    with patch(
+        "src.scheduler.subprocess.run",
+        side_effect=[_completed(stdout="M logs/a/audit_2026-09-02.jsonl"), _completed(), _completed(), _completed()],
+    ) as mock_run:
+        sync_audit_logs()
+    git_subcommands = [call.args[0][1] for call in mock_run.call_args_list]
+    assert git_subcommands == ["status", "add", "commit", "push"]
+
+
+def test_sync_audit_logs_does_not_raise_when_push_fails():
+    with patch(
+        "src.scheduler.subprocess.run",
+        side_effect=[
+            _completed(stdout="M logs/a/audit_2026-09-02.jsonl"),
+            _completed(),
+            _completed(),
+            subprocess.CalledProcessError(1, ["git", "push"]),
+        ],
+    ):
+        sync_audit_logs()  # should not raise -- a sync failure must never crash a trading cycle
