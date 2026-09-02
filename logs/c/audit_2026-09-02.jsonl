@@ -88,3 +88,15 @@
 {"timestamp": "2026-09-02T19:29:33.295017+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT260904P00105000"}
 {"timestamp": "2026-09-02T19:29:33.295599+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT"}
 {"timestamp": "2026-09-02T19:29:40.587340+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The realized volatility is significantly higher than the implied volatility, suggesting overpriced options which may not be suitable for a bearish strategy.", "symbol": "WMT260904P00105000"}
+{"timestamp": "2026-09-02T19:38:35.671008+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS260904P00108000"}
+{"timestamp": "2026-09-02T19:38:35.672019+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS"}
+{"timestamp": "2026-09-02T19:38:50.474739+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.85, "rationale": "The trade shows a positive volatility edge and is well within risk limits, with a neutral news sentiment providing no immediate contradiction.", "symbol": "DIS260904P00108000"}
+{"timestamp": "2026-09-02T19:38:50.475282+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "DIS260904P00108000", "qty": 1, "side": "buy", "limit_price": 0.6}
+{"timestamp": "2026-09-02T19:38:50.983801+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "DIS", "qty": 38, "side": "buy", "limit_price": 108.58}
+{"timestamp": "2026-09-02T19:38:51.389356+00:00", "event_type": "order_result", "symbol": "DIS260904P00108000", "status": "submitted", "order_id": "9bfa3d39-27b7-4c92-9006-79e1f5f4e04a"}
+{"timestamp": "2026-09-02T19:38:54.411635+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH260904P00022500"}
+{"timestamp": "2026-09-02T19:38:54.412188+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH"}
+{"timestamp": "2026-09-02T19:39:00.518095+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The proposed trade exhibits a significant negative vol edge, suggesting overpriced options which contradicts the bearish direction and safety criteria.", "symbol": "ETH260904P00022500"}
+{"timestamp": "2026-09-02T19:39:13.804527+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT260904P00105000"}
+{"timestamp": "2026-09-02T19:39:13.805013+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT"}
+{"timestamp": "2026-09-02T19:39:18.827929+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The realized volatility is significantly higher than the implied volatility, suggesting overpriced options which may not be suitable for a bearish strategy.", "symbol": "WMT260904P00105000"}
