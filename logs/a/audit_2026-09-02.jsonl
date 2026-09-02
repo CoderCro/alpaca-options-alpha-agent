@@ -68,3 +68,22 @@
 {"timestamp": "2026-09-02T15:18:51.957270+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "TSLA260925C00355000"}
 {"timestamp": "2026-09-02T15:19:02.959523+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "V260925C00380000"}
 {"timestamp": "2026-09-02T15:19:11.990695+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "XOM260925C00162500"}
+{"timestamp": "2026-09-02T15:35:41.939000+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T15:35:53.018047+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.8, "rationale": "The trade meets the required criteria with two out of four gates, and the max risk is within acceptable limits.", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T15:35:53.018562+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "AAPL260925C00325000", "qty": 2, "side": "buy", "limit_price": 9.39}
+{"timestamp": "2026-09-02T15:35:53.454340+00:00", "event_type": "order_result", "symbol": "AAPL260925C00325000", "status": "submitted", "order_id": "7512c833-6772-462a-9d4c-081b27240944"}
+{"timestamp": "2026-09-02T15:36:05.932408+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BAC260925C00063000"}
+{"timestamp": "2026-09-02T15:36:11.320104+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00034000"}
+{"timestamp": "2026-09-02T15:36:21.028666+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX260925C00210000"}
+{"timestamp": "2026-09-02T15:36:28.238600+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "DIS260925C00109000"}
+{"timestamp": "2026-09-02T15:36:35.178183+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "ETH260925C00023000"}
+{"timestamp": "2026-09-02T15:36:47.353199+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "JNJ260925C00275000"}
+{"timestamp": "2026-09-02T15:36:56.908309+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "JPM260925C00360000"}
+{"timestamp": "2026-09-02T15:37:12.134651+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "MA260925C00590000"}
+{"timestamp": "2026-09-02T15:37:25.088964+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "MSFT260925C00495000"}
+{"timestamp": "2026-09-02T15:37:33.487880+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "NFLX261016C00082500"}
+{"timestamp": "2026-09-02T15:37:43.852818+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "NVDA260925C00225000"}
+{"timestamp": "2026-09-02T15:37:51.967714+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "PG260925C00147000"}
+{"timestamp": "2026-09-02T15:38:23.286239+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "SPY260925C00766000"}
+{"timestamp": "2026-09-02T15:38:36.524607+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "V260925C00380000"}
+{"timestamp": "2026-09-02T15:38:45.825703+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM260925C00162500"}

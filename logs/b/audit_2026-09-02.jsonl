@@ -2,3 +2,11 @@
 {"timestamp": "2026-09-02T14:18:02.910844+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "ETH260925C00023500", "qty": 1, "side": "sell", "limit_price": 0.3}
 {"timestamp": "2026-09-02T14:18:03.432288+00:00", "event_type": "order_result", "symbol": "ETH260925C00023500", "status": "submitted", "order_id": "c36bda1f-ce28-4ee7-953a-c73a98ecbb65"}
 {"timestamp": "2026-09-02T14:18:24.390514+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T15:39:58.191422+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T15:40:02.432451+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.75, "rationale": "The trade does not meet enough technical criteria for confidence, with only 2 out of 4 criteria satisfied.", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T15:40:05.410724+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BAC260925C00063000"}
+{"timestamp": "2026-09-02T15:40:08.333663+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.8, "rationale": "The trade does not meet enough technical criteria for a confident bullish stance.", "symbol": "BAC260925C00063000"}
+{"timestamp": "2026-09-02T15:40:11.401273+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS260925C00109000"}
+{"timestamp": "2026-09-02T15:40:14.189974+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.75, "rationale": "The trade meets some technical criteria and the risk exposure is minimal. However, additional confirmation on other technical indicators would strengthen the case.", "symbol": "DIS260925C00109000"}
+{"timestamp": "2026-09-02T15:40:14.190866+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "DIS260925C00109000", "qty": 1, "side": "buy", "limit_price": 2.59}
+{"timestamp": "2026-09-02T15:40:14.574033+00:00", "event_type": "order_result", "symbol": "DIS260925C00109000", "status": "submitted", "order_id": "248cd25c-c6e8-4f7c-8685-df4c769f67f1"}
