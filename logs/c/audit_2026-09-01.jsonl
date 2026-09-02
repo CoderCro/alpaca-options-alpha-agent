@@ -1,0 +1,13 @@
+{"timestamp": "2026-09-01T15:15:03.596477+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "BTC261016P00034000"}
+{"timestamp": "2026-09-01T15:33:36.606425+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00034000"}
+{"timestamp": "2026-09-01T15:33:36.606908+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$26,362 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "BTC"}
+{"timestamp": "2026-09-01T16:46:11.860445+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00034000"}
+{"timestamp": "2026-09-01T16:46:11.860905+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$25,589 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "BTC"}
+{"timestamp": "2026-09-01T16:46:14.894519+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH260925P00023000"}
+{"timestamp": "2026-09-01T16:46:14.895226+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$21,728 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "ETH"}
+{"timestamp": "2026-09-01T19:37:47.071406+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH260925P00023000"}
+{"timestamp": "2026-09-01T19:37:47.071945+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$21,968 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "ETH"}
+{"timestamp": "2026-09-01T19:55:09.030706+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00034000"}
+{"timestamp": "2026-09-01T19:55:09.031170+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$24,464 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "BTC"}
+{"timestamp": "2026-09-01T19:55:12.056149+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH260925P00023000"}
+{"timestamp": "2026-09-01T19:55:12.056794+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$23,309 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "ETH"}
