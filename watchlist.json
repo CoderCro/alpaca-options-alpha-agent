@@ -1,11 +1,34 @@
 {
   "approved": [
+    "AAPL",
+    "AMZN",
+    "AVGO",
+    "BAC",
     "BTC",
+    "COST",
+    "CVX",
+    "DIS",
     "ETH",
+    "GOOGL",
+    "HD",
+    "JNJ",
+    "JPM",
     "LINK",
+    "LLY",
+    "MA",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NVDA",
+    "PG",
     "QQQ",
     "SPX",
-    "SPY"
+    "SPY",
+    "TSLA",
+    "UNH",
+    "V",
+    "WMT",
+    "XOM"
   ],
   "pending": []
 }

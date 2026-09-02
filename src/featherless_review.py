@@ -36,6 +36,7 @@ class TradeCandidate:
     proposed_structure: str
     max_risk_usd: float
     account_equity_usd: float
+    sentiment: str | None = None  # Company C only: "positive/negative/neutral (score, N headlines)" or None if unavailable -- A/B never pass this
 
 
 @dataclass
@@ -75,11 +76,13 @@ def _parse_verdict(raw: str) -> TradeVerdict:
 def _build_prompt(candidate: TradeCandidate) -> str:
     evidence = "\n".join(f"  - {k}: {v}" for k, v in candidate.signal_details.items())
     risk_pct = candidate.max_risk_usd / candidate.account_equity_usd
+    sentiment_line = f"Recent news sentiment: {candidate.sentiment}\n" if candidate.sentiment else ""
     return (
         f"Ticker: {candidate.ticker}\n"
         f"Direction: {candidate.direction}\n"
         f"Criteria met ({len(candidate.criteria_met)}/4): {', '.join(candidate.criteria_met)}\n"
         f"Evidence:\n{evidence}\n"
+        f"{sentiment_line}"
         f"Proposed structure: {candidate.proposed_structure}\n"
         f"Max risk: ${candidate.max_risk_usd:,.0f} on ${candidate.account_equity_usd:,.0f} equity ({risk_pct:.2%})"
     )

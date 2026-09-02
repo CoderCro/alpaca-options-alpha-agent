@@ -2,7 +2,22 @@ import math
 
 import pytest
 
-from src.vol_edge import evaluate_edge, realized_volatility
+from src.vol_edge import MAX_DTE, MIN_DTE, MIN_EDGE_THRESHOLD, evaluate_edge, realized_volatility
+
+
+def test_dte_window_is_short_dated_and_excludes_zero():
+    # MIN_DTE > 0 is load-bearing, not a style choice: at years=0 exactly,
+    # options_math.bs_price collapses to intrinsic-only regardless of vol,
+    # making implied_volatility unsolvable for any real quote (see
+    # options_math.py). Company C must never select a same-day (0 DTE) contract.
+    assert MIN_DTE >= 1
+    assert MAX_DTE >= MIN_DTE
+
+
+def test_edge_threshold_uses_the_lowered_default():
+    edge = evaluate_edge(realized_vol=0.16, implied_vol=0.15)  # 1 vol point, below the old 3-point bar
+    assert edge.cheap_enough is True
+    assert MIN_EDGE_THRESHOLD < 0.03
 
 
 def test_realized_volatility_returns_none_with_insufficient_history():

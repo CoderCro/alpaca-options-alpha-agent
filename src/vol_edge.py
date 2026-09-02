@@ -16,13 +16,28 @@ system deliberately doesn't allow. Treating trailing realized vol as the
 forecast is itself a simplification (no GARCH/EWMA decay, no vol-of-vol
 adjustment) -- flagged, not yet contested, same spirit as rules_engine.py's
 numeric choices.
+
+Zero real trades through Sep 1: live-checked, the actual edge on SPY was
+-0.0297 (implied *richer* than realized), which is the structurally common
+case -- the market usually prices vol at a premium to what subsequently
+realizes, so "implied is cheap by 3+ points" is the rarer regime, not the
+default one. Not a bug; a threshold calibrated for patience the hackathon's
+remaining window doesn't afford. MIN_EDGE_THRESHOLD lowered accordingly
+(user's call) -- this trades on a weaker, noisier edge than 3 points would,
+closer to normal bid/ask and estimation noise. Real tradeoff, not free.
+DTE window narrowed from 21-45 to 1-3 for the same reason (also user's
+call) -- more expiries checked per cycle, more chances to clear the bar
+before the deadline.
 """
 
 import math
 from dataclasses import dataclass
 
 TRADING_DAYS_PER_YEAR = 252
-MIN_EDGE_THRESHOLD = 0.03  # implied vol must be >=3 vol points cheap vs. realized to act on -- flagged, not yet contested
+MIN_EDGE_THRESHOLD = 0.01  # lowered from 0.03 -- see module docstring, this is a real quality/frequency tradeoff
+MIN_DTE = 1  # narrowed from 21 -- avoids years=0 (see options_math.py: BS collapses to intrinsic-only at years<=0, IV unsolvable)
+MAX_DTE = 3  # narrowed from 45
+EXIT_DTE_FLOOR = 0  # close once truly expiring (dte<=0), not <=7 -- with MIN_DTE=1, a <=7 floor would fire on literally the next cycle after every entry, before the position ever gets a chance
 
 
 def realized_volatility(closes: list[float], window: int = 20) -> float | None:

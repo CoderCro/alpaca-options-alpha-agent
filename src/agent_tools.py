@@ -28,6 +28,7 @@ from src import (
     options_selector,
     position_store,
     rules_engine,
+    sentiment,
     vol_edge,
     watchlist,
 )
@@ -238,7 +239,9 @@ def place_option_order(
     """Place a new long call or put option order (buy-to-open, single-leg only).
 
     Use this only to OPEN a brand-new position on a contract returned by a
-    prior get_option_candidates call -- to exit or trim a position you
+    prior get_option_candidates call for the same underlying_symbol/direction
+    -- enforced, not just documented: an option_symbol outside that shortlist
+    is refused before any other processing. To exit or trim a position you
     already hold, use close_or_trim_position instead. Every request passes
     through hard risk/compliance gates and a second, independent AI review
     before anything reaches Alpaca; a rejected request returns
@@ -252,6 +255,15 @@ def place_option_order(
         direction: "bullish" (long call) or "bearish" (long put).
         rationale: your reasoning for this trade -- recorded in the audit trail.
     """
+    valid_symbols = {c["symbol"] for c in get_option_candidates.func(underlying_symbol=underlying_symbol, direction=direction)}
+    if option_symbol not in valid_symbols:
+        reason = (
+            f"{option_symbol!r} is not in the current get_option_candidates shortlist for "
+            f"{underlying_symbol}/{direction} -- call get_option_candidates first and pick one of its results"
+        )
+        audit_log.log_event("gate_result", gate="not_in_shortlist", allowed=False, reason=reason, symbol=option_symbol)
+        return {"placed": False, "reason": reason, "gate": "not_in_shortlist"}
+
     order = guardrails.OrderRequest(
         underlying_symbol=underlying_symbol,
         option_symbol=option_symbol,
@@ -432,10 +444,12 @@ def get_vol_edge_signal(underlying_symbol: str) -> dict:
     spot = closes[-1]
     chain = execution.get_option_chain(
         underlying_symbol,
-        expiration_gte=(today + timedelta(days=21)).isoformat(),
-        expiration_lte=(today + timedelta(days=45)).isoformat(),
+        expiration_gte=(today + timedelta(days=vol_edge.MIN_DTE)).isoformat(),
+        expiration_lte=(today + timedelta(days=vol_edge.MAX_DTE)).isoformat(),
     )
-    candidates = options_selector.select_option_candidates(chain.get("snapshots", {}), "bearish", spot, as_of=today)
+    candidates = options_selector.select_option_candidates(
+        chain.get("snapshots", {}), "bearish", spot, as_of=today, dte_range=(vol_edge.MIN_DTE, vol_edge.MAX_DTE)
+    )
     if not candidates:
         return {"has_signal": False, "reason": "no put candidates in the DTE/moneyness window"}
 
@@ -481,7 +495,10 @@ def place_delta_neutral_put(
     """Open a new delta-neutral position: buy-to-open a put, then buy shares
     of the underlying to hedge its delta to ~0 (see delta_hedge.py).
 
-    Both legs pass guardrails independently; the combined structure passes
+    put_symbol must match get_vol_edge_signal's current candidate for
+    underlying_symbol -- enforced, not just documented; a mismatch is refused
+    before any other processing. Both legs pass guardrails independently;
+    the combined structure passes
     one Featherless veto call. If the put leg fills but the hedge leg then
     fails, the position is left temporarily unhedged -- logged loudly as a
     "hedge_leg_failed" audit event, the same "flag it, don't hide it"
@@ -499,6 +516,16 @@ def place_delta_neutral_put(
         implied_vol: the implied vol from get_vol_edge_signal (recorded for the exit check).
         rationale: your reasoning for this trade -- recorded in the audit trail.
     """
+    current_signal = get_vol_edge_signal.func(underlying_symbol)
+    current_symbol = current_signal.get("candidate", {}).get("symbol")
+    if put_symbol != current_symbol:
+        reason = (
+            f"{put_symbol!r} does not match get_vol_edge_signal's current candidate for "
+            f"{underlying_symbol} ({current_symbol!r}) -- call get_vol_edge_signal first and use its result"
+        )
+        audit_log.log_event("gate_result", gate="not_in_shortlist", allowed=False, reason=reason, symbol=put_symbol)
+        return {"placed": False, "reason": reason, "gate": "not_in_shortlist"}
+
     account = execution.get_account()
     positions = execution.list_positions()
     equity = float(account["equity"])
@@ -546,6 +573,7 @@ def place_delta_neutral_put(
         proposed_structure=f"Long {put_qty}x {put_symbol} + delta-hedge {hedge_shares} shares of {underlying_symbol}",
         max_risk_usd=put_order.max_risk_usd,
         account_equity_usd=equity,
+        sentiment=sentiment.get_sentiment(underlying_symbol),  # Company C only; best-effort, None on any failure
     )
     verdict = featherless_review.review_candidate(candidate)
     audit_log.log_event(
@@ -594,11 +622,15 @@ def place_delta_neutral_put(
 def check_vol_edge_exit_actions() -> list[dict]:
     """Check every tracked Company C position for a required close: either
     the vol edge has reverted (implied vol is no longer cheap vs. current
-    realized vol) or a hard 7-day-to-expiry cutoff has hit -- mirrors the
-    hard DTE override in position_manager.py's exit ladder. Returns an empty
-    list if nothing needs action right now. Each action carries current
-    prices for both legs (same pattern as check_exit_actions) so the caller
-    doesn't have to re-fetch quotes just to build the close order.
+    realized vol) or expiry has arrived (dte<=0). Returns an empty list if
+    nothing needs action right now. Each action carries current prices for
+    both legs (same pattern as check_exit_actions) so the caller doesn't
+    have to re-fetch quotes just to build the close order.
+
+    The DTE floor is 0, not the 7 days A/B's exit ladder uses -- Company C
+    now enters at 1-3 DTE (vol_edge.MIN_DTE/MAX_DTE), so a 7-day floor would
+    fire on literally the next cycle after every single entry, before the
+    position ever got a chance to do anything.
     """
     tracked = hedge_store.load_all()
     live_by_symbol = {p["symbol"]: p for p in execution.list_positions() if "symbol" in p}
@@ -615,7 +647,7 @@ def check_vol_edge_exit_actions() -> list[dict]:
         put_current_price = float(put_live.get("current_price")) if put_live and put_live.get("current_price") else None
         hedge_current_price = float(hedge_live.get("current_price")) if hedge_live and hedge_live.get("current_price") else None
 
-        if dte <= 7:
+        if dte <= vol_edge.EXIT_DTE_FLOOR:
             if put_current_price is None or hedge_current_price is None:
                 continue  # no usable price to close at -- wait for the next cycle rather than guess
             actions.append({

@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 import pytest
 
-from src import agent_tools
+from src import agent_tools, vol_edge
 from src.featherless_review import TradeVerdict
 from src.hedge_store import HedgePosition
 from src.options_selector import OptionCandidate
@@ -38,9 +38,28 @@ def _order_kwargs(**overrides):
     return defaults
 
 
+_VALID_SHORTLIST = [{"symbol": "AAPL261016C00210000", "expiry": "2026-10-16", "strike": 210.0, "dte": 30}]
+
+
+def test_place_option_order_rejects_symbol_not_in_shortlist_never_calls_submit():
+    with (
+        patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_option_candidates.func", return_value=_VALID_SHORTLIST),
+        patch("src.agent_tools.execution.submit_order") as mock_submit,
+        patch("src.agent_tools.execution.get_account") as mock_get_account,
+    ):
+        result = agent_tools.place_option_order.invoke(_order_kwargs(option_symbol="SPY230922C650"))
+
+    assert result["placed"] is False
+    assert result["gate"] == "not_in_shortlist"
+    mock_submit.assert_not_called()
+    mock_get_account.assert_not_called()  # rejected before any further processing
+
+
 def test_place_option_order_blocked_by_gate_never_calls_submit():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_option_candidates.func", return_value=_VALID_SHORTLIST),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"AAPL"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -57,6 +76,7 @@ def test_place_option_order_blocked_by_gate_never_calls_submit():
 def test_place_option_order_blocked_by_featherless_veto_never_calls_submit():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_option_candidates.func", return_value=_VALID_SHORTLIST),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"AAPL"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -74,6 +94,7 @@ def test_place_option_order_blocked_by_featherless_veto_never_calls_submit():
 def test_place_option_order_happy_path_calls_submit_and_records_position():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_option_candidates.func", return_value=_VALID_SHORTLIST),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"AAPL"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -95,6 +116,7 @@ def test_place_option_order_execution_error_does_not_raise():
 
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_option_candidates.func", return_value=_VALID_SHORTLIST),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"AAPL"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -323,9 +345,48 @@ def test_get_vol_edge_signal_happy_path_computes_edge():
     assert result["candidate"]["symbol"] == "SPY261016P00500000"
 
 
+def test_get_vol_edge_signal_uses_the_short_dte_window():
+    # Regression guard for the DTE narrowing (21-45 -> 1-3): must be passed
+    # explicitly, not left to select_option_candidates' own default (still
+    # 21-45, shared with Company A/B's get_option_candidates) -- getting
+    # this wrong would silently put Company C back on the old window.
+    bars = [{"o": 500, "h": 501, "l": 499, "c": 500.0}] * 25
+    with (
+        patch("src.agent_tools.execution.get_bars", return_value={"bars": bars}),
+        patch("src.agent_tools.execution.get_option_chain", return_value={"snapshots": {}}) as mock_chain,
+        patch("src.agent_tools.vol_edge.realized_volatility", return_value=0.25),
+        patch("src.agent_tools.options_selector.select_option_candidates", return_value=[]) as mock_select,
+    ):
+        agent_tools.get_vol_edge_signal.invoke({"underlying_symbol": "SPY"})
+
+    assert mock_select.call_args.kwargs["dte_range"] == (vol_edge.MIN_DTE, vol_edge.MAX_DTE)
+    chain_kwargs = mock_chain.call_args.kwargs
+    days_requested = (date.fromisoformat(chain_kwargs["expiration_lte"]) - date.fromisoformat(chain_kwargs["expiration_gte"])).days
+    assert days_requested == vol_edge.MAX_DTE - vol_edge.MIN_DTE
+
+
+_VALID_PUT_SIGNAL = {"candidate": {"symbol": "SPY261016P00500000"}}
+
+
+def test_place_delta_neutral_put_rejects_symbol_not_matching_current_signal():
+    with (
+        patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
+        patch("src.agent_tools.execution.submit_order") as mock_submit,
+        patch("src.agent_tools.execution.get_account") as mock_get_account,
+    ):
+        result = agent_tools.place_delta_neutral_put.invoke(_delta_neutral_kwargs(put_symbol="SPY230922P650"))
+
+    assert result["placed"] is False
+    assert result["gate"] == "not_in_shortlist"
+    mock_submit.assert_not_called()
+    mock_get_account.assert_not_called()
+
+
 def test_place_delta_neutral_put_blocked_by_put_leg_gate_never_calls_submit():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"SPY"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -342,6 +403,7 @@ def test_place_delta_neutral_put_blocked_by_put_leg_gate_never_calls_submit():
 def test_place_delta_neutral_put_blocked_by_hedge_leg_gate_never_calls_submit():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"SPY"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -361,6 +423,7 @@ def test_place_delta_neutral_put_blocked_by_hedge_leg_gate_never_calls_submit():
 def test_place_delta_neutral_put_blocked_by_featherless_veto_never_calls_submit():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"SPY"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -378,6 +441,7 @@ def test_place_delta_neutral_put_blocked_by_featherless_veto_never_calls_submit(
 def test_place_delta_neutral_put_happy_path_submits_both_legs_and_records_state():
     with (
         patch("src.agent_tools.audit_log.log_event"),
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"SPY"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -408,6 +472,7 @@ def test_place_delta_neutral_put_hedge_leg_failure_flags_unhedged():
 
     with (
         patch("src.agent_tools.audit_log.log_event") as mock_audit,
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_VALID_PUT_SIGNAL),
         patch("src.agent_tools.watchlist.load", return_value=Watchlist(approved={"SPY"})),
         patch("src.agent_tools.execution.get_account", return_value=_account()),
         patch("src.agent_tools.execution.list_positions", return_value=[]),
@@ -441,7 +506,7 @@ def test_check_vol_edge_exit_actions_empty_when_no_tracked():
 
 
 def test_check_vol_edge_exit_actions_dte_cutoff():
-    expiry = date.today() + timedelta(days=5)  # inside the 7-day hard cutoff
+    expiry = date.today()  # dte=0 -- Company C enters at 1-3 DTE, so the floor is 0, not 7 (see vol_edge.EXIT_DTE_FLOOR)
     put_symbol = f"SPY{expiry.strftime('%y%m%d')}P00500000"
     tracked = {
         put_symbol: HedgePosition(
@@ -463,6 +528,33 @@ def test_check_vol_edge_exit_actions_dte_cutoff():
     assert result[0]["reason"] == "dte_cutoff"
     assert result[0]["put_current_price"] == 3.20
     assert result[0]["hedge_current_price"] == 495.0
+
+
+def test_check_vol_edge_exit_actions_does_not_force_close_a_fresh_1to3_dte_entry():
+    # The actual regression this guards: Company C now enters at 1-3 DTE
+    # (vol_edge.MIN_DTE/MAX_DTE). With the old 7-day floor, a freshly-opened
+    # dte=2 position would have been flagged for "dte_cutoff" on literally
+    # the very next check, before the trade ever had a chance to do anything.
+    expiry = date.today() + timedelta(days=2)
+    put_symbol = f"SPY{expiry.strftime('%y%m%d')}P00500000"
+    tracked = {
+        put_symbol: HedgePosition(
+            put_symbol=put_symbol, underlying_symbol="SPY", put_qty=6, hedge_shares=240,
+            entry_realized_vol=0.25, entry_implied_vol=0.20,
+        )
+    }
+    snapshot = {put_symbol: {"latestQuote": {"bp": 4.0, "ap": 4.2}}}
+    with (
+        patch("src.agent_tools.hedge_store.load_all", return_value=tracked),
+        patch("src.agent_tools.execution.list_positions", return_value=[]),
+        patch("src.agent_tools.execution.get_bars", return_value={"bars": [{"o": 500, "h": 501, "l": 499, "c": 500.0}] * 25}),
+        patch("src.agent_tools.vol_edge.realized_volatility", return_value=0.30),  # edge still holds
+        patch("src.agent_tools.execution.get_option_chain", return_value={"snapshots": snapshot}),
+        patch("src.agent_tools.options_math.implied_volatility", return_value=0.20),
+    ):
+        result = agent_tools.check_vol_edge_exit_actions.invoke({})
+
+    assert result == []
 
 
 def test_check_vol_edge_exit_actions_reports_vol_edge_reverted():

@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.featherless_review import TradeCandidate, _parse_verdict, review_candidate
+from src.featherless_review import TradeCandidate, _build_prompt, _parse_verdict, review_candidate
 
 
 def _candidate() -> TradeCandidate:
@@ -49,3 +49,13 @@ def test_review_candidate_fails_closed_on_api_exception():
     verdict = review_candidate(_candidate(), client=mock_client)
     assert verdict.veto is True
     assert verdict.confidence == 0.0
+
+
+def test_prompt_includes_sentiment_when_present():
+    candidate = _candidate()
+    candidate.sentiment = "positive (0.87, 4 headlines)"
+    assert "Recent news sentiment: positive (0.87, 4 headlines)" in _build_prompt(candidate)
+
+
+def test_prompt_omits_sentiment_line_when_absent():
+    assert "sentiment" not in _build_prompt(_candidate()).lower()

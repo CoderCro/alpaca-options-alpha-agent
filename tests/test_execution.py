@@ -14,6 +14,7 @@ from src.execution import (
     get_account,
     get_bars,
     get_crypto_bars,
+    get_news,
     get_option_chain,
     get_order,
     get_portfolio_history,
@@ -183,6 +184,14 @@ def test_get_crypto_bars_only_required_args(mock_run):
     get_crypto_bars("BTC/USD", "2026-08-01")
     args = mock_run.call_args[0][0]
     assert args == ["alpaca", "data", "crypto", "bars", "--symbols", "BTC/USD", "--start", "2026-08-01", "--timeframe", "1Day"]
+
+
+@patch("subprocess.run")
+def test_get_news_only_required_args(mock_run):
+    mock_run.return_value = _completed({"news": []})
+    get_news("AAPL")
+    args = mock_run.call_args[0][0]
+    assert args == ["alpaca", "data", "news", "--symbols", "AAPL", "--limit", "10"]
 
 
 @patch("subprocess.run")

@@ -198,3 +198,8 @@ def get_portfolio_history(period: str = "1W", timeframe: str = "1H") -> dict:
     even for an account created partway through it.
     """
     return _run_cli("account", "portfolio", "--period", period, "--timeframe", timeframe)
+
+
+def get_news(symbol: str, limit: int = 10) -> dict:
+    """Returns {"news": [{"headline": ..., "summary": ..., "created_at": ..., ...}], "next_page_token": ...}."""
+    return _run_cli("data", "news", "--symbols", symbol, "--limit", str(limit))
