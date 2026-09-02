@@ -25,3 +25,4 @@
 {"timestamp": "2026-09-02T19:13:21.020731+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX260925C00210000"}
 {"timestamp": "2026-09-02T19:13:23.761214+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "DIS260925C00109000"}
 {"timestamp": "2026-09-02T19:13:29.011266+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "GOOGL260925C00340000"}
+{"timestamp": "2026-09-02T19:35:17.883410+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL260925C00325000"}
