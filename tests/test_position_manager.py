@@ -19,6 +19,22 @@ def test_no_action_below_tranche_1_threshold():
     assert next_action(pos, current_price=2.10, days_to_expiry=30) is None
 
 
+def test_open_stage_closes_on_50_percent_loss():
+    # A position that never reaches +20% first had no stop-loss at all
+    # before this -- live-confirmed real positions sitting at -75% with
+    # nothing acting on them, since TAIL_STOP_LOSS_PCT only ever applies
+    # after TRANCHE_2_DONE.
+    pos = _position()
+    action = next_action(pos, current_price=1.00, days_to_expiry=30)  # -50%
+    assert action.sell_qty == 10  # entire remaining position, not a tranche
+    assert action.next_stage == Stage.CLOSED
+
+
+def test_open_stage_no_action_above_stop_loss_threshold():
+    pos = _position()
+    assert next_action(pos, current_price=1.30, days_to_expiry=30) is None  # -35%, worse than nothing but not -50%
+
+
 def test_tranche_2_at_45_percent():
     pos = _position(remaining_qty=8, stage=Stage.TRANCHE_1_DONE)
     action = next_action(pos, current_price=2.90, days_to_expiry=30)

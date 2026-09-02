@@ -37,6 +37,7 @@ TRANCHE_2_PROFIT_PCT = 45
 TAIL_TARGET_PROFIT_PCT = 95
 TAIL_STOP_LOSS_PCT = -20
 TAIL_STOP_PROFIT_PCT = 100
+OPEN_STOP_LOSS_PCT = -50  # a position that never reaches +20% first had no stop at all before this -- live-confirmed real positions sitting at -75% unmanaged, since TAIL_STOP_LOSS_PCT only applies after TRANCHE_2_DONE
 
 TRANCHE_1_FRACTION_OF_ORIGINAL = 0.20
 TRANCHE_2_FRACTION_OF_ORIGINAL = 0.20
@@ -73,6 +74,9 @@ def next_action(position: Position, current_price: float, days_to_expiry: int) -
         return ExitAction(position.remaining_qty, f"DTE floor ({days_to_expiry}d <= {DTE_FLOOR}d)", Stage.CLOSED)
 
     profit_pct = _profit_pct(position, current_price)
+
+    if position.stage == Stage.OPEN and profit_pct <= OPEN_STOP_LOSS_PCT:
+        return ExitAction(position.remaining_qty, f"{OPEN_STOP_LOSS_PCT}% stop-loss hit before any profit tranche", Stage.CLOSED)
 
     if position.stage == Stage.OPEN and profit_pct >= TRANCHE_1_PROFIT_PCT:
         qty = round(position.original_qty * TRANCHE_1_FRACTION_OF_ORIGINAL)
