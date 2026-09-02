@@ -126,3 +126,6 @@
 {"timestamp": "2026-09-02T19:50:39.698684+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "DIS260904P00108000"}
 {"timestamp": "2026-09-02T19:50:42.715686+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "ETH260904P00022500"}
 {"timestamp": "2026-09-02T19:50:55.530847+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "WMT260904P00105000"}
+{"timestamp": "2026-09-02T19:58:23.149613+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "DIS260904P00107000"}
+{"timestamp": "2026-09-02T19:58:26.169806+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "ETH260904P00022500"}
+{"timestamp": "2026-09-02T19:58:39.125437+00:00", "event_type": "gate_result", "gate": "daily_order_count", "allowed": false, "reason": "16 new entries already placed today, at the 15/day cap", "symbol": "WMT260904P00105000"}
