@@ -3,7 +3,7 @@ from datetime import datetime
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
-from src.scheduler import run_all_companies, sync_audit_logs, within_market_hours
+from src.scheduler import COMPANY_AB_SCRIPTS, COMPANY_C_SCRIPT, run_companies, sync_audit_logs, within_market_hours
 
 NY = ZoneInfo("America/New_York")
 
@@ -36,17 +36,25 @@ def test_within_market_hours_on_sunday():
     assert within_market_hours(datetime(2026, 8, 30, 12, 0, tzinfo=NY)) is False  # Sunday
 
 
-def test_run_all_companies_invokes_each_script_as_a_subprocess():
-    with patch("src.scheduler.subprocess.run", return_value=type("R", (), {"returncode": 0, "stdout": "3 tickers evaluated", "stderr": ""})()) as mock_run:
-        run_all_companies()
+def test_run_companies_invokes_each_script_as_a_subprocess():
+    with patch("src.scheduler.subprocess.run", return_value=_completed(stdout="3 tickers evaluated")) as mock_run:
+        run_companies(COMPANY_AB_SCRIPTS)
 
     called_modules = [call.args[0][-1] for call in mock_run.call_args_list]
-    assert called_modules == ["src.run_company_a", "src.run_company_b", "src.run_company_c"]
+    assert called_modules == ["src.run_company_a", "src.run_company_b"]
 
 
-def test_run_all_companies_does_not_raise_when_a_company_fails():
+def test_run_companies_can_run_just_company_c():
+    with patch("src.scheduler.subprocess.run", return_value=_completed()) as mock_run:
+        run_companies([COMPANY_C_SCRIPT])
+
+    called_modules = [call.args[0][-1] for call in mock_run.call_args_list]
+    assert called_modules == ["src.run_company_c"]
+
+
+def test_run_companies_does_not_raise_when_a_company_fails():
     with patch("src.scheduler.subprocess.run", return_value=type("R", (), {"returncode": 1, "stdout": "", "stderr": "traceback..."})()):
-        run_all_companies()  # should not raise
+        run_companies(COMPANY_AB_SCRIPTS)  # should not raise
 
 
 def test_sync_audit_logs_skips_cleanly_when_nothing_changed():

@@ -34,3 +34,9 @@
 {"timestamp": "2026-09-02T17:36:24.143812+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$101,110 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "ETH"}
 {"timestamp": "2026-09-02T17:36:44.892022+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA260904P00225000"}
 {"timestamp": "2026-09-02T17:36:44.892422+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$120,632 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "NVDA"}
+{"timestamp": "2026-09-02T18:26:01.591490+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS260904P00109000"}
+{"timestamp": "2026-09-02T18:26:01.592352+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$178,295 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "DIS"}
+{"timestamp": "2026-09-02T18:26:23.073115+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA260904P00225000"}
+{"timestamp": "2026-09-02T18:26:23.073513+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$128,184 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "NVDA"}
+{"timestamp": "2026-09-02T18:26:43.646166+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT260904P00107000"}
+{"timestamp": "2026-09-02T18:26:43.646864+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$193,783 exceeds the 3.0% per-trade cap ($3,000)", "symbol": "WMT"}

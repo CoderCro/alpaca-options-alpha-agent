@@ -24,6 +24,12 @@ the deployed Streamlit dashboard's reasoning trail stays current -- it has
 no live connection to this machine, it only ever sees whatever was last
 pushed. A prior manual-only sync went stale within a day (Company C's
 reasoning trail was empty from deployment until someone noticed and asked).
+
+Company C checks more often than A/B (3 min vs. 15): its vol-edge signal is
+a live IV-vs-realized-vol comparison on 1-3 DTE contracts that can shift
+within a 15-minute gap, unlike A/B's weekly/daily/4h technical reads, which
+don't change meaningfully that fast. The main loop ticks at the faster
+interval and only runs A/B once enough time has actually elapsed.
 """
 
 import subprocess
@@ -34,10 +40,12 @@ from datetime import time as dtime
 
 from src.calendar_blackout import NY_TZ
 
-CHECK_INTERVAL_SECONDS = 15 * 60
+AB_CHECK_INTERVAL_SECONDS = 15 * 60
+C_CHECK_INTERVAL_SECONDS = 3 * 60
 MARKET_OPEN = dtime(9, 30)
 MARKET_CLOSE = dtime(16, 0)
-COMPANY_SCRIPTS = ["src.run_company_a", "src.run_company_b", "src.run_company_c"]
+COMPANY_AB_SCRIPTS = ["src.run_company_a", "src.run_company_b"]
+COMPANY_C_SCRIPT = "src.run_company_c"
 
 
 def within_market_hours(now: datetime) -> bool:
@@ -46,8 +54,8 @@ def within_market_hours(now: datetime) -> bool:
     return MARKET_OPEN <= now.time() <= MARKET_CLOSE
 
 
-def run_all_companies() -> None:
-    for module in COMPANY_SCRIPTS:
+def run_companies(modules: list[str]) -> None:
+    for module in modules:
         result = subprocess.run([sys.executable, "-m", module], capture_output=True, text=True)
         status = "ok" if result.returncode == 0 else f"FAILED (exit {result.returncode})"
         output = (result.stdout or result.stderr).strip()
@@ -80,8 +88,10 @@ def sync_audit_logs() -> None:
 def main() -> None:
     print(
         f"Scheduler started {datetime.now(NY_TZ):%Y-%m-%d %H:%M:%S %Z} -- "
-        f"checking every {CHECK_INTERVAL_SECONDS // 60} min, exits at market close."
+        f"Company C every {C_CHECK_INTERVAL_SECONDS // 60} min, A/B every {AB_CHECK_INTERVAL_SECONDS // 60} min, "
+        f"exits at market close."
     )
+    last_ab_run: float | None = None
     while True:
         now = datetime.now(NY_TZ)
         if now.weekday() >= 5:
@@ -92,11 +102,15 @@ def main() -> None:
             return
         if now.time() < MARKET_OPEN:
             print(f"[{now:%H:%M:%S}] Before market open, waiting...")
-            time.sleep(CHECK_INTERVAL_SECONDS)
+            time.sleep(C_CHECK_INTERVAL_SECONDS)
             continue
-        run_all_companies()
+
+        run_companies([COMPANY_C_SCRIPT])
+        if last_ab_run is None or time.time() - last_ab_run >= AB_CHECK_INTERVAL_SECONDS:
+            run_companies(COMPANY_AB_SCRIPTS)
+            last_ab_run = time.time()
         sync_audit_logs()
-        time.sleep(CHECK_INTERVAL_SECONDS)
+        time.sleep(C_CHECK_INTERVAL_SECONDS)
 
 
 if __name__ == "__main__":
