@@ -18,6 +18,12 @@ execution.py already shells out to the Alpaca CLI for the same reason.
 Blackout logic (market-open window, T1 news days) is NOT reimplemented here
 -- guardrails.pre_trade_check already enforces it on every order this loop
 triggers. This only decides *when to check*, never whether a trade is allowed.
+
+Also syncs logs/ to origin/main after every cycle (see sync_audit_logs) so
+the deployed Streamlit dashboard's reasoning trail stays current -- it has
+no live connection to this machine, it only ever sees whatever was last
+pushed. A prior manual-only sync went stale within a day (Company C's
+reasoning trail was empty from deployment until someone noticed and asked).
 """
 
 import subprocess
@@ -48,6 +54,29 @@ def run_all_companies() -> None:
         print(f"[{datetime.now(NY_TZ):%H:%M:%S}] {module} [{status}]: {output}")
 
 
+def sync_audit_logs() -> None:
+    """Commits and pushes logs/ so the deployed dashboard's reasoning trail
+    stays current. Best-effort, by design: a git/network failure here must
+    never crash a trading cycle -- it's a nice-to-have for the demo, not a
+    trading safety concern. Skips cleanly (no empty commit) when nothing's
+    changed, which is most cycles with no new audit events.
+    """
+    try:
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--", "logs/"], capture_output=True, text=True, check=True
+        )
+        if not status.stdout.strip():
+            return
+        subprocess.run(["git", "add", "--", "logs/"], check=True, capture_output=True, text=True)
+        subprocess.run(
+            ["git", "commit", "-m", "Sync audit logs (automated, scheduler)"], check=True, capture_output=True, text=True
+        )
+        subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True, text=True)
+        print(f"[{datetime.now(NY_TZ):%H:%M:%S}] Audit logs synced to origin/main.")
+    except Exception as e:
+        print(f"[{datetime.now(NY_TZ):%H:%M:%S}] Audit log sync failed (non-fatal, trading continues): {e}")
+
+
 def main() -> None:
     print(
         f"Scheduler started {datetime.now(NY_TZ):%Y-%m-%d %H:%M:%S %Z} -- "
@@ -66,6 +95,7 @@ def main() -> None:
             time.sleep(CHECK_INTERVAL_SECONDS)
             continue
         run_all_companies()
+        sync_audit_logs()
         time.sleep(CHECK_INTERVAL_SECONDS)
 
 

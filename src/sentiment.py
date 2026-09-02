@@ -21,7 +21,11 @@ import requests
 from src import execution
 
 HF_MODEL = "ProsusAI/finbert"
-HF_API_URL = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
+# Live-verified 2026-09-02: the classic api-inference.huggingface.co host no
+# longer resolves at all (DNS failure, not an auth error) -- HF has moved to
+# provider-routed URLs. This one (the "hf-inference" provider specifically,
+# not "auto") is confirmed working with a real token and a real response.
+HF_API_URL = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}"
 NEWS_LOOKBACK_ARTICLES = 5
 REQUEST_TIMEOUT_SECONDS = 15
 
