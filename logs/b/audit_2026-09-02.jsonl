@@ -20,3 +20,8 @@
 {"timestamp": "2026-09-02T18:32:52.411405+00:00", "event_type": "order_result", "symbol": "AAPL260925C00325000", "status": "submitted", "order_id": "a49b7835-b52f-4ab1-b4d8-649f8c12371b"}
 {"timestamp": "2026-09-02T18:32:54.078930+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00034000"}
 {"timestamp": "2026-09-02T18:32:56.701773+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "ETH261016C00023000"}
+{"timestamp": "2026-09-02T19:13:15.507827+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL260925C00325000"}
+{"timestamp": "2026-09-02T19:13:18.280847+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BAC261016C00062500"}
+{"timestamp": "2026-09-02T19:13:21.020731+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX260925C00210000"}
+{"timestamp": "2026-09-02T19:13:23.761214+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "DIS260925C00109000"}
+{"timestamp": "2026-09-02T19:13:29.011266+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "GOOGL260925C00340000"}
