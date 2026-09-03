@@ -1,2 +1,5 @@
 {"timestamp": "2026-09-03T14:43:52.976274+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "AAPL261002C00330000"}
 {"timestamp": "2026-09-03T14:43:56.257908+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "AMZN261002C00260000"}
+{"timestamp": "2026-09-03T15:04:28.132485+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "SPY261016C00762000"}
+{"timestamp": "2026-09-03T15:04:28.133383+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "SPY261016C00762000", "qty": 1, "side": "sell", "limit_price": 19.35}
+{"timestamp": "2026-09-03T15:04:28.576910+00:00", "event_type": "order_result", "symbol": "SPY261016C00762000", "status": "submitted", "order_id": "63cea18b-d320-4c3a-b2c3-2b65bbe623ae"}
