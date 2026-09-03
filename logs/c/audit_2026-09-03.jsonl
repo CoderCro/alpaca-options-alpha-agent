@@ -48,3 +48,6 @@
 {"timestamp": "2026-09-03T19:38:33.615335+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00108000"}
 {"timestamp": "2026-09-03T19:46:01.140741+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "DIS260904P00106000"}
 {"timestamp": "2026-09-03T19:46:16.212306+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00108000"}
+{"timestamp": "2026-09-03T19:49:29.660114+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "DIS260904P00106000"}
+{"timestamp": "2026-09-03T19:49:38.336971+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "NFLX260904P00082000"}
+{"timestamp": "2026-09-03T19:49:46.330021+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00107000"}
