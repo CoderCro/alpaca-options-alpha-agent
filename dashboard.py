@@ -196,6 +196,16 @@ def render_company(company: str) -> None:
         st.caption("No open positions.")
 
     st.markdown("**Reasoning trail (most recent)**")
+    with st.expander("Debug: log path (temporary, remove after diagnosing)"):
+        log_dir = REPO_ROOT / "logs" / company
+        st.write(f"REPO_ROOT = {REPO_ROOT}")
+        st.write(f"REPO_ROOT.exists() = {REPO_ROOT.exists()}")
+        if REPO_ROOT.exists():
+            st.write(f"REPO_ROOT contents = {sorted(p.name for p in REPO_ROOT.iterdir())}")
+        st.write(f"log_dir = {log_dir}")
+        st.write(f"log_dir.exists() = {log_dir.exists()}")
+        if log_dir.exists():
+            st.write(f"log_dir files = {sorted(p.name for p in log_dir.iterdir())}")
     events = load_recent_events(company)
     if events:
         for e in events:
