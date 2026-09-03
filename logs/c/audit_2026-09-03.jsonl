@@ -27,3 +27,4 @@
 {"timestamp": "2026-09-03T15:14:47.743970+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "WMT", "qty": 56, "side": "sell", "limit_price": 109.08}
 {"timestamp": "2026-09-03T15:14:48.178502+00:00", "event_type": "order_result", "symbol": "WMT260904P00105000", "status": "submitted", "order_id": "fd5ab8a7-b251-4c02-ad85-57e2bbd1521b"}
 {"timestamp": "2026-09-03T15:15:07.314816+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00108000"}
+{"timestamp": "2026-09-03T15:18:32.270135+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00108000"}
