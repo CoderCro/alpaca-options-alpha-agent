@@ -3,3 +3,6 @@
 {"timestamp": "2026-09-03T15:04:28.132485+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "SPY261016C00762000"}
 {"timestamp": "2026-09-03T15:04:28.133383+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "SPY261016C00762000", "qty": 1, "side": "sell", "limit_price": 19.35}
 {"timestamp": "2026-09-03T15:04:28.576910+00:00", "event_type": "order_result", "symbol": "SPY261016C00762000", "status": "submitted", "order_id": "63cea18b-d320-4c3a-b2c3-2b65bbe623ae"}
+{"timestamp": "2026-09-03T15:26:31.327238+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "SPY260925C00766000"}
+{"timestamp": "2026-09-03T15:26:31.328712+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "SPY260925C00766000", "qty": 1, "side": "sell", "limit_price": 12.94}
+{"timestamp": "2026-09-03T15:26:31.755167+00:00", "event_type": "order_result", "symbol": "SPY260925C00766000", "status": "submitted", "order_id": "97092591-c60b-49ff-8a0c-2d5ed27bc0f7"}
