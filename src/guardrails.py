@@ -29,6 +29,15 @@ from src.calendar_blackout import NY_TZ, is_trading_allowed
 KILL_SWITCH_FILENAME = "KILL_SWITCH"
 
 PER_TRADE_RISK_PCT = 3.0                # max risk on one new entry, as % of current equity
+# Company C's delta-hedge leg prices at spot x shares, not the option's own
+# premium -- inherently a larger dollar figure per contract than A/B's
+# single-leg risk. Live-verified 2026-09-02: at the shared 3% cap, every
+# entry attempt was being sized affordably on the put alone, then rejected
+# on the hedge leg (e.g. DIS needed a $5,965 hedge for just 1 contract).
+# Raised for Company C only, not lifted -- still a hard cap, still enforced
+# at the same chokepoint, just calibrated for this structure. A/B keep the
+# base rate since their risk is single-leg premium only.
+PER_TRADE_RISK_PCT_OVERRIDES = {"c": 6.0}
 MAX_CONCURRENT_POSITIONS = 8
 MAX_AGGREGATE_RISK_PCT = 25.0           # sum of all open positions' max-loss, as % of equity
 MAX_DAILY_NEW_ENTRIES = 15
@@ -53,6 +62,10 @@ class OrderRequest:
         if self.asset_class == "equity":
             return self.qty * self.limit_price
         return self.qty * self.limit_price * 100
+
+
+def per_trade_risk_pct() -> float:
+    return PER_TRADE_RISK_PCT_OVERRIDES.get(company_config.get_company(), PER_TRADE_RISK_PCT)
 
 
 def kill_switch_active(kill_switch_file: Path | None = None) -> tuple[bool, str]:
@@ -101,11 +114,12 @@ def pre_trade_check(
             "structure",
         )
 
-    max_risk_allowed = account_equity_usd * (PER_TRADE_RISK_PCT / 100)
+    risk_pct = per_trade_risk_pct()
+    max_risk_allowed = account_equity_usd * (risk_pct / 100)
     if order.max_risk_usd > max_risk_allowed:
         return (
             False,
-            f"${order.max_risk_usd:,.0f} exceeds the {PER_TRADE_RISK_PCT}% per-trade cap (${max_risk_allowed:,.0f})",
+            f"${order.max_risk_usd:,.0f} exceeds the {risk_pct}% per-trade cap (${max_risk_allowed:,.0f})",
             "risk_cap",
         )
 

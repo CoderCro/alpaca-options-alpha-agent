@@ -36,8 +36,32 @@ def run_trading_cycle(tickers: list[str]) -> dict:
 
         candidate = signal["candidate"]
         equity = agent_tools.get_account_summary.func()["equity"]
-        max_risk_usd = equity * guardrails.PER_TRADE_RISK_PCT / 100
-        put_qty = max(1, math.floor(max_risk_usd / (candidate["ask"] * 100)))
+        max_risk_usd = equity * guardrails.per_trade_risk_pct() / 100
+
+        # Delta doesn't depend on qty -- probe it once (qty=1 is a throwaway)
+        # so sizing can account for the hedge leg's notional, not just the
+        # put's own premium. A cheap 1-3 DTE put's premium is a small
+        # fraction of the underlying's price, so its delta-hedge (which
+        # covers the full 100-shares-per-contract notional, scaled by
+        # delta) is routinely far bigger in dollar terms than the premium.
+        # Live-confirmed on DIS: a $2,987 put sized to the cap needed a
+        # $179,373 hedge, 60x over the same cap -- sizing on premium alone
+        # was silently making every single entry unplaceable, not
+        # occasionally too big.
+        delta_probe = delta_hedge.compute_hedge(
+            spot=signal["spot"], strike=candidate["strike"], years=signal["years_to_expiry"],
+            vol=signal["implied_vol"], option_type="put", option_qty=1,
+        )
+        put_qty_from_premium = max_risk_usd / (candidate["ask"] * 100)
+        put_qty_from_hedge = max_risk_usd / (abs(delta_probe.option_delta) * 100 * signal["spot"])
+        put_qty = math.floor(min(put_qty_from_premium, put_qty_from_hedge))
+        if put_qty < 1:
+            # Even a single contract's hedge notional exceeds the risk cap
+            # at this underlying's price -- forcing qty=1 anyway would just
+            # get rejected by guardrails' own risk_cap gate on the hedge
+            # leg. Skip cleanly instead of attempting a doomed trade.
+            actions.append({"ticker": ticker, "action": "hedge_unaffordable", "detail": signal})
+            continue
 
         hedge = delta_hedge.compute_hedge(
             spot=signal["spot"],

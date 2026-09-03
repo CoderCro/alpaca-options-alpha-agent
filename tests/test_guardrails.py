@@ -3,6 +3,7 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
+from src import company_config
 from src.guardrails import (
     DAILY_LOSS_CIRCUIT_BREAKER_PCT,
     MAX_AGGREGATE_RISK_PCT,
@@ -155,6 +156,22 @@ def test_per_trade_risk_cap_allows_at_the_boundary():
     allowed, _, _ = _check(_open_order(qty=1, limit_price=30.0), account_equity_usd=100_000.0)
     assert allowed is True
     assert PER_TRADE_RISK_PCT == 3.0  # guards the boundary math above if the constant ever changes
+
+
+def test_per_trade_risk_cap_uses_company_c_override():
+    # Company C's delta-hedge notional needs a materially higher per-trade
+    # cap than A/B's single-leg premium risk -- see guardrails.per_trade_risk_pct.
+    company_config.set_company("c")
+    try:
+        allowed, _, _ = _check(_open_order(qty=13, limit_price=4.50))  # $5,850, under 6% of $100k ($6,000)
+        assert allowed is True
+
+        allowed, reason, gate = _check(_open_order(qty=14, limit_price=4.50))  # $6,300, over $6,000
+        assert allowed is False
+        assert gate == "risk_cap"
+        assert "6.0% per-trade cap" in reason
+    finally:
+        company_config.set_company("default")
 
 
 def test_max_concurrent_positions_blocks_at_cap():

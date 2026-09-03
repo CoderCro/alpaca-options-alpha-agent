@@ -324,9 +324,9 @@ def test_get_vol_edge_signal_no_signal_when_no_candidates():
 
 
 def test_get_vol_edge_signal_happy_path_computes_edge():
-    bars = [{"o": 500, "h": 501, "l": 499, "c": 500.0}] * 25
+    bars = [{"o": 100, "h": 101, "l": 99, "c": 100.0}] * 25
     candidate = OptionCandidate(
-        symbol="SPY261016P00500000", expiry=date.today() + timedelta(days=30), strike=500.0,
+        symbol="SPY261016P00100000", expiry=date.today() + timedelta(days=30), strike=100.0,
         option_type="P", dte=30, moneyness=1.0, bid=4.8, ask=5.0, delta=-0.4,
     )
     with (
@@ -342,15 +342,35 @@ def test_get_vol_edge_signal_happy_path_computes_edge():
     assert result["realized_vol"] == 0.25
     assert result["implied_vol"] == 0.18
     assert result["edge"] == pytest.approx(0.07)
-    assert result["candidate"]["symbol"] == "SPY261016P00500000"
+    assert result["candidate"]["symbol"] == "SPY261016P00100000"
 
 
-def test_get_vol_edge_signal_uses_the_short_dte_window():
-    # Regression guard for the DTE narrowing (21-45 -> 1-3): must be passed
-    # explicitly, not left to select_option_candidates' own default (still
-    # 21-45, shared with Company A/B's get_option_candidates) -- getting
-    # this wrong would silently put Company C back on the old window.
+def test_get_vol_edge_signal_no_signal_when_underlying_too_expensive_to_hedge():
+    # Regression guard for the hedge-affordability pre-filter: must short-
+    # circuit before the option-chain fetch (that's the point -- skip the
+    # expensive lookup for names that can't clear the hedge cap regardless
+    # of which candidate would've been picked), not just before placing a
+    # trade.
     bars = [{"o": 500, "h": 501, "l": 499, "c": 500.0}] * 25
+    with (
+        patch("src.agent_tools.execution.get_bars", return_value={"bars": bars}),
+        patch("src.agent_tools.execution.get_option_chain") as mock_chain,
+        patch("src.agent_tools.vol_edge.realized_volatility", return_value=0.25),
+    ):
+        result = agent_tools.get_vol_edge_signal.invoke({"underlying_symbol": "SPY"})
+
+    assert result["has_signal"] is False
+    assert "exceeds" in result["reason"]
+    mock_chain.assert_not_called()
+
+
+def test_get_vol_edge_signal_uses_the_short_dte_window_and_otm_moneyness():
+    # Regression guard for the DTE narrowing (21-45 -> 1-3) and the OTM
+    # moneyness bias: both must be passed explicitly, not left to
+    # select_option_candidates' own ATM-centered default (still 21-45 /
+    # 0.95-1.05, shared with Company A/B's get_option_candidates) -- getting
+    # either wrong would silently put Company C back on the old window/delta.
+    bars = [{"o": 100, "h": 101, "l": 99, "c": 100.0}] * 25
     with (
         patch("src.agent_tools.execution.get_bars", return_value={"bars": bars}),
         patch("src.agent_tools.execution.get_option_chain", return_value={"snapshots": {}}) as mock_chain,
@@ -360,6 +380,7 @@ def test_get_vol_edge_signal_uses_the_short_dte_window():
         agent_tools.get_vol_edge_signal.invoke({"underlying_symbol": "SPY"})
 
     assert mock_select.call_args.kwargs["dte_range"] == (vol_edge.MIN_DTE, vol_edge.MAX_DTE)
+    assert mock_select.call_args.kwargs["moneyness_range"] == vol_edge.MONEYNESS_RANGE
     chain_kwargs = mock_chain.call_args.kwargs
     days_requested = (date.fromisoformat(chain_kwargs["expiration_lte"]) - date.fromisoformat(chain_kwargs["expiration_gte"])).days
     assert days_requested == vol_edge.MAX_DTE - vol_edge.MIN_DTE

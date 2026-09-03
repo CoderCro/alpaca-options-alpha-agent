@@ -39,6 +39,24 @@ MIN_DTE = 1  # narrowed from 21 -- avoids years=0 (see options_math.py: BS colla
 MAX_DTE = 3  # narrowed from 45
 EXIT_DTE_FLOOR = 0  # close once truly expiring (dte<=0), not <=7 -- with MIN_DTE=1, a <=7 floor would fire on literally the next cycle after every entry, before the position ever gets a chance
 
+# The default ATM-centered moneyness band (shared with A/B's own candidate
+# selection) picks a put with delta ~0.5-0.6 at this DTE -- live-calibrated
+# 2026-09-02 against real DIS/NVDA/WMT chains: delta is extremely sensitive
+# to strike this close to expiry, swinging from ~0.9 to ~0.02 across just a
+# few percent of moneyness. This band landed around delta 0.25-0.40 for
+# those three names -- materially smaller hedge notional than ATM -- without
+# going so far OTM the quote gets too thin to solve an IV from (deeper
+# strikes were down to a few cents, often unsolvable).
+MONEYNESS_RANGE = (0.97, 0.995)
+# Derived from guardrails.PER_TRADE_RISK_PCT_OVERRIDES["c"] (6%, i.e. $6,000
+# on a $100,000 account) and the ~0.35 representative delta the band above
+# landed on: 6000 / (0.35 * 100) ~= $171.43, rounded down to stay on the
+# affordable side. Skips the option-chain fetch and IV solve entirely for
+# underlyings that can't clear the hedge cap regardless of which candidate
+# gets picked -- e.g. DIS/WMT (~$105-109) work, NVDA (~$225) structurally
+# doesn't at this delta/cap.
+MAX_UNDERLYING_PRICE = 170
+
 
 def realized_volatility(closes: list[float], window: int = 20) -> float | None:
     """Annualized stdev of daily log returns over the trailing window.

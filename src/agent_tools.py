@@ -442,13 +442,22 @@ def get_vol_edge_signal(underlying_symbol: str) -> dict:
         return {"has_signal": False, "reason": "not enough price history yet"}
 
     spot = closes[-1]
+    if spot > vol_edge.MAX_UNDERLYING_PRICE:
+        return {
+            "has_signal": False,
+            "reason": (
+                f"underlying price ${spot:.2f} exceeds ${vol_edge.MAX_UNDERLYING_PRICE} -- "
+                "hedge would not be affordable within the per-trade risk cap even at a favorable delta"
+            ),
+        }
     chain = execution.get_option_chain(
         underlying_symbol,
         expiration_gte=(today + timedelta(days=vol_edge.MIN_DTE)).isoformat(),
         expiration_lte=(today + timedelta(days=vol_edge.MAX_DTE)).isoformat(),
     )
     candidates = options_selector.select_option_candidates(
-        chain.get("snapshots", {}), "bearish", spot, as_of=today, dte_range=(vol_edge.MIN_DTE, vol_edge.MAX_DTE)
+        chain.get("snapshots", {}), "bearish", spot, as_of=today,
+        dte_range=(vol_edge.MIN_DTE, vol_edge.MAX_DTE), moneyness_range=vol_edge.MONEYNESS_RANGE,
     )
     if not candidates:
         return {"has_signal": False, "reason": "no put candidates in the DTE/moneyness window"}
