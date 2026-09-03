@@ -9,3 +9,4 @@
 {"timestamp": "2026-09-03T14:11:17.943666+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "DIS", "qty": 38, "side": "sell", "limit_price": 107.71}
 {"timestamp": "2026-09-03T14:11:18.404879+00:00", "event_type": "order_result", "symbol": "DIS260904P00108000", "status": "submitted", "order_id": "cbb7ca4a-df33-44ae-894d-47fd88346134"}
 {"timestamp": "2026-09-03T14:11:38.233651+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00106000"}
+{"timestamp": "2026-09-03T14:19:52.278697+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260904P00106000"}
