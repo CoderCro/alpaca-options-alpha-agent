@@ -9,3 +9,6 @@
 {"timestamp": "2026-09-03T17:46:48.525831+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016C00034000"}
 {"timestamp": "2026-09-03T17:46:48.527077+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "BTC261016C00034000", "qty": 2, "side": "sell", "limit_price": 2.85}
 {"timestamp": "2026-09-03T17:46:48.906059+00:00", "event_type": "order_result", "symbol": "BTC261016C00034000", "status": "submitted", "order_id": "8a11e53c-e554-4594-bcb2-6ec0d2de2691"}
+{"timestamp": "2026-09-03T19:09:31.679219+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "QQQ260925C00712000"}
+{"timestamp": "2026-09-03T19:09:31.680362+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "QQQ260925C00712000", "qty": 1, "side": "sell", "limit_price": 16.42}
+{"timestamp": "2026-09-03T19:09:32.069346+00:00", "event_type": "order_result", "symbol": "QQQ260925C00712000", "status": "submitted", "order_id": "a78d2998-59b0-411b-9757-f83e4fa94101"}
