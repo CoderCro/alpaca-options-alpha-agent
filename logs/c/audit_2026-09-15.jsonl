@@ -1,0 +1,1 @@
+{"timestamp": "2026-09-15T19:09:22.956729+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "WMT260918P00108000"}
