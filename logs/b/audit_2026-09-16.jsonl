@@ -1,0 +1,3 @@
+{"timestamp": "2026-09-16T18:01:30.888172+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261016C00023000"}
+{"timestamp": "2026-09-16T18:01:30.888940+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "ETH261016C00023000", "qty": 1, "side": "sell", "limit_price": 0.95}
+{"timestamp": "2026-09-16T18:01:31.380258+00:00", "event_type": "order_result", "symbol": "ETH261016C00023000", "status": "submitted", "order_id": "da78b92b-8cbb-4b00-b6c5-5078b44f2502"}
