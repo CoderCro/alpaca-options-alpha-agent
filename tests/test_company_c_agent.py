@@ -134,6 +134,48 @@ def test_skips_as_hedge_unaffordable_when_even_one_contract_exceeds_the_cap():
     assert result["actions"][0]["action"] == "hedge_unaffordable"
 
 
+def test_entry_hedge_limit_price_rounded_to_a_valid_stock_tick():
+    # Live-confirmed 2026-09-02: Alpaca rejected the DIS hedge order outright
+    # ("invalid limit_price 108.605. sub-penny increment does not fulfill
+    # minimum pricing criteria") because signal["spot"] is a raw bar close,
+    # not a cent-rounded price -- the put leg filled anyway, leaving 5 of 8
+    # entries that day with no hedge at all.
+    with (
+        patch("src.guardrails.company_config.get_company", return_value="c"),
+        patch("src.agent_tools.check_vol_edge_exit_actions.func", return_value=[]),
+        patch(
+            "src.agent_tools.get_vol_edge_signal.func",
+            return_value=_signal(spot=108.605, candidate=_candidate(strike=107.0, ask=0.3, bid=0.28)),
+        ),
+        patch("src.agent_tools.get_account_summary.func", return_value={"equity": 100_000.0}),
+        patch("src.delta_hedge.compute_hedge", side_effect=_hedge_with_delta(-0.1)),
+        patch("src.agent_tools.place_delta_neutral_put.func", return_value={"placed": True}) as mock_place,
+    ):
+        company_c_agent.run_trading_cycle(["DIS"])
+
+    assert mock_place.call_args.kwargs["hedge_limit_price"] == 108.61
+
+
+def test_exit_hedge_limit_price_rounded_to_a_valid_stock_tick():
+    exit_action = {
+        "put_symbol": "SPY261016P00500000",
+        "underlying_symbol": "SPY",
+        "put_qty": 6,
+        "hedge_shares": 240,
+        "reason": "vol_edge_reverted",
+        "put_current_price": 3.20,
+        "hedge_current_price": 495.0649999,
+    }
+    with (
+        patch("src.agent_tools.check_vol_edge_exit_actions.func", return_value=[exit_action]),
+        patch("src.agent_tools.close_delta_neutral_position.func", return_value={"placed": True}) as mock_close,
+        patch("src.agent_tools.get_vol_edge_signal.func", return_value=_signal(has_signal=False)),
+    ):
+        company_c_agent.run_trading_cycle(["SPY"])
+
+    assert mock_close.call_args.kwargs["hedge_limit_price"] == 495.06
+
+
 def test_exit_actions_processed_before_entries():
     exit_action = {
         "put_symbol": "SPY261016P00500000",

@@ -65,7 +65,14 @@ def _parse_verdict(raw: str) -> TradeVerdict:
         if not match:
             # Fail closed: unparseable output is a veto, never a silent pass-through.
             return TradeVerdict(veto=True, confidence=0.0, rationale=f"unparseable model output: {raw!r}")
-        data = json.loads(match.group(0))
+        try:
+            data = json.loads(match.group(0))
+        except json.JSONDecodeError:
+            # Live-confirmed 2026-09-18: a degenerate/garbled model response
+            # (Company A crashed the whole process on this) can contain a
+            # "{...}"-shaped substring that still isn't valid JSON -- this
+            # second parse must fail closed too, not raise uncaught.
+            return TradeVerdict(veto=True, confidence=0.0, rationale=f"unparseable model output: {raw!r}")
     return TradeVerdict(
         veto=bool(data.get("veto", True)),
         confidence=float(data.get("confidence", 0.0)),
@@ -99,6 +106,11 @@ def review_candidate(candidate: TradeCandidate, model: str | None = None, client
                 {"role": "user", "content": _build_prompt(candidate)},
             ],
             temperature=0.2,
+            # Live-confirmed 2026-09-18: the model can degenerate into an
+            # unbounded repetition loop instead of stopping -- bounds the
+            # damage (cost, and how much garbled text _parse_verdict has to
+            # fail closed on) without needing more than a short JSON verdict.
+            max_tokens=200,
         )
         content = response.choices[0].message.content
     except Exception as e:

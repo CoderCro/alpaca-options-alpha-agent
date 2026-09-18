@@ -29,6 +29,17 @@ def test_fails_closed_on_unparseable_output():
     assert verdict.veto is True
 
 
+def test_fails_closed_when_regex_match_is_not_valid_json():
+    # Live-confirmed 2026-09-18: a degenerate/garbled model response can
+    # contain a "{...}"-shaped substring (DOTALL matches from the first "{"
+    # to the last "}" in the whole ramble) that still isn't valid JSON --
+    # this used to raise JSONDecodeError uncaught, crashing Company A's
+    # entire process instead of failing closed.
+    garbled = 'Based on the signals... [Bri-lliant 0{degenerate garbage. It is}n\'t a real json response.'
+    verdict = _parse_verdict(garbled)
+    assert verdict.veto is True
+
+
 def test_review_candidate_uses_injected_client():
     mock_client = MagicMock()
     mock_client.chat.completions.create.return_value.choices = [

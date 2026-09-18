@@ -59,6 +59,11 @@ def run_companies(modules: list[str]) -> None:
         result = subprocess.run([sys.executable, "-m", module], capture_output=True, text=True)
         status = "ok" if result.returncode == 0 else f"FAILED (exit {result.returncode})"
         output = (result.stdout or result.stderr).strip()
+        # Live-confirmed 2026-09-18: a degenerate LLM response (Company B's
+        # reasoning-loop summary) can run thousands of characters -- cap
+        # what hits the log/terminal so one bad cycle can't flood it.
+        if len(output) > 500:
+            output = output[:500] + f"... [truncated, {len(output)} chars total]"
         print(f"[{datetime.now(NY_TZ):%H:%M:%S}] {module} [{status}]: {output}")
 
 

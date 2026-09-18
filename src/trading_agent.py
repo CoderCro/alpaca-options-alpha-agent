@@ -49,6 +49,11 @@ def _build_model(model: str | None = None) -> ChatOpenAI:
         api_key=os.environ["FEATHERLESS_API_KEY"],
         default_headers={"Accept-Encoding": "identity"},
         temperature=0.2,
+        # Live-confirmed 2026-09-18: the model can degenerate into an
+        # unbounded repetition loop on its final-turn answer (logged
+        # verbatim as "summary") instead of stopping -- bounds the cost and
+        # log noise without limiting a normal tool-calling turn.
+        max_tokens=500,
     )
 
 

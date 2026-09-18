@@ -23,7 +23,14 @@ def run_trading_cycle(tickers: list[str]) -> dict:
             put_qty=exit_action["put_qty"],
             put_limit_price=exit_action["put_current_price"],
             hedge_shares=exit_action["hedge_shares"],
-            hedge_limit_price=exit_action["hedge_current_price"],
+            # Stock orders need whole-cent prices; hedge_current_price can
+            # fall back to the raw multi-decimal bar close (see
+            # get_vol_edge_signal's "spot") when no live position quote is
+            # available. Live-confirmed Sep 2: Alpaca rejects a sub-penny
+            # stock limit price outright ("sub-penny increment does not
+            # fulfill minimum pricing criteria"), which silently left 5 of
+            # 8 entries with a filled put and no hedge at all.
+            hedge_limit_price=round(exit_action["hedge_current_price"], 2),
             rationale=f"vol-edge exit: {exit_action['reason']}",
         )
         actions.append({"ticker": exit_action["underlying_symbol"], "action": "exit", "result": result})
@@ -78,7 +85,11 @@ def run_trading_cycle(tickers: list[str]) -> dict:
             put_qty=put_qty,
             put_limit_price=candidate["ask"],
             hedge_shares=hedge.hedge_shares,
-            hedge_limit_price=signal["spot"],
+            # Round to a valid stock tick size -- signal["spot"] is the raw
+            # multi-decimal bar close (get_vol_edge_signal), and Alpaca
+            # rejects a sub-penny stock limit price outright. See the
+            # matching note on the exit path above.
+            hedge_limit_price=round(signal["spot"], 2),
             realized_vol=signal["realized_vol"],
             implied_vol=signal["implied_vol"],
             rationale=(
