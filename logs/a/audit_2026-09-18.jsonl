@@ -101,3 +101,11 @@
 {"timestamp": "2026-09-18T19:08:05.868851+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "TSLA261009C00365000"}
 {"timestamp": "2026-09-18T19:08:19.123805+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "V261009P00370000"}
 {"timestamp": "2026-09-18T19:08:30.203554+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM261009C00162500"}
+{"timestamp": "2026-09-18T19:30:47.064277+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL261009C00335000"}
+{"timestamp": "2026-09-18T19:31:02.188485+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00036000"}
+{"timestamp": "2026-09-18T19:31:14.792175+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX261009C00210000"}
+{"timestamp": "2026-09-18T19:31:27.485443+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "ETH261009C00025000"}
+{"timestamp": "2026-09-18T19:31:41.816048+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "GOOGL261009C00350000"}
+{"timestamp": "2026-09-18T19:31:56.907686+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "JNJ261009C00270000"}
+{"timestamp": "2026-09-18T19:32:27.988705+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "META261009C00670000"}
+{"timestamp": "2026-09-18T19:32:40.047981+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "MSFT261009C00495000"}
