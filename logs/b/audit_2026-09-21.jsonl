@@ -1,0 +1,3 @@
+{"timestamp": "2026-09-21T20:02:17.409834+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "CVX261002C00215000"}
+{"timestamp": "2026-09-21T20:02:17.411300+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "CVX261002C00215000", "qty": 1, "side": "sell", "limit_price": 0.6}
+{"timestamp": "2026-09-21T20:02:17.830533+00:00", "event_type": "order_result", "symbol": "CVX261002C00215000", "status": "submitted", "order_id": "b28b1b48-16ca-452c-ae05-29513ab4fbd0"}
