@@ -195,3 +195,20 @@
 {"timestamp": "2026-09-24T17:43:40.887285+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "TSLA261016C00380000"}
 {"timestamp": "2026-09-24T17:43:54.768152+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "WMT261016C00108000"}
 {"timestamp": "2026-09-24T17:44:02.925070+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM261016C00162500"}
+{"timestamp": "2026-09-24T18:02:26.603391+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL261016C00337500"}
+{"timestamp": "2026-09-24T18:02:39.159002+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00037000"}
+{"timestamp": "2026-09-24T18:02:49.887360+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX261016C00207500"}
+{"timestamp": "2026-09-24T18:02:59.589887+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "DIS261016C00105000"}
+{"timestamp": "2026-09-24T18:03:07.055704+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "ETH261016C00025500"}
+{"timestamp": "2026-09-24T18:03:17.668449+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "HD261016P00292500"}
+{"timestamp": "2026-09-24T18:03:25.684880+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "JNJ261016C00272500"}
+{"timestamp": "2026-09-24T18:03:43.504179+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,929 exceeds the 3.0% per-trade cap ($2,716)", "symbol": "LLY261016C01190000"}
+{"timestamp": "2026-09-24T18:04:02.383105+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,452 exceeds the 3.0% per-trade cap ($2,717)", "symbol": "META261016C00770000"}
+{"timestamp": "2026-09-24T18:04:12.992687+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "MSFT261016C00495000"}
+{"timestamp": "2026-09-24T18:04:25.449860+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "NVDA261016C00222500"}
+{"timestamp": "2026-09-24T18:04:34.083387+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "PG261016C00147000"}
+{"timestamp": "2026-09-24T18:04:53.892012+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "QQQ261016C00738000"}
+{"timestamp": "2026-09-24T18:05:16.675282+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "SPY261016C00766000"}
+{"timestamp": "2026-09-24T18:05:29.222881+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "TSLA261016C00377500"}
+{"timestamp": "2026-09-24T18:05:41.991077+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "WMT261016C00109000"}
+{"timestamp": "2026-09-24T18:05:49.204575+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM261016C00162500"}
