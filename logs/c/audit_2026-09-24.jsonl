@@ -137,3 +137,6 @@
 {"timestamp": "2026-09-24T19:52:16.328431+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T19:52:16.329313+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-09-24T19:52:21.105233+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Positive news sentiment contradicts the bearish direction, posing a risk to the trade's success despite the volatility edge.", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T19:55:45.882639+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T19:55:45.883581+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T19:56:02.665433+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "Featherless call failed, failing closed: TypeError(\"'NoneType' object is not subscriptable\")", "symbol": "NFLX260925P00071000"}
