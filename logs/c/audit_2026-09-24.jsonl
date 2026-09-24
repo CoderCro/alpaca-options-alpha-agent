@@ -38,3 +38,6 @@
 {"timestamp": "2026-09-24T16:53:48.187967+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T16:53:48.188604+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-09-24T16:53:54.309832+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Positive recent news sentiment contradicts the bearish direction, posing a risk to the trade's success despite the vol edge.", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T16:57:16.834712+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T16:57:16.835168+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T16:57:25.006955+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Bearish trade on NFLX contradicts recent positive news sentiment, increasing risk of adverse movement.", "symbol": "NFLX260925P00071000"}
