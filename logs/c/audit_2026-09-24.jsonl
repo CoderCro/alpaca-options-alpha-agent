@@ -65,3 +65,6 @@
 {"timestamp": "2026-09-24T17:50:41.778191+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX260925P00071000", "qty": 2, "side": "buy", "limit_price": 0.23}
 {"timestamp": "2026-09-24T17:50:42.266278+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 56, "side": "buy", "limit_price": 71.69}
 {"timestamp": "2026-09-24T17:50:42.616184+00:00", "event_type": "order_result", "symbol": "NFLX260925P00071000", "status": "submitted", "order_id": "ebbfa88b-75a2-4106-836d-8f572c2f57fe"}
+{"timestamp": "2026-09-24T17:54:07.907783+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T17:54:07.908562+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T17:54:24.939928+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "Featherless call failed, failing closed: TypeError(\"'NoneType' object is not subscriptable\")", "symbol": "NFLX260925P00071000"}
