@@ -47,3 +47,6 @@
 {"timestamp": "2026-09-24T17:04:39.647754+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T17:04:39.648446+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-09-24T17:04:55.360444+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "Featherless call failed, failing closed: TypeError(\"'NoneType' object is not subscriptable\")", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T17:24:05.444144+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T17:24:05.444628+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T17:24:11.816131+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Positive recent news sentiment contradicts the bearish direction, posing a risk to the trade's success.", "symbol": "NFLX260925P00071000"}
