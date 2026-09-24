@@ -20,3 +20,6 @@
 {"timestamp": "2026-09-24T16:05:48.729188+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T16:05:48.729881+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-09-24T16:05:53.860465+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Bearish trade contradicts recent positive news sentiment, posing potential risk despite meeting volatility criteria.", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T16:09:16.689745+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T16:09:16.690420+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T16:09:26.439816+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "Featherless call failed, failing closed: TypeError(\"'NoneType' object is not subscriptable\")", "symbol": "NFLX260925P00071000"}
