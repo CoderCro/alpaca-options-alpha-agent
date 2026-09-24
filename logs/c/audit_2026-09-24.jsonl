@@ -1,2 +1,3 @@
 {"timestamp": "2026-09-24T14:13:08.657655+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T14:24:23.036008+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T14:31:22.580977+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NFLX260925P00071000"}
