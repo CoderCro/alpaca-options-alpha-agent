@@ -53,3 +53,6 @@
 {"timestamp": "2026-09-24T17:31:08.269545+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
 {"timestamp": "2026-09-24T17:31:08.270097+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-09-24T17:31:31.652375+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Positive news sentiment contradicts the bearish direction, posing a risk to the trade's coherence.", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T17:34:56.842091+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-24T17:34:56.842561+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-24T17:35:22.186030+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "Positive news sentiment contradicts the bearish direction, posing a potential risk to the trade.", "symbol": "NFLX260925P00071000"}
