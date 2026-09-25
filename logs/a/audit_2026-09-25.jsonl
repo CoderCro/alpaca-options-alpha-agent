@@ -84,3 +84,17 @@
 {"timestamp": "2026-09-25T16:30:55.264229+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "SPY261016C00772000"}
 {"timestamp": "2026-09-25T16:31:12.890376+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "TSLA261016C00372500"}
 {"timestamp": "2026-09-25T16:31:30.779680+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM261016C00160000"}
+{"timestamp": "2026-09-25T16:54:14.937005+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL261016C00340000"}
+{"timestamp": "2026-09-25T16:54:26.284021+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00037000"}
+{"timestamp": "2026-09-25T16:54:36.739740+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX261016C00205000"}
+{"timestamp": "2026-09-25T16:54:44.287702+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "DIS261016C00106000"}
+{"timestamp": "2026-09-25T16:54:50.735802+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "ETH261016C00025500"}
+{"timestamp": "2026-09-25T16:55:02.879515+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "JNJ261016C00270000"}
+{"timestamp": "2026-09-25T16:55:30.293058+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$2,869 exceeds the 3.0% per-trade cap ($2,681)", "symbol": "META261016C00750000"}
+{"timestamp": "2026-09-25T16:55:42.658066+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "MSFT261016C00517500"}
+{"timestamp": "2026-09-25T16:55:55.700496+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "NVDA261016C00225000"}
+{"timestamp": "2026-09-25T16:56:03.821995+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "PG261016C00146000"}
+{"timestamp": "2026-09-25T16:56:24.579205+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "QQQ261016C00745000"}
+{"timestamp": "2026-09-25T16:56:47.475917+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "SPY261016C00771000"}
+{"timestamp": "2026-09-25T16:56:59.840650+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "TSLA261016C00372500"}
+{"timestamp": "2026-09-25T16:57:15.831585+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "XOM261016C00160000"}
