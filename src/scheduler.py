@@ -81,8 +81,12 @@ def sync_audit_logs() -> None:
         if not status.stdout.strip():
             return
         subprocess.run(["git", "add", "--", "logs/"], check=True, capture_output=True, text=True)
+        # Pathspec-limited: a bare `git commit` takes the whole index, so
+        # anything a human happened to have staged got swept into this
+        # automated commit and pushed (live-confirmed 2026-09-25, bac377c).
         subprocess.run(
-            ["git", "commit", "-m", "Sync audit logs (automated, scheduler)"], check=True, capture_output=True, text=True
+            ["git", "commit", "-m", "Sync audit logs (automated, scheduler)", "--", "logs/"],
+            check=True, capture_output=True, text=True,
         )
         subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True, text=True)
         print(f"[{datetime.now(NY_TZ):%H:%M:%S}] Audit logs synced to origin/main.")

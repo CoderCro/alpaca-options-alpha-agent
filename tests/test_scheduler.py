@@ -84,3 +84,6 @@ def test_sync_audit_logs_does_not_raise_when_push_fails():
         ],
     ):
         sync_audit_logs()  # should not raise -- a sync failure must never crash a trading cycle
+    commit_args = mock_run.call_args_list[2].args[0]
+    # Must be limited to logs/ -- a bare commit sweeps in whatever else is staged.
+    assert commit_args[-2:] == ["--", "logs/"]
