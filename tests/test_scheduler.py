@@ -71,6 +71,9 @@ def test_sync_audit_logs_commits_and_pushes_when_logs_changed():
         sync_audit_logs()
     git_subcommands = [call.args[0][1] for call in mock_run.call_args_list]
     assert git_subcommands == ["status", "add", "commit", "push"]
+    commit_args = mock_run.call_args_list[2].args[0]
+    # Must be limited to logs/ -- a bare commit sweeps in whatever else is staged.
+    assert commit_args[-2:] == ["--", "logs/"]
 
 
 def test_sync_audit_logs_does_not_raise_when_push_fails():
@@ -84,6 +87,3 @@ def test_sync_audit_logs_does_not_raise_when_push_fails():
         ],
     ):
         sync_audit_logs()  # should not raise -- a sync failure must never crash a trading cycle
-    commit_args = mock_run.call_args_list[2].args[0]
-    # Must be limited to logs/ -- a bare commit sweeps in whatever else is staged.
-    assert commit_args[-2:] == ["--", "logs/"]
