@@ -101,3 +101,4 @@
 {"timestamp": "2026-09-25T17:31:45.880762+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL261016C00340000"}
 {"timestamp": "2026-09-25T17:31:59.552645+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "BTC261016C00037000"}
 {"timestamp": "2026-09-25T17:32:12.990051+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "CVX261016C00205000"}
+{"timestamp": "2026-09-25T18:03:13.840582+00:00", "event_type": "gate_result", "gate": "position_count", "allowed": false, "reason": "8 open positions already at the 8 cap", "symbol": "AAPL261016C00340000"}
