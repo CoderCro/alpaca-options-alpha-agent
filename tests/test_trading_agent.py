@@ -37,6 +37,21 @@ def test_dispatches_tool_call_and_stops_on_final_answer():
     assert json.loads(tool_messages[0].content)["equity"] == 100000.0
 
 
+def test_model_call_exception_fails_closed_instead_of_crashing():
+    # Live-confirmed 2026-09-24: Featherless's own backend can fail a
+    # tool-calling request ("No successful response received from
+    # completion service"), raised as an uncaught exception straight out of
+    # llm.invoke() -- this used to crash Company A's whole process instead
+    # of skipping the cycle, same "always fail closed" gap as
+    # featherless_review._parse_verdict.
+    llm = _fake_llm([ValueError("No successful response received from completion service")])
+
+    result = run_trading_cycle(["AAPL"], model=llm)
+
+    assert result["ran_out_of_turns"] is False
+    assert "failing closed" in result["summary"]
+
+
 def test_unknown_tool_call_does_not_crash():
     tool_call_msg = AIMessage(content="", tool_calls=[{"name": "not_a_real_tool", "args": {}, "id": "call_1"}])
     final_msg = AIMessage(content="done")
@@ -74,3 +89,16 @@ def test_multiple_tool_calls_in_one_turn_all_dispatched():
 
     tool_messages = [m for m in result["messages"] if isinstance(m, ToolMessage)]
     assert {m.tool_call_id for m in tool_messages} == {"call_1", "call_2"}
+
+
+def test_tool_exception_is_reported_to_the_model_instead_of_crashing():
+    tool_call_msg = AIMessage(content="", tool_calls=[{"name": "get_positions", "args": {}, "id": "call_1"}])
+    final_msg = AIMessage(content="data unavailable, no action")
+    llm = _fake_llm([tool_call_msg, final_msg])
+
+    with patch("src.agent_tools.execution.list_positions", side_effect=RuntimeError("CLI timed out")):
+        result = run_trading_cycle(["AAPL"], model=llm)
+
+    assert result["summary"] == "data unavailable, no action"
+    tool_messages = [m for m in result["messages"] if isinstance(m, ToolMessage)]
+    assert "get_positions failed" in json.loads(tool_messages[0].content)["error"]

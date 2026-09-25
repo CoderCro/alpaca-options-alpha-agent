@@ -6,7 +6,17 @@ guardrails/veto/execution wiring is already covered by test_agent_tools.py
 
 from unittest.mock import patch
 
-from src import company_a_agent
+import pytest
+
+from src import company_a_agent, execution
+
+
+@pytest.fixture(autouse=True)
+def _below_position_cap():
+    # run_trading_cycle checks the position cap before scanning entries --
+    # default every test to "no open positions" so none hit the real CLI.
+    with patch("src.agent_tools.get_positions.func", return_value=[]) as mock:
+        yield mock
 
 
 def _signal(qualifies=True, direction="bullish", met=None):
@@ -131,3 +141,30 @@ def test_exit_actions_processed_before_entries():
         next_stage="TRANCHE_1_DONE",
     )
     assert result["actions"][0]["action"] == "exit"
+
+
+def test_skips_entry_scan_entirely_at_the_position_cap(_below_position_cap):
+    _below_position_cap.return_value = [{"symbol": f"P{i}"} for i in range(8)]
+    with (
+        patch("src.agent_tools.check_exit_actions.func", return_value=[]),
+        patch("src.agent_tools.get_signal.func") as mock_signal,
+    ):
+        result = company_a_agent.run_trading_cycle(["AAPL", "MSFT"])
+
+    mock_signal.assert_not_called()
+    assert result["actions"][-1]["action"] == "entries_skipped"
+
+
+def test_one_tickers_data_error_does_not_abort_the_rest_of_the_scan():
+    def signal(ticker):
+        if ticker == "AAPL":
+            raise execution.AlpacaCliError("alpaca CLI timed out after 30s")
+        return _signal(qualifies=False)
+
+    with (
+        patch("src.agent_tools.check_exit_actions.func", return_value=[]),
+        patch("src.agent_tools.get_signal.func", side_effect=signal),
+    ):
+        result = company_a_agent.run_trading_cycle(["AAPL", "MSFT"])
+
+    assert [a["action"] for a in result["actions"]] == ["data_error", "no_signal"]

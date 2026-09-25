@@ -106,11 +106,11 @@ def review_candidate(candidate: TradeCandidate, model: str | None = None, client
                 {"role": "user", "content": _build_prompt(candidate)},
             ],
             temperature=0.2,
-            # Live-confirmed 2026-09-18: the model can degenerate into an
-            # unbounded repetition loop instead of stopping -- bounds the
-            # damage (cost, and how much garbled text _parse_verdict has to
-            # fail closed on) without needing more than a short JSON verdict.
-            max_tokens=200,
+            # Bounds a degenerate repetition loop (live-confirmed 2026-09-18).
+            # Not 200: DeepSeek-V4-Pro reasons first (~400 tokens live), and
+            # a cap that truncates it silently turns every verdict into an
+            # "unparseable" fail-closed veto.
+            max_tokens=1500,
         )
         content = response.choices[0].message.content
     except Exception as e:

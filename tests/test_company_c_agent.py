@@ -8,7 +8,7 @@ test_company_a_agent.py.
 
 from unittest.mock import patch
 
-from src import company_c_agent
+from src import company_c_agent, execution
 from src.delta_hedge import HedgeOrder
 
 
@@ -202,3 +202,18 @@ def test_exit_actions_processed_before_entries():
         rationale="vol-edge exit: vol_edge_reverted",
     )
     assert result["actions"][0]["action"] == "exit"
+
+
+def test_one_tickers_data_error_does_not_abort_the_rest_of_the_scan():
+    def signal(ticker):
+        if ticker == "DIS":
+            raise execution.AlpacaCliError("alpaca CLI returned non-JSON output: ''")
+        return _signal(has_signal=False)
+
+    with (
+        patch("src.agent_tools.check_vol_edge_exit_actions.func", return_value=[]),
+        patch("src.agent_tools.get_vol_edge_signal.func", side_effect=signal),
+    ):
+        result = company_c_agent.run_trading_cycle(["DIS", "WMT"])
+
+    assert [a["action"] for a in result["actions"]] == ["data_error", "no_signal"]

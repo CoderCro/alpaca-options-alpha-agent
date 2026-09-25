@@ -49,11 +49,10 @@ def _build_model(model: str | None = None) -> ChatOpenAI:
         api_key=os.environ["FEATHERLESS_API_KEY"],
         default_headers={"Accept-Encoding": "identity"},
         temperature=0.2,
-        # Live-confirmed 2026-09-18: the model can degenerate into an
-        # unbounded repetition loop on its final-turn answer (logged
-        # verbatim as "summary") instead of stopping -- bounds the cost and
-        # log noise without limiting a normal tool-calling turn.
-        max_tokens=500,
+        # Bounds a degenerate repetition loop (live-confirmed 2026-09-18).
+        # Sized for reasoning models (DeepSeek-V4-Pro spends several hundred
+        # tokens thinking before it answers or calls a tool).
+        max_tokens=4000,
     )
 
 
@@ -63,7 +62,10 @@ def run_trading_cycle(tickers: list[str], model=None) -> dict:
     Returns {"summary": str, "messages": list, "ran_out_of_turns": bool} --
     the full message trace is the reasoning-trail data for the audit
     log/dashboard. Running out of tool-call turns is treated as "no trade"
-    (fail-closed), consistent with the rest of the system.
+    (fail-closed), consistent with the rest of the system. A model-call
+    exception (e.g. Featherless's own backend failing on a tool-calling
+    request -- live-confirmed 2026-09-24: "No successful response received
+    from completion service") is treated the same way: no crash, no trade.
     """
     llm = (model or _build_model()).bind_tools(ALL_TOOLS)
     messages = [
@@ -72,14 +74,29 @@ def run_trading_cycle(tickers: list[str], model=None) -> dict:
     ]
 
     for _ in range(MAX_TOOL_TURNS):
-        response = llm.invoke(messages)
+        try:
+            response = llm.invoke(messages)
+        except Exception as e:
+            return {
+                "summary": f"model call failed, failing closed: {e!r}",
+                "messages": messages,
+                "ran_out_of_turns": False,
+            }
         messages.append(response)
         if not response.tool_calls:
             return {"summary": response.content, "messages": messages, "ran_out_of_turns": False}
 
         for call in response.tool_calls:
             tool_fn = _TOOLS_BY_NAME.get(call["name"])
-            result = {"error": f"unknown tool {call['name']!r}"} if tool_fn is None else tool_fn.invoke(call["args"])
+            if tool_fn is None:
+                result = {"error": f"unknown tool {call['name']!r}"}
+            else:
+                try:
+                    result = tool_fn.invoke(call["args"])
+                except Exception as e:
+                    # e.g. an Alpaca CLI timeout on a data read -- report it
+                    # to the model as a tool error instead of crashing the cycle.
+                    result = {"error": f"{call['name']} failed: {e!r}"[:300]}
             messages.append(ToolMessage(content=json.dumps(result, default=str), tool_call_id=call["id"]))
 
     return {

@@ -79,19 +79,24 @@ def next_action(position: Position, current_price: float, days_to_expiry: int) -
         return ExitAction(position.remaining_qty, f"{OPEN_STOP_LOSS_PCT}% stop-loss hit before any profit tranche", Stage.CLOSED)
 
     if position.stage == Stage.OPEN and profit_pct >= TRANCHE_1_PROFIT_PCT:
-        qty = round(position.original_qty * TRANCHE_1_FRACTION_OF_ORIGINAL)
+        # max(1, ...): round() rounds half-to-even, so e.g. round(1 * 0.5)
+        # is 0, not 1 -- live-confirmed this produced a qty=0 sell order
+        # that Alpaca correctly rejected ("qty must be > 0"), which then
+        # retried forever since the position never advanced past it.
+        # remaining_qty > 0 is already guaranteed by the early return above.
+        qty = max(1, round(position.original_qty * TRANCHE_1_FRACTION_OF_ORIGINAL))
         return ExitAction(qty, f"+{TRANCHE_1_PROFIT_PCT}% profit reached", Stage.TRANCHE_1_DONE)
 
     if position.stage == Stage.TRANCHE_1_DONE and profit_pct >= TRANCHE_2_PROFIT_PCT:
-        qty = round(position.original_qty * TRANCHE_2_FRACTION_OF_ORIGINAL)
+        qty = max(1, round(position.original_qty * TRANCHE_2_FRACTION_OF_ORIGINAL))
         return ExitAction(qty, f"+{TRANCHE_2_PROFIT_PCT}% profit reached, arming breakeven stop", Stage.TRANCHE_2_DONE)
 
     if position.stage == Stage.TRANCHE_2_DONE:
         if profit_pct <= 0:
-            qty = round(position.remaining_qty * TAIL_FRACTION_OF_REMAINING)
+            qty = max(1, round(position.remaining_qty * TAIL_FRACTION_OF_REMAINING))
             return ExitAction(qty, "breakeven stop triggered", Stage.TAIL_VIA_STOP)
         if profit_pct >= TAIL_TARGET_PROFIT_PCT:
-            qty = round(position.remaining_qty * TAIL_FRACTION_OF_REMAINING)
+            qty = max(1, round(position.remaining_qty * TAIL_FRACTION_OF_REMAINING))
             return ExitAction(qty, f"+{TAIL_TARGET_PROFIT_PCT}% profit reached before stop", Stage.TAIL_VIA_TARGET)
         return None
 

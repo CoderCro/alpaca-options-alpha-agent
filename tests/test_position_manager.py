@@ -49,6 +49,17 @@ def test_breakeven_stop_triggers_tail_via_stop():
     assert action.next_stage == Stage.TAIL_VIA_STOP
 
 
+def test_breakeven_stop_never_sizes_to_zero_on_a_lone_remaining_contract():
+    # Live-confirmed 2026-09-24: round() rounds half-to-even, so
+    # round(1 * 0.5) is 0, not 1 -- this produced a qty=0 sell order that
+    # Alpaca rejected ("qty must be > 0"), and since remaining_qty never
+    # advanced, Company A retried the same broken exit every single cycle.
+    pos = _position(original_qty=3, remaining_qty=1, stage=Stage.TRANCHE_2_DONE)
+    action = next_action(pos, current_price=2.00, days_to_expiry=30)  # breakeven
+    assert action.sell_qty == 1
+    assert action.next_stage == Stage.TAIL_VIA_STOP
+
+
 def test_95_percent_before_stop_triggers_tail_via_target():
     pos = _position(remaining_qty=6, stage=Stage.TRANCHE_2_DONE)
     action = next_action(pos, current_price=3.90, days_to_expiry=30)  # +95%
