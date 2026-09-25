@@ -1,0 +1,5 @@
+{"timestamp": "2026-09-25T14:32:02.763448+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX260925P00071000"}
+{"timestamp": "2026-09-25T14:32:02.764780+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "NFLX260925P00071000", "qty": 2, "side": "sell", "limit_price": 0.2}
+{"timestamp": "2026-09-25T14:32:03.287387+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-09-25T14:32:03.288015+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "NFLX", "qty": 56, "side": "sell", "limit_price": 71.09}
+{"timestamp": "2026-09-25T14:32:03.812327+00:00", "event_type": "order_result", "symbol": "NFLX260925P00071000", "status": "submitted", "order_id": "acce20ce-70d4-4f15-be27-db10dce189a6"}
