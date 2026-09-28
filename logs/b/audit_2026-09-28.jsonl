@@ -1,0 +1,1 @@
+{"timestamp": "2026-09-28T17:36:50.134838+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,210 exceeds the 3.0% per-trade cap ($2,998)", "symbol": "MSFT261023C00510000"}
