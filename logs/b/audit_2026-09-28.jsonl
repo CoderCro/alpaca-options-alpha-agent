@@ -1,1 +1,3 @@
 {"timestamp": "2026-09-28T17:36:50.134838+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,210 exceeds the 3.0% per-trade cap ($2,998)", "symbol": "MSFT261023C00510000"}
+{"timestamp": "2026-09-28T18:29:40.660421+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,150 exceeds the 3.0% per-trade cap ($2,997)", "symbol": "MSFT261023C00510000"}
+{"timestamp": "2026-09-28T18:29:57.828152+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,564 would exceed the 25.0% aggregate-risk cap ($24,976)", "symbol": "MSFT261023C00515000"}
