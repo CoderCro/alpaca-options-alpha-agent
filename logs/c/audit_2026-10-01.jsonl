@@ -16,3 +16,6 @@
 {"timestamp": "2026-10-01T19:38:34.400409+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261002P00067000", "qty": 4, "side": "buy", "limit_price": 0.12}
 {"timestamp": "2026-10-01T19:38:34.822988+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 73, "side": "buy", "limit_price": 68.02}
 {"timestamp": "2026-10-01T19:38:35.221485+00:00", "event_type": "order_result", "symbol": "NFLX261002P00067000", "status": "submitted", "order_id": "7b5e84cc-5189-4091-8fa4-08eab5edf0cd"}
+{"timestamp": "2026-10-01T19:46:47.622865+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:46:47.623285+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-01T19:47:13.095504+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The strategy's technical criteria show 0/4 met, but the trade passed the filter; this inconsistency suggests a system error or bypass, making the setup unsafe.", "symbol": "NFLX261002P00067000"}
