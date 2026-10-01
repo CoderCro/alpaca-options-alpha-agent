@@ -4,3 +4,6 @@
 {"timestamp": "2026-10-01T19:26:43.830486+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261002P00067000", "qty": 5, "side": "buy", "limit_price": 0.12}
 {"timestamp": "2026-10-01T19:26:44.337799+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 88, "side": "buy", "limit_price": 68.1}
 {"timestamp": "2026-10-01T19:26:44.741212+00:00", "event_type": "order_result", "symbol": "NFLX261002P00067000", "status": "submitted", "order_id": "34bffa8c-cf4f-468b-96d0-6302db56198e"}
+{"timestamp": "2026-10-01T19:30:12.077300+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:30:12.077956+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-01T19:30:50.478671+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The trade is labeled 'bearish' but the structure (long put + long 81 shares) is delta-hedged and nearly market-neutral, creating a clear contradiction between intent and execution.", "symbol": "NFLX261002P00067000"}
