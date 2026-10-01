@@ -19,3 +19,9 @@
 {"timestamp": "2026-10-01T19:46:47.622865+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
 {"timestamp": "2026-10-01T19:46:47.623285+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-01T19:47:13.095504+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The strategy's technical criteria show 0/4 met, but the trade passed the filter; this inconsistency suggests a system error or bypass, making the setup unsafe.", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:50:39.366290+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:50:39.366859+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-01T19:51:09.393496+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.95, "rationale": "The trade is consistent: realized vol exceeds implied vol, making options relatively cheap, and the bearish long put with delta-hedge captures this edge while limiting risk to $60 (0.06% of equity). No incoherent or unsafe element.", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:51:09.394097+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261002P00067000", "qty": 5, "side": "buy", "limit_price": 0.12}
+{"timestamp": "2026-10-01T19:51:10.048296+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 83, "side": "buy", "limit_price": 68.03}
+{"timestamp": "2026-10-01T19:51:10.438433+00:00", "event_type": "order_result", "symbol": "NFLX261002P00067000", "status": "submitted", "order_id": "6852cc41-7c50-410d-b581-5c32f4653c71"}
