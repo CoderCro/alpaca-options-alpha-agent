@@ -1,0 +1,6 @@
+{"timestamp": "2026-10-01T19:26:20.604891+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:26:20.607076+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-01T19:26:43.829957+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.95, "rationale": "Trade is a delta-neutral volatility play consistent with the small edge (realized > implied). Structure and risk are coherent and minimal.", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:26:43.830486+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261002P00067000", "qty": 5, "side": "buy", "limit_price": 0.12}
+{"timestamp": "2026-10-01T19:26:44.337799+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 88, "side": "buy", "limit_price": 68.1}
+{"timestamp": "2026-10-01T19:26:44.741212+00:00", "event_type": "order_result", "symbol": "NFLX261002P00067000", "status": "submitted", "order_id": "34bffa8c-cf4f-468b-96d0-6302db56198e"}
