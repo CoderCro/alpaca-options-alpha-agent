@@ -1,0 +1,18 @@
+{"timestamp": "2026-10-01T19:17:54.019714+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "JNJ261009C00270000"}
+{"timestamp": "2026-10-01T19:17:54.022760+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "JNJ261009C00270000", "qty": 3, "side": "sell", "limit_price": 0.45}
+{"timestamp": "2026-10-01T19:17:54.438101+00:00", "event_type": "order_result", "symbol": "JNJ261009C00270000", "status": "submitted", "order_id": "da782584-6ca6-4aaa-a3ed-d3ceda7c6dfc"}
+{"timestamp": "2026-10-01T19:17:54.842687+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT261016C00109000"}
+{"timestamp": "2026-10-01T19:17:54.843108+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "WMT261016C00109000", "qty": 10, "side": "sell", "limit_price": 0.51}
+{"timestamp": "2026-10-01T19:17:55.227634+00:00", "event_type": "order_result", "symbol": "WMT261016C00109000", "status": "submitted", "order_id": "c4b50df4-6f41-43b2-bf3c-b27316ec73a3"}
+{"timestamp": "2026-10-01T19:17:55.611106+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261016C00106000"}
+{"timestamp": "2026-10-01T19:17:55.611449+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "DIS261016C00106000", "qty": 9, "side": "sell", "limit_price": 0.57}
+{"timestamp": "2026-10-01T19:17:55.996211+00:00", "event_type": "order_result", "symbol": "DIS261016C00106000", "status": "submitted", "order_id": "749bd346-b024-4abf-a7eb-263bd287a67f"}
+{"timestamp": "2026-10-01T19:18:05.942489+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,286 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "AAPL261023C00330000"}
+{"timestamp": "2026-10-01T19:18:25.643320+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,094 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "CVX261023C00205000"}
+{"timestamp": "2026-10-01T19:18:35.458589+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,556 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "ETH261023C00026000"}
+{"timestamp": "2026-10-01T19:19:13.851209+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$2,676 exceeds the 3.0% per-trade cap ($2,583)", "symbol": "META261023C00730000"}
+{"timestamp": "2026-10-01T19:19:24.196366+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,450 would exceed the 25.0% aggregate-risk cap ($21,527)", "symbol": "MSFT261023C00515000"}
+{"timestamp": "2026-10-01T19:19:36.638067+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,505 would exceed the 25.0% aggregate-risk cap ($21,527)", "symbol": "NVDA261023C00230000"}
+{"timestamp": "2026-10-01T19:19:55.794687+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,469 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "QQQ261023C00743000"}
+{"timestamp": "2026-10-01T19:20:12.910487+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,811 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "TSLA261023C00355000"}
+{"timestamp": "2026-10-01T19:20:27.090292+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,180 would exceed the 25.0% aggregate-risk cap ($21,523)", "symbol": "XOM261023C00162500"}
