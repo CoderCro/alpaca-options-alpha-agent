@@ -10,3 +10,9 @@
 {"timestamp": "2026-10-01T19:34:17.294199+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
 {"timestamp": "2026-10-01T19:34:17.294605+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-01T19:34:45.140538+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "Trade direction is stated as bearish but the proposed structure is delta-hedged (long puts + long shares), which is direction-neutral. Additionally, 0/4 strategy criteria were met, contradicting the requirement that technical criteria be satisfied.", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:38:11.507678+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:38:11.508299+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-01T19:38:34.399780+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.9, "rationale": "Trade is a tiny, delta-hedged volatility play consistent with the observed vol edge; bearish label may reflect initial put purchase, but hedged net exposure is minimal. Risk is negligible.", "symbol": "NFLX261002P00067000"}
+{"timestamp": "2026-10-01T19:38:34.400409+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261002P00067000", "qty": 4, "side": "buy", "limit_price": 0.12}
+{"timestamp": "2026-10-01T19:38:34.822988+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 73, "side": "buy", "limit_price": 68.02}
+{"timestamp": "2026-10-01T19:38:35.221485+00:00", "event_type": "order_result", "symbol": "NFLX261002P00067000", "status": "submitted", "order_id": "7b5e84cc-5189-4091-8fa4-08eab5edf0cd"}
