@@ -1,0 +1,10 @@
+{"timestamp": "2026-10-02T14:53:40.293555+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "AAPL261023C00335000"}
+{"timestamp": "2026-10-02T14:53:58.642697+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "CVX261023C00205000"}
+{"timestamp": "2026-10-02T14:54:07.803092+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "ETH261023C00026000"}
+{"timestamp": "2026-10-02T14:54:43.610521+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "META261023C00730000"}
+{"timestamp": "2026-10-02T14:54:54.221392+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "MSFT261023C00515000"}
+{"timestamp": "2026-10-02T14:55:08.116791+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NVDA261023C00235000"}
+{"timestamp": "2026-10-02T14:55:30.605247+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "QQQ261023C00752000"}
+{"timestamp": "2026-10-02T14:55:54.091585+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "SPY261023C00771000"}
+{"timestamp": "2026-10-02T14:56:08.365529+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "TSLA261023C00370000"}
+{"timestamp": "2026-10-02T14:56:22.411022+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "XOM261023C00162500"}
