@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-02T18:10:53.091484+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,354 would exceed the 25.0% aggregate-risk cap ($25,278)", "symbol": "NVDA261023C00235000"}
