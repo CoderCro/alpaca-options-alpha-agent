@@ -17,3 +17,5 @@
 {"timestamp": "2026-10-06T17:32:27.480557+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,916 would exceed the 25.0% aggregate-risk cap ($25,091)", "symbol": "ETH"}
 {"timestamp": "2026-10-06T17:35:55.574169+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261009P00025500"}
 {"timestamp": "2026-10-06T17:35:55.575299+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,916 would exceed the 25.0% aggregate-risk cap ($25,093)", "symbol": "ETH"}
+{"timestamp": "2026-10-06T17:46:29.325155+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261009P00025500"}
+{"timestamp": "2026-10-06T17:46:29.326136+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,764 would exceed the 25.0% aggregate-risk cap ($25,092)", "symbol": "ETH"}
