@@ -7,3 +7,5 @@
 {"timestamp": "2026-10-06T15:41:23.537860+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "ETH261009P00025500", "qty": 7, "side": "buy", "limit_price": 0.33}
 {"timestamp": "2026-10-06T15:41:23.950998+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "ETH", "qty": 228, "side": "buy", "limit_price": 25.89}
 {"timestamp": "2026-10-06T15:41:24.334063+00:00", "event_type": "order_result", "symbol": "ETH261009P00025500", "status": "submitted", "order_id": "88daf2a9-312e-4249-8a38-ac5c4c500a98"}
+{"timestamp": "2026-10-06T17:22:09.926308+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261009P00025500"}
+{"timestamp": "2026-10-06T17:22:09.927648+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,937 would exceed the 25.0% aggregate-risk cap ($25,083)", "symbol": "ETH"}
