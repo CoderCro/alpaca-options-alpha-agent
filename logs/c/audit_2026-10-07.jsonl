@@ -15,3 +15,9 @@
 {"timestamp": "2026-10-07T19:52:17.815126+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00069000"}
 {"timestamp": "2026-10-07T19:52:17.815900+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-07T19:52:50.255644+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T19:56:15.404320+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T19:56:15.405326+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-07T19:56:31.984884+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.9, "rationale": "The vol edge (realized > implied) favours buying options, aligning with the long put position. The max risk is negligible (0.07% of equity) and the structure is coherent.", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T19:56:31.985707+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261009P00069000", "qty": 2, "side": "buy", "limit_price": 0.37}
+{"timestamp": "2026-10-07T19:56:32.480655+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 66, "side": "buy", "limit_price": 69.69}
+{"timestamp": "2026-10-07T19:56:32.868872+00:00", "event_type": "order_result", "symbol": "NFLX261009P00069000", "status": "submitted", "order_id": "ea67196f-3e7a-439e-bd0b-006726b3a22d"}
