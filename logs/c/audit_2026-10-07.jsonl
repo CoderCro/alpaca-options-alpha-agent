@@ -6,3 +6,6 @@
 {"timestamp": "2026-10-07T17:56:15.324064+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00069000"}
 {"timestamp": "2026-10-07T17:56:15.324686+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-07T17:56:34.852612+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T18:55:14.150620+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T18:55:14.151491+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-07T18:58:23.873540+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Bearish direction conflicts with delta-neutral structure (long puts + long shares). Criteria met 0/4 indicates strategy mismatch. Max risk $82 appears inconsistent with 2 NFLX puts + 72 shares, suggesting data error.", "symbol": "NFLX261009P00069000"}
