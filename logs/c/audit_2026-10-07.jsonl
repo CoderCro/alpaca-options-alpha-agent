@@ -3,3 +3,6 @@
 {"timestamp": "2026-10-07T14:44:42.905978+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH"}
 {"timestamp": "2026-10-07T14:44:42.907031+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "ETH", "qty": 228, "side": "sell", "limit_price": 24.39}
 {"timestamp": "2026-10-07T14:44:43.302322+00:00", "event_type": "order_result", "symbol": "ETH261009P00025500", "status": "submitted", "order_id": "4504b00e-7272-4dad-a78b-f4a07c736362"}
+{"timestamp": "2026-10-07T17:56:15.324064+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00069000"}
+{"timestamp": "2026-10-07T17:56:15.324686+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-07T17:56:34.852612+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00069000"}
