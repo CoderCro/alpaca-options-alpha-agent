@@ -1,0 +1,5 @@
+{"timestamp": "2026-10-07T14:44:42.510517+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261009P00025500"}
+{"timestamp": "2026-10-07T14:44:42.513429+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "ETH261009P00025500", "qty": 7, "side": "sell", "limit_price": 1.0}
+{"timestamp": "2026-10-07T14:44:42.905978+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH"}
+{"timestamp": "2026-10-07T14:44:42.907031+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "ETH", "qty": 228, "side": "sell", "limit_price": 24.39}
+{"timestamp": "2026-10-07T14:44:43.302322+00:00", "event_type": "order_result", "symbol": "ETH261009P00025500", "status": "submitted", "order_id": "4504b00e-7272-4dad-a78b-f4a07c736362"}
