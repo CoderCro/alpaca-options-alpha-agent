@@ -1,3 +1,5 @@
 {"timestamp": "2026-10-07T16:25:06.839047+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$5,325 exceeds the 3.0% per-trade cap ($3,051)", "symbol": "AMZN261030C00260000"}
 {"timestamp": "2026-10-07T16:25:24.364147+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,144 would exceed the 25.0% aggregate-risk cap ($25,426)", "symbol": "AMZN261030C00260000"}
 {"timestamp": "2026-10-07T16:25:55.710223+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,072 would exceed the 25.0% aggregate-risk cap ($25,426)", "symbol": "AMZN261030C00260000"}
+{"timestamp": "2026-10-07T16:58:58.741713+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $845 would exceed the 25.0% aggregate-risk cap ($25,422)", "symbol": "NVDA261030C00235000"}
+{"timestamp": "2026-10-07T16:59:49.319148+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $595 would exceed the 25.0% aggregate-risk cap ($25,422)", "symbol": "NVDA261030C00240000"}
