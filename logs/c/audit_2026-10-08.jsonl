@@ -3,3 +3,4 @@
 {"timestamp": "2026-10-08T14:00:10.081927+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T14:00:10.082999+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "NFLX", "qty": 66, "side": "sell", "limit_price": 70.75}
 {"timestamp": "2026-10-08T14:00:10.508661+00:00", "event_type": "order_result", "symbol": "NFLX261009P00069000", "status": "submitted", "order_id": "c2298a45-a504-4c15-a668-e95169ce6e7e"}
+{"timestamp": "2026-10-08T15:13:02.453737+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NFLX261009P00070000"}
