@@ -22,3 +22,6 @@
 {"timestamp": "2026-10-08T18:19:50.344395+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T18:19:50.345619+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T18:20:13.061295+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The trade meets 0 out of 4 technical criteria, suggesting it fails the strategy's entry conditions despite passing other filters; executing a zero-criteria setup would be incoherent with a systematic process.", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T18:34:44.976336+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T18:34:44.977692+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T18:35:47.906927+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.8, "rationale": "Bearish direction conflicts with delta-hedge which neutralizes directional exposure; setup is incoherent and 0/4 criteria met indicates weak signal.", "symbol": "NFLX261009P00070000"}
