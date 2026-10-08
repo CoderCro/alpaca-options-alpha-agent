@@ -28,3 +28,6 @@
 {"timestamp": "2026-10-08T19:04:09.343413+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T19:04:09.344764+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T19:04:45.318122+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: '{\"veto\": false, \"confidence\": 0.95, \"rationale\": \"The structure is a long put delta-hedged to be approximately delta-neutral, consistent with a volatility edge'", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T19:11:31.836998+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T19:11:31.838206+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T19:13:41.380653+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "Proposal shows 0/4 criteria met yet claims to have passed strategy filters, and the $50 max risk is inconsistent with the size of a 5-contract NFLX put position plus share hedge.", "symbol": "NFLX261009P00070000"}
