@@ -37,3 +37,6 @@
 {"timestamp": "2026-10-08T19:43:12.799833+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261009P00071000", "qty": 2, "side": "buy", "limit_price": 0.26}
 {"timestamp": "2026-10-08T19:43:13.404560+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 65, "side": "buy", "limit_price": 71.51}
 {"timestamp": "2026-10-08T19:43:13.957626+00:00", "event_type": "order_result", "symbol": "NFLX261009P00071000", "status": "submitted", "order_id": "31ece18d-778c-47c4-bcae-775be9221674"}
+{"timestamp": "2026-10-08T19:46:48.057886+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00071000"}
+{"timestamp": "2026-10-08T19:46:48.071367+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T19:47:10.060412+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "Evidence explicitly states 0/4 criteria met, directly contradicting the premise that the trade passed the strategy's technical filters. The setup is incoherent and cannot be trusted.", "symbol": "NFLX261009P00071000"}
