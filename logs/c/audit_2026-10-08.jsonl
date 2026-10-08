@@ -19,3 +19,6 @@
 {"timestamp": "2026-10-08T17:43:16.666313+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T17:43:16.667352+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T17:43:53.961393+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T18:19:50.344395+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T18:19:50.345619+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T18:20:13.061295+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The trade meets 0 out of 4 technical criteria, suggesting it fails the strategy's entry conditions despite passing other filters; executing a zero-criteria setup would be incoherent with a systematic process.", "symbol": "NFLX261009P00070000"}
