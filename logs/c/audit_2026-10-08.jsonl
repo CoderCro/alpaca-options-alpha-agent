@@ -31,3 +31,9 @@
 {"timestamp": "2026-10-08T19:11:31.836998+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T19:11:31.838206+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T19:13:41.380653+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "Proposal shows 0/4 criteria met yet claims to have passed strategy filters, and the $50 max risk is inconsistent with the size of a 5-contract NFLX put position plus share hedge.", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T19:42:56.652815+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00071000"}
+{"timestamp": "2026-10-08T19:42:56.654188+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T19:43:12.799105+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.95, "rationale": "The trade is coherent: buying puts to express a bearish view while capturing the positive vol edge (realized > implied) is logical, and the delta-hedge reduces directional exposure. The max risk of $52 on $101k equity is negligible.", "symbol": "NFLX261009P00071000"}
+{"timestamp": "2026-10-08T19:43:12.799833+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX261009P00071000", "qty": 2, "side": "buy", "limit_price": 0.26}
+{"timestamp": "2026-10-08T19:43:13.404560+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "NFLX", "qty": 65, "side": "buy", "limit_price": 71.51}
+{"timestamp": "2026-10-08T19:43:13.957626+00:00", "event_type": "order_result", "symbol": "NFLX261009P00071000", "status": "submitted", "order_id": "31ece18d-778c-47c4-bcae-775be9221674"}
