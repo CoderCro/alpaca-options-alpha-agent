@@ -40,3 +40,6 @@
 {"timestamp": "2026-10-08T19:46:48.057886+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00071000"}
 {"timestamp": "2026-10-08T19:46:48.071367+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T19:47:10.060412+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "Evidence explicitly states 0/4 criteria met, directly contradicting the premise that the trade passed the strategy's technical filters. The setup is incoherent and cannot be trusted.", "symbol": "NFLX261009P00071000"}
+{"timestamp": "2026-10-08T19:53:34.179144+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00071000"}
+{"timestamp": "2026-10-08T19:53:34.180594+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T20:12:44.885308+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The trade is labeled bearish but the structure (long puts + delta-hedge with shares) creates a delta-neutral volatility position, not a directional bearish bet. This incoherence suggests a misalignment between intent and execution.", "symbol": "NFLX261009P00071000"}

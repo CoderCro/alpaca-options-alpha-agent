@@ -3,3 +3,4 @@
 {"timestamp": "2026-10-08T15:43:56.353358+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,365 would exceed the 25.0% aggregate-risk cap ($25,309)", "symbol": "XOM261030C00170000"}
 {"timestamp": "2026-10-08T17:13:59.833947+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,680 would exceed the 25.0% aggregate-risk cap ($25,181)", "symbol": "NVDA261030C00230000"}
 {"timestamp": "2026-10-08T18:57:24.315860+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,150 would exceed the 25.0% aggregate-risk cap ($25,135)", "symbol": "XOM261030C00167500"}
+{"timestamp": "2026-10-08T20:21:08.106935+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,020 would exceed the 25.0% aggregate-risk cap ($25,173)", "symbol": "JPM261030C00330000"}
