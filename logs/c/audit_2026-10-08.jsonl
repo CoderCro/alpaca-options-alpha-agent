@@ -13,3 +13,6 @@
 {"timestamp": "2026-10-08T16:41:15.322134+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T16:41:15.323370+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T16:41:40.970518+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T17:30:45.730660+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T17:30:45.731682+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T17:32:48.864102+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The stated max risk of $48 is grossly inconsistent with the proposed 3-lot put and 65-share position, which carries a theoretical max loss exceeding $27,000. Additionally, the delta-hedge with 65 shares would create a net long delta, contradicting the bearish direction, and the 'Criteria met (0/4)' flag signals the setup is incoherent.", "symbol": "NFLX261009P00070000"}
