@@ -7,3 +7,6 @@
 {"timestamp": "2026-10-08T16:00:48.526428+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
 {"timestamp": "2026-10-08T16:00:48.527660+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
 {"timestamp": "2026-10-08T16:03:17.096037+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The trade is incoherent: the strike (70) is extremely far OTM, making the vol edge irrelevant; delta-hedging with 71 shares contradicts the bearish direction and would create a large bullish position; and the max risk of $52 is incompatible with a 71-share position in a $900 stock. Additionally, 0/4 criteria met suggests the trade did not actually pass the strategy's filters.", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T16:14:48.922356+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX261009P00070000"}
+{"timestamp": "2026-10-08T16:14:48.923170+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NFLX"}
+{"timestamp": "2026-10-08T16:15:34.592415+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "NFLX261009P00070000"}
