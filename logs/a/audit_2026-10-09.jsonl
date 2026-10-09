@@ -1,0 +1,25 @@
+{"timestamp": "2026-10-09T14:00:39.186877+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016C00034000"}
+{"timestamp": "2026-10-09T14:00:39.190074+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "BTC261016C00034000", "qty": 4, "side": "sell", "limit_price": 2.25}
+{"timestamp": "2026-10-09T14:00:39.851958+00:00", "event_type": "order_result", "symbol": "BTC261016C00034000", "status": "submitted", "order_id": "bbe3cebb-efd7-485b-92b7-7a8534c611c3"}
+{"timestamp": "2026-10-09T14:00:40.401241+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "AAPL261016C00337500"}
+{"timestamp": "2026-10-09T14:00:40.402099+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "AAPL261016C00337500", "qty": 2, "side": "sell", "limit_price": 2.26}
+{"timestamp": "2026-10-09T14:00:41.062434+00:00", "event_type": "order_result", "symbol": "AAPL261016C00337500", "status": "submitted", "order_id": "64a588e8-8fcd-487d-bcdd-a665865d2da8"}
+{"timestamp": "2026-10-09T14:00:58.033582+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "AAPL261030C00330000"}
+{"timestamp": "2026-10-09T14:01:17.260836+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "BTC261120C00036000"}
+{"timestamp": "2026-10-09T14:01:38.296162+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "COST261030C00945000"}
+{"timestamp": "2026-10-09T14:01:48.675013+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "CVX261030C00215000"}
+{"timestamp": "2026-10-09T14:01:59.285823+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "DIS261030C00108000"}
+{"timestamp": "2026-10-09T14:02:09.990962+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "ETH261030C00023500"}
+{"timestamp": "2026-10-09T14:02:27.253738+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "GOOGL261030C00350000"}
+{"timestamp": "2026-10-09T14:03:01.101691+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "LLY261030C01170000"}
+{"timestamp": "2026-10-09T14:03:16.967689+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "MA261030P00585000"}
+{"timestamp": "2026-10-09T14:03:46.224782+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "META261030C00720000"}
+{"timestamp": "2026-10-09T14:04:04.999421+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "MSFT261030C00530000"}
+{"timestamp": "2026-10-09T14:04:25.928937+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "NVDA261030C00230000"}
+{"timestamp": "2026-10-09T14:04:37.558091+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "PG261030C00152500"}
+{"timestamp": "2026-10-09T14:05:09.714118+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "QQQ261030C00749000"}
+{"timestamp": "2026-10-09T14:05:46.475613+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "SPY261030C00776000"}
+{"timestamp": "2026-10-09T14:06:05.559776+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "TSLA261030C00385000"}
+{"timestamp": "2026-10-09T14:06:21.634083+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "V261030P00380000"}
+{"timestamp": "2026-10-09T14:06:33.604824+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "WMT261030C00111000"}
+{"timestamp": "2026-10-09T14:06:45.484070+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "XOM261030C00170000"}
