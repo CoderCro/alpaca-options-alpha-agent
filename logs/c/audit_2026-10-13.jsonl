@@ -7,3 +7,6 @@
 {"timestamp": "2026-10-13T18:37:36.903872+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
 {"timestamp": "2026-10-13T18:37:36.904383+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
 {"timestamp": "2026-10-13T18:38:08.918693+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The trade indicates 0/4 technical criteria were met, yet it was routed as having passed all deterministic filters, including the strategy's technical criteria. This contradiction signals a likely system error or misclassification, making the setup incoherent and unsafe to execute.", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:41:33.853261+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:41:33.854145+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T18:42:22.179638+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "BTC261016P00036000"}
