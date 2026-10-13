@@ -10,3 +10,6 @@
 {"timestamp": "2026-10-13T18:41:33.853261+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
 {"timestamp": "2026-10-13T18:41:33.854145+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
 {"timestamp": "2026-10-13T18:42:22.179638+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:57:59.974182+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:57:59.974688+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T18:59:18.931055+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Direction is bearish but the structure is a delta-hedged long put, making it direction-neutral; this contradiction and 0/4 criteria met indicate an incoherent setup.", "symbol": "BTC261016P00036000"}
