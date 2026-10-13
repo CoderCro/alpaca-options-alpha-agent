@@ -19,3 +19,6 @@
 {"timestamp": "2026-10-13T19:10:04.860542+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
 {"timestamp": "2026-10-13T19:10:04.861290+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
 {"timestamp": "2026-10-13T19:10:16.315690+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.95, "rationale": "The evidence shows 0/4 technical criteria met, contradicting the assertion that the trade passed all deterministic filters. This inconsistency indicates a broken or misapplied strategy, making the setup unsafe.", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T19:49:52.010253+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T19:49:52.011083+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T19:50:49.373342+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The stated bearish direction contradicts the delta-hedged structure, which creates a directionally neutral volatility position. Additionally, 0/4 technical criteria were met, providing no confirmation for the trade.", "symbol": "BTC261016P00036000"}
