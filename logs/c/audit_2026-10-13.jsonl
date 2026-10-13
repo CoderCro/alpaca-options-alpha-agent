@@ -1,3 +1,6 @@
 {"timestamp": "2026-10-13T18:00:27.818125+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
 {"timestamp": "2026-10-13T18:00:27.820102+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
 {"timestamp": "2026-10-13T18:01:09.912119+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:33:40.956958+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:33:40.957853+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T18:34:11.566554+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The trade passed deterministic filters but records 0/4 strategy criteria met, indicating a contradiction that suggests a filter failure. Executing a trade that violates its own strategy rules is incoherent and unsafe, regardless of the minimal risk limit.", "symbol": "BTC261016P00036000"}
