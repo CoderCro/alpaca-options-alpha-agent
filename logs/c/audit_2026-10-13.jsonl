@@ -1,0 +1,3 @@
+{"timestamp": "2026-10-13T18:00:27.818125+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T18:00:27.820102+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T18:01:09.912119+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: ''", "symbol": "BTC261016P00036000"}
