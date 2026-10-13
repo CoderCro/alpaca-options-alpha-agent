@@ -22,3 +22,6 @@
 {"timestamp": "2026-10-13T19:49:52.010253+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
 {"timestamp": "2026-10-13T19:49:52.011083+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
 {"timestamp": "2026-10-13T19:50:49.373342+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The stated bearish direction contradicts the delta-hedged structure, which creates a directionally neutral volatility position. Additionally, 0/4 technical criteria were met, providing no confirmation for the trade.", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T19:54:18.634586+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC261016P00036000"}
+{"timestamp": "2026-10-13T19:54:18.635572+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BTC"}
+{"timestamp": "2026-10-13T20:02:01.721895+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "Featherless call failed, failing closed: TypeError(\"'NoneType' object is not subscriptable\")", "symbol": "BTC261016P00036000"}
