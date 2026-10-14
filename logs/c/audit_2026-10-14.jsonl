@@ -1,0 +1,3 @@
+{"timestamp": "2026-10-14T18:05:09.422012+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH261016P00023000"}
+{"timestamp": "2026-10-14T18:05:09.423494+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "ETH"}
+{"timestamp": "2026-10-14T18:06:37.705965+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The trade meets 0/4 strategy criteria, indicating it does not conform to the strategy's rules. The bearish direction contradicts the delta-hedged structure, and the vol edge is negligible (0.0101), making the setup incoherent and likely unsafe.", "symbol": "ETH261016P00023000"}
