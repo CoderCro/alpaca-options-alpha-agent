@@ -1,1 +1,4 @@
 {"timestamp": "2026-10-16T15:36:11.513798+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,000 would exceed the 25.0% aggregate-risk cap ($24,431)", "symbol": "AAPL261106C00345000"}
+{"timestamp": "2026-10-16T17:57:55.333187+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,780 would exceed the 25.0% aggregate-risk cap ($24,265)", "symbol": "DIS261113C00110000"}
+{"timestamp": "2026-10-16T17:58:11.076236+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,134 would exceed the 25.0% aggregate-risk cap ($24,257)", "symbol": "SPY261106P00764000"}
+{"timestamp": "2026-10-16T17:58:39.612782+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $712 would exceed the 25.0% aggregate-risk cap ($24,263)", "symbol": "DIS261113C00110000"}
