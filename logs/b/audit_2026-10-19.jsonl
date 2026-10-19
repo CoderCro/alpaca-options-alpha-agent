@@ -1,2 +1,4 @@
 {"timestamp": "2026-10-19T15:42:49.685741+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$6,000 exceeds the 3.0% per-trade cap ($2,952)", "symbol": "LLY261113C01245000"}
 {"timestamp": "2026-10-19T15:43:58.134816+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $338 would exceed the 25.0% aggregate-risk cap ($24,601)", "symbol": "WMT261113C00118000"}
+{"timestamp": "2026-10-19T16:45:59.655759+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$5,750 exceeds the 3.0% per-trade cap ($2,943)", "symbol": "LLY261113C01245000"}
+{"timestamp": "2026-10-19T16:46:25.896895+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,810 would exceed the 25.0% aggregate-risk cap ($24,519)", "symbol": "MSFT261113C00535000"}
