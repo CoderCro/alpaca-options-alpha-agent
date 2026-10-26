@@ -1,3 +1,5 @@
 {"timestamp": "2026-10-26T15:51:08.258704+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,165 exceeds the 3.0% per-trade cap ($2,915)", "symbol": "AAPL261120C00345000"}
 {"timestamp": "2026-10-26T16:13:57.340381+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,081 exceeds the 3.0% per-trade cap ($2,912)", "symbol": "AAPL261120C00345000"}
 {"timestamp": "2026-10-26T16:14:08.228657+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,054 would exceed the 25.0% aggregate-risk cap ($24,271)", "symbol": "AAPL261120C00345000"}
+{"timestamp": "2026-10-26T18:29:13.110908+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,335 would exceed the 25.0% aggregate-risk cap ($24,285)", "symbol": "WMT261120C00120000"}
+{"timestamp": "2026-10-26T18:29:22.957349+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $445 would exceed the 25.0% aggregate-risk cap ($24,285)", "symbol": "WMT261120C00120000"}
