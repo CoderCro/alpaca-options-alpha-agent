@@ -39,3 +39,5 @@
 {"timestamp": "2026-10-27T17:41:17.624491+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "NFLX261030P00062000"}
 {"timestamp": "2026-10-27T17:41:21.767855+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "PG261030P00157500"}
 {"timestamp": "2026-10-27T17:44:48.232913+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "PG261030P00157500"}
+{"timestamp": "2026-10-27T17:52:03.890351+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "NFLX261030P00062000"}
+{"timestamp": "2026-10-27T17:52:07.573675+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "T1 macro news blackout (day before/of/after FOMC or NFP)", "symbol": "PG261030P00157500"}
