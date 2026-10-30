@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-30T15:36:54.069794+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$4,670 exceeds the 3.0% per-trade cap ($2,849)", "symbol": "DIS261120C00111000"}
