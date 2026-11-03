@@ -44,3 +44,6 @@
 {"timestamp": "2026-11-03T17:24:17.547479+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
 {"timestamp": "2026-11-03T17:24:17.548638+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-03T17:25:03.187948+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Setup is contradictory: stated direction is bearish but the delta-hedged structure is neutral, and evidence shows 0/4 strategy criteria met despite the trade supposedly passing technical filters.", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:32:53.920717+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:32:53.921706+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-03T17:33:02.495738+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is bearish but the evidence shows realized vol > implied vol, which is a vol edge favoring premium selling, not buying a long put. The structure contradicts the stated edge.", "symbol": "PG261106P00160000"}
