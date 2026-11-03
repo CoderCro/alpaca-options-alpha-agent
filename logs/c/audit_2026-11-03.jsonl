@@ -14,3 +14,6 @@
 {"timestamp": "2026-11-03T16:30:20.865675+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
 {"timestamp": "2026-11-03T16:30:20.866901+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-03T16:30:25.749063+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is bearish but the vol edge is positive (realized > implied), which supports selling premium, not buying a long put. The structure contradicts the stated edge.", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T16:33:52.433484+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T16:33:52.434612+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-03T16:33:56.890860+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "The trade is bearish but the evidence shows realized vol > implied vol, which typically favors being long options (vol edge). A long put is directionally bearish but the vol edge suggests selling premium would be more consistent; the setup is contradictory.", "symbol": "PG261106P00160000"}
