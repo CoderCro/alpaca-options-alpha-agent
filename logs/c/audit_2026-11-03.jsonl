@@ -89,3 +89,6 @@
 {"timestamp": "2026-11-03T18:42:42.240297+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "PG261106P00160000", "qty": 1, "side": "buy", "limit_price": 0.69}
 {"timestamp": "2026-11-03T18:42:42.645462+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "PG", "qty": 27, "side": "buy", "limit_price": 162.17}
 {"timestamp": "2026-11-03T18:42:43.032738+00:00", "event_type": "order_result", "symbol": "PG261106P00160000", "status": "submitted", "order_id": "cb437e5d-39df-4f31-bdef-34973125a658"}
+{"timestamp": "2026-11-03T18:46:14.731750+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T18:46:14.732674+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-03T18:46:21.266013+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The strategy is bearish but the evidence shows realized vol exceeds implied vol, which typically favors premium selling (short options), not buying a long put. The proposed long put structure contradicts the vol edge rationale.", "symbol": "PG261106P00160000"}
