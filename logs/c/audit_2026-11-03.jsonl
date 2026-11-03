@@ -47,3 +47,6 @@
 {"timestamp": "2026-11-03T17:32:53.920717+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
 {"timestamp": "2026-11-03T17:32:53.921706+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-03T17:33:02.495738+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is bearish but the evidence shows realized vol > implied vol, which is a vol edge favoring premium selling, not buying a long put. The structure contradicts the stated edge.", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:36:31.767535+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:36:31.768656+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-03T17:36:36.682573+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The realized vs implied vol edge is negligible (0.0117) and the max risk is trivially small (0.08%), making the trade incoherent as a bearish vol play\u2014it lacks meaningful edge or conviction.", "symbol": "PG261106P00160000"}
