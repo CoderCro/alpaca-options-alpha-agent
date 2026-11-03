@@ -41,3 +41,6 @@
 {"timestamp": "2026-11-03T17:20:08.189694+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
 {"timestamp": "2026-11-03T17:20:08.191105+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-03T17:20:49.984468+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.0, "rationale": "unparseable model output: '{\"veto\": true, \"confidence\": 0.95, \"rationale\": \"Long put + long shares to delta-hedge creates a synthetic call (bullish), which'", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:24:17.547479+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00160000"}
+{"timestamp": "2026-11-03T17:24:17.548638+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-03T17:25:03.187948+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Setup is contradictory: stated direction is bearish but the delta-hedged structure is neutral, and evidence shows 0/4 strategy criteria met despite the trade supposedly passing technical filters.", "symbol": "PG261106P00160000"}
