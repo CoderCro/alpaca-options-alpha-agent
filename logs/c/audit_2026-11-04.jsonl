@@ -105,3 +105,5 @@
 {"timestamp": "2026-11-04T20:21:40.338715+00:00", "event_type": "order_result", "symbol": "PG261106P00165000", "status": "submitted", "order_id": "f38ee690-07ec-40b9-ab87-6fb82b934039"}
 {"timestamp": "2026-11-04T20:25:05.039212+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
 {"timestamp": "2026-11-04T20:25:05.040079+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $3,680 would exceed the 25.0% aggregate-risk cap ($25,295)", "symbol": "PG"}
+{"timestamp": "2026-11-04T20:28:29.920078+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T20:28:29.922311+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $3,681 would exceed the 25.0% aggregate-risk cap ($25,297)", "symbol": "PG"}
