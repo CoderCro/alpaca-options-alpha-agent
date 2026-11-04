@@ -97,3 +97,9 @@
 {"timestamp": "2026-11-04T20:13:51.879206+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
 {"timestamp": "2026-11-04T20:13:51.880501+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-04T20:13:57.433367+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is bearish but the evidence shows realized vol > implied vol, which typically favors being long options (vega long), not short. A long put with delta hedge is vega long, but the rationale cites a 'vol edge' that would benefit a short volatility position, creating a contradiction.", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T20:21:24.231998+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T20:21:24.232930+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-04T20:21:39.511129+00:00", "event_type": "featherless_verdict", "veto": false, "confidence": 0.85, "rationale": "The trade is coherent: a bearish view is expressed via a long put, and the realized > implied vol edge supports premium buying. The max risk is negligible relative to equity.", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T20:21:39.511941+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "PG261106P00165000", "qty": 1, "side": "buy", "limit_price": 0.49}
+{"timestamp": "2026-11-04T20:21:39.907046+00:00", "event_type": "order_submitted", "intent": "open", "symbol": "PG", "qty": 22, "side": "buy", "limit_price": 167.34}
+{"timestamp": "2026-11-04T20:21:40.338715+00:00", "event_type": "order_result", "symbol": "PG261106P00165000", "status": "submitted", "order_id": "f38ee690-07ec-40b9-ab87-6fb82b934039"}
