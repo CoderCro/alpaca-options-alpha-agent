@@ -52,3 +52,6 @@
 {"timestamp": "2026-11-04T18:44:56.641760+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
 {"timestamp": "2026-11-04T18:44:56.642904+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-04T18:45:45.185927+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Stated direction is bearish but the proposed structure (long put + delta-hedge) is delta-neutral, and 0/4 strategy criteria are met, indicating an incoherent setup.", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T18:49:13.546760+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T18:49:13.547883+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-04T18:49:19.310491+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.85, "rationale": "The trade is bearish but the vol edge is positive (realized > implied), which favors being long options, yet the structure is a long put that benefits from rising IV; the contradiction between direction and vol signal makes the setup incoherent.", "symbol": "PG261106P00165000"}
