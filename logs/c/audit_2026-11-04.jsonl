@@ -4,3 +4,4 @@
 {"timestamp": "2026-11-04T15:00:11.812639+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG", "qty": 27, "side": "sell", "limit_price": 166.24}
 {"timestamp": "2026-11-04T15:00:12.250383+00:00", "event_type": "order_result", "symbol": "PG261106P00160000", "status": "submitted", "order_id": "79e0bcb8-3026-4e44-b711-51bdf5bcff67"}
 {"timestamp": "2026-11-04T15:09:31.060707+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T16:29:54.151664+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "PG261106P00165000"}
