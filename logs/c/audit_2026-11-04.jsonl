@@ -49,3 +49,6 @@
 {"timestamp": "2026-11-04T18:32:07.698176+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
 {"timestamp": "2026-11-04T18:32:07.698721+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG", "qty": 24, "side": "sell", "limit_price": 167.4}
 {"timestamp": "2026-11-04T18:32:08.078549+00:00", "event_type": "order_result", "symbol": "PG261106P00165000", "status": "submitted", "order_id": "cac9686c-6a46-4b67-9457-f07cc9c5df60"}
+{"timestamp": "2026-11-04T18:44:56.641760+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T18:44:56.642904+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-04T18:45:45.185927+00:00", "event_type": "featherless_verdict", "veto": true, "confidence": 0.9, "rationale": "Stated direction is bearish but the proposed structure (long put + delta-hedge) is delta-neutral, and 0/4 strategy criteria are met, indicating an incoherent setup.", "symbol": "PG261106P00165000"}
