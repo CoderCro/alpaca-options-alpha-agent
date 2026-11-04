@@ -44,3 +44,8 @@
 {"timestamp": "2026-11-04T18:22:07.743578+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,178 would exceed the 25.0% aggregate-risk cap ($25,273)", "symbol": "PG"}
 {"timestamp": "2026-11-04T18:28:55.219087+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
 {"timestamp": "2026-11-04T18:28:55.262536+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,344 would exceed the 25.0% aggregate-risk cap ($25,274)", "symbol": "PG"}
+{"timestamp": "2026-11-04T18:32:07.322926+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-04T18:32:07.324850+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG261106P00165000", "qty": 1, "side": "sell", "limit_price": 0.45}
+{"timestamp": "2026-11-04T18:32:07.698176+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-04T18:32:07.698721+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG", "qty": 24, "side": "sell", "limit_price": 167.4}
+{"timestamp": "2026-11-04T18:32:08.078549+00:00", "event_type": "order_result", "symbol": "PG261106P00165000", "status": "submitted", "order_id": "cac9686c-6a46-4b67-9457-f07cc9c5df60"}
