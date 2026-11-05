@@ -1,0 +1,5 @@
+{"timestamp": "2026-11-05T15:00:09.297656+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG261106P00165000"}
+{"timestamp": "2026-11-05T15:00:09.301858+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG261106P00165000", "qty": 1, "side": "sell", "limit_price": 0.09}
+{"timestamp": "2026-11-05T15:00:09.820418+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "PG"}
+{"timestamp": "2026-11-05T15:00:09.821413+00:00", "event_type": "order_submitted", "intent": "close", "symbol": "PG", "qty": 22, "side": "sell", "limit_price": 169.7}
+{"timestamp": "2026-11-05T15:00:10.423704+00:00", "event_type": "order_result", "symbol": "PG261106P00165000", "status": "submitted", "order_id": "44a1e1df-4815-49c7-b5fc-39f986f8e323"}
