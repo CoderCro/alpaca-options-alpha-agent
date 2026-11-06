@@ -1,0 +1,2 @@
+{"timestamp": "2026-11-06T17:37:28.868224+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $500 would exceed the 25.0% aggregate-risk cap ($22,753)", "symbol": "WMT261127C00126000"}
+{"timestamp": "2026-11-06T17:37:41.020432+00:00", "event_type": "gate_result", "gate": "not_in_shortlist", "allowed": false, "reason": "'QQQ261130P00659000' is not in the current get_option_candidates shortlist for QQQ/bearish -- call get_option_candidates first and pick one of its results", "symbol": "QQQ261130P00659000"}
