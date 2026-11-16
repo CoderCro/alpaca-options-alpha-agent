@@ -1,0 +1,2 @@
+{"timestamp": "2026-11-16T19:23:13.821503+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,425 would exceed the 25.0% aggregate-risk cap ($22,694)", "symbol": "UNH261211C00410000"}
+{"timestamp": "2026-11-16T19:23:28.998510+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $512 would exceed the 25.0% aggregate-risk cap ($22,700)", "symbol": "WMT261211C00128000"}
