@@ -1,0 +1,2 @@
+{"timestamp": "2026-11-17T17:00:11.546273+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,370 exceeds the 3.0% per-trade cap ($2,688)", "symbol": "COST261211C01115000"}
+{"timestamp": "2026-11-17T17:00:40.197325+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,845 would exceed the 25.0% aggregate-risk cap ($22,395)", "symbol": "MA261211C00645000"}
