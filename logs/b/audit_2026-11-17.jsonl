@@ -1,2 +1,6 @@
 {"timestamp": "2026-11-17T17:00:11.546273+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$3,370 exceeds the 3.0% per-trade cap ($2,688)", "symbol": "COST261211C01115000"}
 {"timestamp": "2026-11-17T17:00:40.197325+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $1,845 would exceed the 25.0% aggregate-risk cap ($22,395)", "symbol": "MA261211C00645000"}
+{"timestamp": "2026-11-17T18:09:03.549484+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$5,400 exceeds the 3.0% per-trade cap ($2,695)", "symbol": "WMT261211C00127000"}
+{"timestamp": "2026-11-17T18:09:06.293884+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$4,300 exceeds the 3.0% per-trade cap ($2,694)", "symbol": "PG261211C00172500"}
+{"timestamp": "2026-11-17T18:09:21.248090+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,160 would exceed the 25.0% aggregate-risk cap ($22,452)", "symbol": "WMT261211C00127000"}
+{"timestamp": "2026-11-17T18:09:24.113061+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $2,150 would exceed the 25.0% aggregate-risk cap ($22,453)", "symbol": "PG261211C00172500"}
