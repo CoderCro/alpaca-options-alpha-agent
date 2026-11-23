@@ -1,0 +1,12 @@
+{"timestamp": "2026-11-23T15:00:39.880672+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "AAPL261218C00347500"}
+{"timestamp": "2026-11-23T15:00:48.421373+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "AMZN261218C00255000"}
+{"timestamp": "2026-11-23T15:01:07.955506+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "COST261218C01090000"}
+{"timestamp": "2026-11-23T15:01:17.257574+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "DIS261218C00118000"}
+{"timestamp": "2026-11-23T15:01:29.837648+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "HD261218C00342500"}
+{"timestamp": "2026-11-23T15:01:37.938134+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "JNJ261218C00272500"}
+{"timestamp": "2026-11-23T15:01:56.702593+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "LLY261218C01370000"}
+{"timestamp": "2026-11-23T15:02:07.057608+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "MA261218C00635000"}
+{"timestamp": "2026-11-23T15:02:22.502685+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "PG261218C00170000"}
+{"timestamp": "2026-11-23T15:02:40.337363+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "TSLA261218C00390000"}
+{"timestamp": "2026-11-23T15:02:51.628333+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "V261218C00410000"}
+{"timestamp": "2026-11-23T15:02:59.625065+00:00", "event_type": "gate_result", "gate": "blackout", "allowed": false, "reason": "Market-open blackout (2h before/after 9:30 ET open)", "symbol": "WMT261218C00127000"}
