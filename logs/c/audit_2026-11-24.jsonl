@@ -47,3 +47,5 @@
 {"timestamp": "2026-11-24T16:54:08.942404+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,722 would exceed the 25.0% aggregate-risk cap ($25,033)", "symbol": "XOM"}
 {"timestamp": "2026-11-24T16:57:22.535954+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
 {"timestamp": "2026-11-24T16:57:22.536866+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,747 would exceed the 25.0% aggregate-risk cap ($25,026)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T17:05:35.894003+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
+{"timestamp": "2026-11-24T17:05:35.894920+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,508 would exceed the 25.0% aggregate-risk cap ($25,029)", "symbol": "DIS"}
