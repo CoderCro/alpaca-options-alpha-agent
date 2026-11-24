@@ -35,3 +35,6 @@
 {"timestamp": "2026-11-24T16:35:25.637216+00:00", "event_type": "order_result", "symbol": "XOM261127P00157500", "status": "submitted", "order_id": "1e8920b2-cdf5-4cde-a421-7260eaebc00c"}
 {"timestamp": "2026-11-24T16:43:32.185810+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
 {"timestamp": "2026-11-24T16:43:32.186338+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,627 would exceed the 25.0% aggregate-risk cap ($25,033)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T16:46:52.507238+00:00", "event_type": "gate_result", "gate": "structure", "allowed": false, "reason": "close qty 1 exceeds held qty 0 -- would open a naked position", "symbol": "XOM261127P00157500"}
+{"timestamp": "2026-11-24T16:46:59.607498+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
+{"timestamp": "2026-11-24T16:46:59.608548+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,748 would exceed the 25.0% aggregate-risk cap ($25,036)", "symbol": "DIS"}
