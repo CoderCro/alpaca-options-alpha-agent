@@ -107,3 +107,7 @@
 {"timestamp": "2026-11-24T17:59:25.135138+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,786 would exceed the 25.0% aggregate-risk cap ($25,045)", "symbol": "DIS"}
 {"timestamp": "2026-11-24T17:59:40.487553+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
 {"timestamp": "2026-11-24T17:59:40.488306+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$6,031 exceeds the 6.0% per-trade cap ($6,011)", "symbol": "XOM"}
+{"timestamp": "2026-11-24T18:02:54.517517+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00122000"}
+{"timestamp": "2026-11-24T18:02:54.518454+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,907 would exceed the 25.0% aggregate-risk cap ($25,035)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T18:03:06.441656+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA261125P00150000"}
+{"timestamp": "2026-11-24T18:03:06.442561+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,356 would exceed the 25.0% aggregate-risk cap ($25,035)", "symbol": "NVDA"}
