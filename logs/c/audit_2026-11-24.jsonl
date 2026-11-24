@@ -233,3 +233,11 @@
 {"timestamp": "2026-11-24T19:49:32.493635+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,495 would exceed the 25.0% aggregate-risk cap ($25,034)", "symbol": "NVDA"}
 {"timestamp": "2026-11-24T19:49:40.761775+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
 {"timestamp": "2026-11-24T19:49:40.762700+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,876 would exceed the 25.0% aggregate-risk cap ($25,033)", "symbol": "XOM"}
+{"timestamp": "2026-11-24T19:52:54.851461+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
+{"timestamp": "2026-11-24T19:52:54.852512+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,151 would exceed the 25.0% aggregate-risk cap ($25,028)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T19:53:07.539340+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA261125P00150000"}
+{"timestamp": "2026-11-24T19:53:07.540341+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,203 would exceed the 25.0% aggregate-risk cap ($25,028)", "symbol": "NVDA"}
+{"timestamp": "2026-11-24T19:53:14.122438+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT261127P00131000"}
+{"timestamp": "2026-11-24T19:53:14.123556+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,136 would exceed the 25.0% aggregate-risk cap ($25,028)", "symbol": "WMT"}
+{"timestamp": "2026-11-24T19:53:17.110113+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
+{"timestamp": "2026-11-24T19:53:17.110961+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,872 would exceed the 25.0% aggregate-risk cap ($25,028)", "symbol": "XOM"}
