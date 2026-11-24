@@ -165,3 +165,11 @@
 {"timestamp": "2026-11-24T19:03:58.502937+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $3,550 would exceed the 25.0% aggregate-risk cap ($25,031)", "symbol": "DIS"}
 {"timestamp": "2026-11-24T19:04:10.578330+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA261125P00150000"}
 {"timestamp": "2026-11-24T19:04:10.579167+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,207 would exceed the 25.0% aggregate-risk cap ($25,031)", "symbol": "NVDA"}
+{"timestamp": "2026-11-24T19:07:29.167828+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
+{"timestamp": "2026-11-24T19:07:29.168992+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $3,550 would exceed the 25.0% aggregate-risk cap ($25,034)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T19:07:41.083207+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA261125P00150000"}
+{"timestamp": "2026-11-24T19:07:41.083991+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,504 would exceed the 25.0% aggregate-risk cap ($25,034)", "symbol": "NVDA"}
+{"timestamp": "2026-11-24T19:07:47.369625+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "WMT261127P00131000"}
+{"timestamp": "2026-11-24T19:07:47.370309+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,490 would exceed the 25.0% aggregate-risk cap ($25,035)", "symbol": "WMT"}
+{"timestamp": "2026-11-24T19:07:50.199223+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
+{"timestamp": "2026-11-24T19:07:50.200022+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$6,030 exceeds the 6.0% per-trade cap ($6,008)", "symbol": "XOM"}
