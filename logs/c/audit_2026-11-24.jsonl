@@ -249,3 +249,11 @@
 {"timestamp": "2026-11-24T19:56:45.927501+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,495 would exceed the 25.0% aggregate-risk cap ($25,026)", "symbol": "NVDA"}
 {"timestamp": "2026-11-24T19:56:53.120842+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
 {"timestamp": "2026-11-24T19:56:53.121688+00:00", "event_type": "gate_result", "gate": "risk_cap", "allowed": false, "reason": "$6,030 exceeds the 6.0% per-trade cap ($6,006)", "symbol": "XOM"}
+{"timestamp": "2026-11-24T20:05:06.813474+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "BAC261127P00048000"}
+{"timestamp": "2026-11-24T20:05:06.814368+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,651 would exceed the 25.0% aggregate-risk cap ($25,024)", "symbol": "BAC"}
+{"timestamp": "2026-11-24T20:05:12.369594+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "DIS261127P00121000"}
+{"timestamp": "2026-11-24T20:05:12.371604+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $4,388 would exceed the 25.0% aggregate-risk cap ($25,023)", "symbol": "DIS"}
+{"timestamp": "2026-11-24T20:05:25.705351+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "NVDA261125P00150000"}
+{"timestamp": "2026-11-24T20:05:25.706124+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,934 would exceed the 25.0% aggregate-risk cap ($25,022)", "symbol": "NVDA"}
+{"timestamp": "2026-11-24T20:05:32.939549+00:00", "event_type": "gate_result", "gate": "none", "allowed": true, "reason": "ok", "symbol": "XOM261127P00157500"}
+{"timestamp": "2026-11-24T20:05:32.940586+00:00", "event_type": "gate_result", "gate": "aggregate_risk", "allowed": false, "reason": "adding $5,872 would exceed the 25.0% aggregate-risk cap ($25,023)", "symbol": "XOM"}
